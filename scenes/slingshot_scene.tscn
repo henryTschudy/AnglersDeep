@@ -33,12 +33,14 @@ texture = ExtResource( 3 )
 [node name="slingshot_handle_collision_shape" type="CollisionShape2D" parent="slingshot"]
 shape = SubResource( 1 )
 
-[node name="projectile" type="KinematicBody2D" parent="slingshot"]
-position = Vector2( 0, -100 )
+[node name="projectile" type="KinematicBody2D" parent="."]
+position = Vector2( 960, 696 )
+collision_layer = 2
+collision_mask = 2
 
-[node name="projectile_sprite" type="Sprite" parent="slingshot/projectile"]
+[node name="projectile_sprite" type="Sprite" parent="projectile"]
 scale = Vector2( 8, 8 )
 texture = ExtResource( 1 )
 
-[node name="projectile_collision_shape" type="CollisionShape2D" parent="slingshot/projectile"]
+[node name="projectile_collision_shape" type="CollisionShape2D" parent="projectile"]
 shape = SubResource( 2 )
