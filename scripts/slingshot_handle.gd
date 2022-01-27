@@ -7,7 +7,7 @@ var RETURN_SPEED = 18
 var CORD_DISTANCE = 200
 var MOMENTUM_MULT = 1.5
 var PROJECTILE_SPEED_DIVISOR = 0.5
-var PROJECTILE_DRAG = 0.025 #how quickly the projectile slows down after launch
+var PROJECTILE_WEIGHT = 0.1 #how quickly the projectile slows down after launch
 
 var being_dragged = false
 var movement = Vector2(0,0)
@@ -29,10 +29,10 @@ func _ready():
 	target.visible = false
 	projectile.visible = false
 	
-#func _input(event):
-#	if event is InputEventMouseButton:
-#		if event.button_index == BUTTON_LEFT and not event.pressed:
-#			being_dragged = false
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and not event.pressed:
+			being_dragged = false
 
 func _input_event(_viewport, event, _shape_idx): #for mouse events that specifically involve this object
 	if event is InputEventMouseButton:
@@ -63,6 +63,7 @@ func _physics_process(_delta):
 		if (!projectile.visible and position != base_position):
 			projectile.visible = true
 			projectile_movement = (target.position)/PROJECTILE_SPEED_DIVISOR
+			projectile_target_position = target.position + position - base_position
 		last_vector = direction
 		movement = RETURN_SPEED*(direction + momentum)
 
@@ -75,8 +76,9 @@ func _physics_process(_delta):
 	
 	#Move the projectile when it's visible
 	if projectile.visible:
-		projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
-		projectile.move_and_slide(projectile_movement)
+		projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
+		#projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
+		#projectile.move_and_slide(projectile_movement)
 
 func manage_cord(): #yeah, this could be done a lot better
 	cord.points[0] = base_position-position-Vector2(CORD_DISTANCE,0)
