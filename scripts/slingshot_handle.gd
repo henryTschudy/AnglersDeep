@@ -42,8 +42,8 @@ func _input_event(_viewport, event, _shape_idx): #for mouse events that specific
 func _physics_process(_delta):
 	if being_dragged:
 		#move slingshot to cursor
-		var new_position = get_viewport().get_mouse_position()
-		movement = DRAG_SPEED*(new_position - position)
+		var new_position = get_global_mouse_position() #was get_viewport().get_mouse_position()
+		movement = DRAG_SPEED*(new_position - position) #movement = DRAG_SPEED*(new_position - position)
 
 		#maybe delete later, resets projectile on drag
 		projectile.visible = false

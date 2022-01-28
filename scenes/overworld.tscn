@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://textures/splash.png" type="Texture" id=1]
 [ext_resource path="res://textures/boat.png" type="Texture" id=2]
 [ext_resource path="res://generated tilesets/overworld_tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://scripts/boat.gd" type="Script" id=4]
 [ext_resource path="res://scripts/fish_spawn.gd" type="Script" id=5]
+[ext_resource path="res://scripts/casting_scene.gd" type="Script" id=6]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -56,6 +57,9 @@ polygon = PoolVector2Array( -2.64783, -63.7112, -16.5681, -42.8865, -27.625, -17
 [node name="Camera2D" type="Camera2D" parent="boat"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="Position2D" type="Position2D" parent="boat"]
+script = ExtResource( 6 )
 
 [node name="map_node" type="Node" parent="."]
 script = ExtResource( 5 )

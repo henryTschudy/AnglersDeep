@@ -14,7 +14,8 @@ radius = 27.0423
 [node name="Node2D" type="Node2D"]
 
 [node name="slingshot" type="KinematicBody2D" parent="."]
-position = Vector2( 960, 796 )
+collision_layer = 4
+collision_mask = 4
 input_pickable = true
 script = ExtResource( 4 )
 
@@ -34,8 +35,8 @@ texture = ExtResource( 3 )
 shape = SubResource( 1 )
 
 [node name="projectile" type="KinematicBody2D" parent="."]
-position = Vector2( 960, 696 )
-collision_layer = 2
+position = Vector2( 0, -80 )
+collision_layer = 4
 collision_mask = 2
 
 [node name="projectile_sprite" type="Sprite" parent="projectile"]
