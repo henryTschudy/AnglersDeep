@@ -51,11 +51,11 @@ func _physics_process(_delta):
 		
 	else:
 		var momentum = MOMENTUM_MULT*last_vector
-		var direction = (base_position-position)  #not normalized, this is intentional
+		var direction = base_position - position  #not normalized, this is intentional
 		
-		if (direction.length() < 0.01): #rounding down to prevent horrible bugs, not sure if necessary
-			direction = Vector2(0,0)
-			momentum = Vector2(0,0)
+		#if (direction.length() < 0.01): #rounding down to prevent horrible bugs, not sure if necessary
+		#	direction = Vector2(0,0)
+		#	momentum = Vector2(0,0)
 
 #		var changed_direction = (last_vector + direction).length() < last_vector.length() + direction.length()
 
