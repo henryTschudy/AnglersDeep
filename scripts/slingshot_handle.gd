@@ -28,7 +28,7 @@ func _ready():
 	base_position = position
 	target.visible = false
 	projectile.visible = false
-	
+
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and not event.pressed:
@@ -48,22 +48,21 @@ func _physics_process(_delta):
 		#maybe delete later, resets projectile on drag
 		projectile.visible = false
 		projectile.position = base_position
-		
+
 	else:
 		var momentum = MOMENTUM_MULT*last_vector
 		var direction = base_position - position  #not normalized, this is intentional
-		
+
 		#if (direction.length() < 0.01): #rounding down to prevent horrible bugs, not sure if necessary
 		#	direction = Vector2(0,0)
 		#	momentum = Vector2(0,0)
 
-#		var changed_direction = (last_vector + direction).length() < last_vector.length() + direction.length()
-
-		#only launch projectile if the slingshot's been interacted with
-		if (!projectile.visible and position != base_position):
+		var changed_direction = (last_vector + direction).length() < last_vector.length() + direction.length()
+		if (changed_direction && !projectile.visible):
 			projectile.visible = true
-			projectile_movement = (target.position)/PROJECTILE_SPEED_DIVISOR
-			projectile_target_position = target.position + position - base_position
+			projectile_target_position = target.position
+			projectile_movement = (target.position - base_position)/PROJECTILE_SPEED_DIVISOR
+			print("butt")
 		last_vector = direction
 		movement = RETURN_SPEED*(direction + momentum)
 
@@ -73,12 +72,18 @@ func _physics_process(_delta):
 
 	target.position = 4*(base_position - position)
 	target.visible = being_dragged
-	
+
 	#Move the projectile when it's visible
 	if projectile.visible:
 		projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
 		#projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
 		#projectile.move_and_slide(projectile_movement)
+
+	# debug
+	#print(cord.points)
+	#print(target.position)
+	#print(direction)
+	manage_cord()
 
 func manage_cord(): #yeah, this could be done a lot better
 	cord.points[0] = base_position-position-Vector2(CORD_DISTANCE,0)
