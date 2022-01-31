@@ -57,7 +57,7 @@ polygon = PoolVector2Array( -2.64783, -63.7112, -16.5681, -42.8865, -27.625, -17
 
 [node name="Camera2D" type="Camera2D" parent="boat"]
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="cast_scene" type="Position2D" parent="boat"]
 script = ExtResource( 6 )
