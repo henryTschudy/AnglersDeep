@@ -12,7 +12,6 @@ radius = 32.2563
 radius = 27.0423
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( -0.00702763, 0.0355415 )
 
 [node name="slingshot" type="KinematicBody2D" parent="."]
 collision_layer = 4

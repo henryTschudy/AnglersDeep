@@ -21,6 +21,8 @@ var being_thrown = false
 onready var cord = get_node("cord")
 onready var target = get_node("target")
 onready var projectile = get_parent().get_node("projectile")
+onready var boat = get_node_or_null("../../../") #THIS IS BAD CODE THAT WILL BREAK IF THINGS GET MOVED AROUND
+var warning_printed = false #for warning when the above node path is not reached
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,8 +53,16 @@ func _physics_process(_delta):
 
 	else:
 		var momentum = MOMENTUM_MULT*last_vector
-		var direction = base_position - position  #not normalized, this is intentional
-
+		var direction
+		
+		if (boat != null):
+			direction = base_position - position.rotated(boat.rotation)  #not normalized, this is intentional
+		else: #this breaks when rotated, but it's here as a failsafe for running this scene on its own outside the overworld
+			direction = base_position - position
+			if(!warning_printed):
+				print("spinny bug will occur if slingshot is rotated, check if scenes have moved, ignore if you are running the slingshot separately from overworld")
+				warning_printed = true
+			
 		#if (direction.length() < 0.01): #rounding down to prevent horrible bugs, not sure if necessary
 		#	direction = Vector2(0,0)
 		#	momentum = Vector2(0,0)
@@ -62,7 +72,7 @@ func _physics_process(_delta):
 			projectile.visible = true
 			projectile_target_position = target.position
 			projectile_movement = (target.position - base_position)/PROJECTILE_SPEED_DIVISOR
-			print("butt")
+			print("butt") #DO NOT DELETE, or do, IDC
 		last_vector = direction
 		movement = RETURN_SPEED*(direction + momentum)
 
