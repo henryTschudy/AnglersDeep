@@ -32,7 +32,7 @@ func _physics_process(delta):
 	swim()
 
 func set_fish_type(given_string): #this function could call another function that gets info from a json and sets it
-	fish_type = given_string
+	set_meta("shadowfish", "given_string") #makes a metadata category called fish and sets its value to "shadowfish_generic"
 
 func get_fish_type():
 	return fish_type

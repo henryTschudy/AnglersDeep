@@ -1,15 +1,18 @@
 extends Node2D
 
+onready var slingshot = get_node("../../../boat/cast_scene/Node2D/slingshot") #ticking time bomb
+#var slingshot = load("res://scripts/slingshot_handle.gd")
 var reel_scene = preload("res://scenes/reel_scene.tscn").instance()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_child(reel_scene)
-	
-	#reel_scene.position = camera.position
-	reel_scene.scale = Vector2(0.25, 0.25)
+	slingshot.connect("shadow_fish_collision", self, "_on_shadow_fish_collision")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	var parent_rotation = get_parent().rotation
 #	set_rotation(-parent_rotation)
+
+func _on_shadow_fish_collision():
+	add_child(reel_scene)
+	reel_scene.scale = Vector2(0.25, 0.25)

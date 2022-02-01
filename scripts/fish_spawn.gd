@@ -17,7 +17,7 @@ func _ready():
 
 func spawn_fish(coordinates):
 	var new_fish = ShadowFishy.new()
-	new_fish.set_fish_type("shadowfish")
+	new_fish.set_fish_type("generic_fish")
 	new_fish.position = coordinates
 	
 	owner.add_child(new_fish)
@@ -65,3 +65,4 @@ func _process(delta):
 		if (!shadow_fish.is_in_distance(boat.position, SPAWN_DISTANCE_X + SPAWN_AREA_OUTER/2, SPAWN_DISTANCE_Y + SPAWN_AREA_OUTER/2)):
 			fish_shadows.erase(shadow_fish) 
 			shadow_fish.despawn()
+		

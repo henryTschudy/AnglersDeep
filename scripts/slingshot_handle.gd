@@ -2,6 +2,8 @@
 
 extends KinematicBody2D
 
+signal shadow_fish_collision
+
 var DRAG_SPEED = 20
 var RETURN_SPEED = 18
 var CORD_DISTANCE = 200
@@ -11,7 +13,7 @@ var PROJECTILE_WEIGHT = 0.1 #how quickly the projectile slows down after launch
 
 var being_dragged = false
 var movement = Vector2(0,0)
-var projectile_movement = Vector2(0,0)
+#var projectile_movement = Vector2(0,0)
 var projectile_target_position = Vector2(0,0)
 var base_position #initial position of the projectile, target, and slingshot sprite
 var last_vector = Vector2(0,0)
@@ -40,6 +42,7 @@ func _input_event(_viewport, event, _shape_idx): #for mouse events that specific
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			being_dragged = event.pressed
+			emit_signal("shadow_fish_collision")
 
 func _physics_process(_delta):
 	if being_dragged:
@@ -71,7 +74,7 @@ func _physics_process(_delta):
 		if (changed_direction && !projectile.visible):
 			projectile.visible = true
 			projectile_target_position = target.position
-			projectile_movement = (target.position - base_position)/PROJECTILE_SPEED_DIVISOR
+			#projectile_movement = (target.position - base_position)/PROJECTILE_SPEED_DIVISOR
 			print("butt") #DO NOT DELETE, or do, IDC
 		last_vector = direction
 		movement = RETURN_SPEED*(direction + momentum)
@@ -85,9 +88,15 @@ func _physics_process(_delta):
 
 	#Move the projectile when it's visible
 	if projectile.visible:
-		projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
+		#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
+		projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT) #FIX THIS
 		#projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
 		#projectile.move_and_slide(projectile_movement)
+		var last_collision = projectile.get_last_slide_collision()
+		if last_collision != null && last_collision.get_collider().has_meta("shadowfish"):
+			#print("yeeeeeeeeeeeeeeeeeee")
+			emit_signal("shadow_fish_collision")
+
 
 	# debug
 	#print(cord.points)
