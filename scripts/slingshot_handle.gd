@@ -31,7 +31,11 @@ func _ready():
 	set_pickable(true) #allows object to detect mouse entering and exiting, should be true by default, this is here for clarity
 	base_position = position
 	target.visible = false
+	
 	projectile.visible = false
+	projectile.set_as_toplevel(true)
+	projectile.scale *= get_parent().scale #doesn't work
+	print(get_parent().scale)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -50,8 +54,9 @@ func _physics_process(_delta):
 		movement = DRAG_SPEED*(new_position - global_position) #movement = DRAG_SPEED*(new_position - position)
 
 		#maybe delete later, resets projectile on drag
-		projectile.visible = false
-		projectile.position = base_position
+		reset_projectile()
+		#projectile.visible = false
+		#projectile.position = base_position
 
 	else:
 		var momentum = MOMENTUM_MULT*last_vector
@@ -78,22 +83,33 @@ func _physics_process(_delta):
 		last_vector = direction
 		movement = RETURN_SPEED*(direction + momentum)
 
+# warning-ignore:return_value_discarded
 	move_and_slide(movement)
 
 	manage_cord()
 
 	target.position = 4*(base_position - position)
+	if (boat != null):
+				target.set_rotation(-boat.rotation) #makes target not rotate with boat
 	target.visible = being_dragged
 
 	#Move the projectile when it's visible
 	if projectile.visible:
 		#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
-		projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT) #FIX THIS
+		#projectile.move_and_slide(Vector2(0,0)) #copout choice, for cowards
+		
+		if ((projectile.position - projectile_target_position).length() > 0.5): # BAD CODE, NO
+			projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT) #FIX THIS
+		else:
+			reset_projectile()
+		
 		#projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
+		
 		#projectile.move_and_slide(projectile_movement)
 		var last_collision = projectile.get_last_slide_collision()
 		if last_collision != null && last_collision.get_collider().has_meta("shadowfish"):
-				emit_signal("shadow_fish_collision")
+			emit_signal("shadow_fish_collision")
+			reset_projectile()
 
 
 	# debug
@@ -107,6 +123,14 @@ func manage_cord(): #yeah, this could be done a lot better
 	#cord.points[1] = position
 	cord.points[2] = base_position-position+Vector2(CORD_DISTANCE,0)
 
+func reset_projectile():
+	projectile.visible = false
+	if (boat != null):
+		#projectile.set_as_toplevel(false)
+		projectile.position = boat.position + base_position
+	else:
+		projectile.position = base_position
+	
 ### og code below ###
 
 ## Called when the node enters the scene tree for the first time.
