@@ -55,8 +55,6 @@ func _physics_process(_delta):
 
 		#maybe delete later, resets projectile on drag
 		reset_projectile()
-		#projectile.visible = false
-		#projectile.position = base_position
 
 	else:
 		var momentum = MOMENTUM_MULT*last_vector
@@ -77,7 +75,7 @@ func _physics_process(_delta):
 		var changed_direction = (last_vector + direction).length() < last_vector.length() + direction.length()
 		if (changed_direction && !projectile.visible):
 			projectile.visible = true
-			projectile_target_position = target.position
+			projectile_target_position = target.global_position
 			#projectile_movement = (target.position - base_position)/PROJECTILE_SPEED_DIVISOR
 			print("butt") #DO NOT DELETE, or do, IDC
 		last_vector = direction
@@ -90,7 +88,7 @@ func _physics_process(_delta):
 
 	target.position = 4*(base_position - position)
 	if (boat != null):
-				target.set_rotation(-boat.rotation) #makes target not rotate with boat
+		target.set_rotation(-boat.rotation) #makes target not rotate with boat
 	target.visible = being_dragged
 
 	#Move the projectile when it's visible
@@ -100,6 +98,8 @@ func _physics_process(_delta):
 		
 		if ((projectile.position - projectile_target_position).length() > 0.5): # BAD CODE, NO
 			projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT) #FIX THIS
+			#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
+			#projectile.move_and_slide(Vector2(0,0))
 		else:
 			reset_projectile()
 		
@@ -127,7 +127,7 @@ func reset_projectile():
 	projectile.visible = false
 	if (boat != null):
 		#projectile.set_as_toplevel(false)
-		projectile.position = boat.position + base_position
+		projectile.position = boat.global_position + base_position
 	else:
 		projectile.position = base_position
 	
