@@ -42,7 +42,6 @@ func _input_event(_viewport, event, _shape_idx): #for mouse events that specific
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			being_dragged = event.pressed
-			emit_signal("shadow_fish_collision")
 
 func _physics_process(_delta):
 	if being_dragged:
@@ -94,8 +93,7 @@ func _physics_process(_delta):
 		#projectile.move_and_slide(projectile_movement)
 		var last_collision = projectile.get_last_slide_collision()
 		if last_collision != null && last_collision.get_collider().has_meta("shadowfish"):
-			#print("yeeeeeeeeeeeeeeeeeee")
-			emit_signal("shadow_fish_collision")
+				emit_signal("shadow_fish_collision")
 
 
 	# debug
