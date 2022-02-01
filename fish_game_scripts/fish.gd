@@ -45,7 +45,7 @@ func fish_swim():
 	
 func fish_get_dragged():
 	move_fish(fish_speed, fish_direction)
-	print(fish_speed)
+	#print(fish_speed)
 
 func move_fish(move_speed, move_direction):
 	#print(move_speed)
@@ -63,11 +63,11 @@ func on_fish_state_timer_timeout():
 		fish_swim_timer.set_paused(false)
 	
 func on_fish_swim_timer_timeout():
-	print(fish_swim_timer.paused)
+	#print(fish_swim_timer.paused)
 	fish_direction = Vector2( rand_range(0,2)-1, rand_range(0,2)-rand_range(1,3) ).normalized() #tendency to go upward
 	fish_speed = rand_range(50,200)
 	
-func check_offscreen():
+func check_offscreen(): #will need to redo this to be more flexible
 	#if (position + hook_offset).x >= screen_size.x || (position + hook_offset).x <= 0:
 	#	fish_direction.x = -fish_direction.x
 	#if (position + hook_offset).y >= screen_size.y || (position + hook_offset).y <= 0:

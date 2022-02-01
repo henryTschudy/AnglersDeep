@@ -56,10 +56,7 @@ func _unhandled_input(_event):
 			fishy.fish_speed = fish_prev_speed
 
 func lose_fish_game():
-	#print("GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-	var loss_text = RichTextLabel.new()
-	loss_text.add_text("FISH ESCAPED")
-	loss_text.position = Vector2(screen_size.x, screen_size.y)
+	print("GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	
 func win_fish_game():
 	print("GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")

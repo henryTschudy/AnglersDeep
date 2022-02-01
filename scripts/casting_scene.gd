@@ -7,7 +7,7 @@ func _ready():
 	add_child(slingshot_scene)
 	
 	slingshot_scene.position = slingshot_scene.position + slingshot_scene.get_node("slingshot").position
-	#slingshot_scene.scale = Vector2(0.3, 0.3)
+	slingshot_scene.scale = Vector2(0.3, 0.3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

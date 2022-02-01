@@ -56,9 +56,9 @@ func _physics_process(_delta):
 		var direction
 		
 		if (boat != null):
-			direction = base_position - position.rotated(boat.rotation)  #not normalized, this is intentional
+			direction = base_position - position.rotated(boat.rotation)*get_parent().scale  #not normalized, this is intentional
 		else: #this breaks when rotated, but it's here as a failsafe for running this scene on its own outside the overworld
-			direction = base_position - position
+			direction = base_position - position*get_parent().scale
 			if(!warning_printed):
 				print("spinny bug will occur if slingshot is rotated, check if scenes have moved, ignore if you are running the slingshot separately from overworld")
 				warning_printed = true
