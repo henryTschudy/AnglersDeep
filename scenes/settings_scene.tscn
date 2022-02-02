@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/menu_button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/menuButtons.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" parent="." instance=ExtResource( 1 )]
+margin_left = 536.0
+margin_top = 504.0
+margin_right = 1424.0
+margin_bottom = 734.0
+text = "Go Back!"
+script = ExtResource( 2 )
+ref_path = "res://scenes/main_menu.tscn"
