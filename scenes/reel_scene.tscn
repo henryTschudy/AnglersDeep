@@ -40,20 +40,24 @@ __meta__ = {
 }
 
 [node name="fish_swim_timer" type="Timer" parent="fish"]
+wait_time = 0.75
 autostart = true
 __meta__ = {
 "_editor_description_": "sets the speed at which the fish changes directions"
 }
 
 [node name="line" type="Line2D" parent="."]
-position = Vector2( 628.99, 558.355 )
-points = PoolVector2Array( 305.198, 564.015, 429.948, 12.7706 )
+points = PoolVector2Array( 952, 1119, 1064, 570 )
+__meta__ = {
+"_editor_description_": "Move the points, NOT the whole object, or you will cause issues with the win condition! Position shoud remain at (0,0)."
+}
 
 [node name="fish_anger_bar" type="ProgressBar" parent="."]
 margin_left = 17.0
 margin_top = 1033.0
 margin_right = 463.0
 margin_bottom = 1063.0
+percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,6 +68,26 @@ margin_top = -20.9996
 margin_right = 152.838
 margin_bottom = -0.999634
 text = "FISH ANGER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fish_distance_bar" type="ProgressBar" parent="."]
+margin_left = 19.0
+margin_top = 958.0
+margin_right = 465.0
+margin_bottom = 988.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="fish_distance_bar"]
+margin_left = 1.83778
+margin_top = -20.9996
+margin_right = 152.838
+margin_bottom = -0.999634
+text = "FISH DISTANCE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
