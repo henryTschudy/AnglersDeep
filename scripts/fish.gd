@@ -10,6 +10,8 @@ var screen_size = Vector2(0,0)
 var hook_offset = Vector2(0,0)
 var reel_state = false
 
+var fish_type
+
 var fish_direction
 var fish_speed
 var fish_anger
@@ -28,6 +30,8 @@ func _ready():
 	fish_direction = Vector2(0,0)
 	fish_speed = 1
 	fish_anger = 0
+	
+	fish_type = "generic_fish"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -76,3 +80,9 @@ func check_offscreen(): #will need to redo this to be more flexible
 		fish_escaped = true
 	elif (position + hook_offset).y >= screen_size.y: #for now, winning just checks if fish goes offscreen downward
 		fish_caught = true
+
+func set_fish_type(given_fish_type):
+	fish_type = given_fish_type
+	
+func get_fish_type():
+	return fish_type

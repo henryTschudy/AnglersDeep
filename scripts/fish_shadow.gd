@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var COLLISION_RADIUS = 10
+var SWIM_DIRECTION_CHANGE_TIME = 3
 
 var fish_type = "placeholder" #might want to change this to like an index or something, could use enums even idk, use 
 var fish_direction
@@ -8,6 +9,8 @@ var fish_speed
 
 var fish_collision_shape
 var fish_sprite
+
+var swim_timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): #may need to do some freeing
@@ -27,12 +30,18 @@ func _ready(): #may need to do some freeing
 	
 	add_child(fish_collision_shape)
 	add_child(fish_sprite)
+	
+	swim_timer = Timer.new()
+	swim_timer.set_wait_time(SWIM_DIRECTION_CHANGE_TIME)
+	add_child(swim_timer) #to process
+	swim_timer.start()
+	swim_timer.connect("timeout",self,"_randomize_fish_movement")
 
 func _physics_process(delta):
 	swim()
 
 func set_fish_type(given_string): #this function could call another function that gets info from a json and sets it
-	set_meta("shadowfish", "given_string") #makes a metadata category called fish and sets its value to "shadowfish_generic"
+	set_meta("shadowfish", "given_string") #makes a metadata category called fish and sets its value to "given_string"
 
 func get_fish_type():
 	return fish_type
@@ -51,13 +60,17 @@ func change_direction(given_direction): #please give a Vector2
 	fish_direction = given_direction
 
 func change_speed_random():
-	fish_speed = rand_range(0, 5)
+	fish_speed = rand_range(0, 25)
 	
 func change_speed(given_speed):
 	fish_speed = given_speed
 
 func is_in_distance(center, x_distance, y_distance):
 	return position.x > center.x - x_distance && position.x < center.x + x_distance && position.y > center.y - y_distance && position.y < center.y + y_distance
+
+func _randomize_fish_movement():
+	change_direction_random()
+	change_speed_random()
 
 func despawn():
 	queue_free()

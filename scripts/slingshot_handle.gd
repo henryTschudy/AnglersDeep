@@ -96,12 +96,13 @@ func _physics_process(_delta):
 		#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
 		#projectile.move_and_slide(Vector2(0,0)) #copout choice, for cowards
 		
-		if ((projectile.position - projectile_target_position).length() > 0.5): # BAD CODE, NO
+		if ((projectile.position - projectile_target_position).length() > 0.5):
 			projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT) #FIX THIS
 			#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
 			#projectile.move_and_slide(Vector2(0,0))
 		else:
-			reset_projectile()
+			#reset_projectile()
+			projectile.move_and_slide(Vector2(0,0)) #this is super hacky, but it should let fish swim into the projectile as opposed to just getting hit by it to trigger the reel scene
 		
 		#projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
 		
@@ -110,7 +111,6 @@ func _physics_process(_delta):
 		if last_collision != null && last_collision.get_collider().has_meta("shadowfish"):
 			emit_signal("shadow_fish_collision")
 			reset_projectile()
-
 
 	# debug
 	#print(cord.points)

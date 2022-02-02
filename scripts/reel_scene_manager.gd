@@ -1,5 +1,7 @@
 extends Node2D
 
+signal reel_game_over(game_lost, fish_type)
+
 var DRAG_SPEED = 65
 var DRAG_SPEED_SWIM = 45
 
@@ -57,6 +59,8 @@ func _unhandled_input(_event):
 
 func lose_fish_game():
 	print("GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	emit_signal("reel_game_over", false, fishy.get_fish_type())
 	
 func win_fish_game():
 	print("GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	emit_signal("reel_game_over", false, fishy.get_fish_type())
