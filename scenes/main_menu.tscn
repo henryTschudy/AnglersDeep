@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://textures/tile_1.png" type="Texture" id=1]
 [ext_resource path="res://fonts/times.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://scripts/menuButtons.gd" type="Script" id=3]
 [ext_resource path="res://objects/menu_button.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=2]
@@ -38,7 +37,6 @@ margin_bottom = 512.0
 focus_neighbour_top = NodePath("../menu_exit")
 focus_neighbour_bottom = NodePath("../menu_settings")
 text = "Play"
-script = ExtResource( 3 )
 ref_path = "res://scenes/overworld.tscn"
 start_focused = true
 
@@ -51,7 +49,6 @@ margin_bottom = 704.0
 focus_neighbour_top = NodePath("../menu_play")
 focus_neighbour_bottom = NodePath("../menu_exit")
 text = "Options"
-script = ExtResource( 3 )
 ref_path = "res://scenes/settings_scene.tscn"
 
 [node name="menu_exit" parent="." instance=ExtResource( 6 )]
@@ -63,4 +60,3 @@ margin_bottom = 904.0
 focus_neighbour_top = NodePath("../menu_settings")
 focus_neighbour_bottom = NodePath("../menu_play")
 text = "Exit"
-script = ExtResource( 3 )

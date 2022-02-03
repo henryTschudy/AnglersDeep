@@ -14,10 +14,7 @@ func _shift_focus():
 	grab_focus()
 
 func _select_button():
-	print("triggered button")
 	if(ref_path != ""):
-		print("change scene")
 		get_tree().change_scene(ref_path)
 	else:
-		print("exit pls")
 		get_tree().quit()
