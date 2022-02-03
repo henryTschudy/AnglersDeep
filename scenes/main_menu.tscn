@@ -48,7 +48,7 @@ margin_right = 1216.0
 margin_bottom = 704.0
 focus_neighbour_top = NodePath("../menu_play")
 focus_neighbour_bottom = NodePath("../menu_exit")
-text = "Options"
+text = "Settings"
 ref_path = "res://scenes/settings_scene.tscn"
 
 [node name="menu_exit" parent="." instance=ExtResource( 6 )]

@@ -2,6 +2,7 @@ extends Button
 
 export var ref_path = ""
 export(bool) var start_focused = false
+var prev_scene = "prev_scene"
 
 func _ready():
 	if(start_focused):
@@ -9,12 +10,17 @@ func _ready():
 		
 	connect("mouse_entered",self,"_shift_focus")
 	connect("pressed",self,"_select_button")
-	
+
 func _shift_focus():
 	grab_focus()
 
 func _select_button():
-	if(ref_path != ""):
-		get_tree().change_scene(ref_path)
+#	print(ref_path)
+#	print(ref_path == "prev_scene")
+	if(ref_path == prev_scene):
+		print("go back to prev scene")
+		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
+	elif(ref_path != ""):
+		Global._change_scene(Global._get_current_scene_path(),ref_path)
 	else:
 		get_tree().quit()

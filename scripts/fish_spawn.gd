@@ -28,10 +28,8 @@ func try_generate_spawn_fish():
 	var map_rect = tilemap.get_used_rect()
 	
 	if (map_rect.has_point(try_coordinates)):
-		print("1")
 		return
 	if (tilemap.get_cellv(tilemap.world_to_map(try_coordinates)) != $TileMap.INVALID_CELL):
-		print("2")
 		return
 	
 	spawn_fish(try_coordinates)
