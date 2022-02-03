@@ -1,7 +1,10 @@
 extends Node
 
+signal shadow_fish_deleted
+
 onready var tilemap = get_node("TileMap")
 onready var boat = get_node("../boat")
+onready var slingshot = get_node("../boat/cast_scene/Node2D/slingshot")
 var fish_shadows = []
 
 var SPAWN_DISTANCE_X = 480 #there is probably a better way to get this distance from the camera
@@ -13,7 +16,7 @@ var ShadowFishy = load("res://scripts/fish_shadow.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	slingshot.connect("shadow_fish_collision", self, "_on_shadow_fish_collision")
 
 func spawn_fish(coordinates):
 	var new_fish = ShadowFishy.new()
@@ -65,4 +68,8 @@ func _process(delta):
 		if (!shadow_fish.is_in_distance(boat.position, SPAWN_DISTANCE_X + SPAWN_AREA_OUTER/2, SPAWN_DISTANCE_Y + SPAWN_AREA_OUTER/2)):
 			fish_shadows.erase(shadow_fish) 
 			shadow_fish.despawn()
-		
+			
+func _on_shadow_fish_collision(colliding_fish):
+	emit_signal("shadow_fish_deleted", colliding_fish.fish_type)
+	fish_shadows.erase(colliding_fish)
+	colliding_fish.despawn()

@@ -2,7 +2,7 @@
 
 extends KinematicBody2D
 
-signal shadow_fish_collision
+signal shadow_fish_collision(collider)
 
 var DRAG_SPEED = 20
 var RETURN_SPEED = 18
@@ -17,8 +17,6 @@ var movement = Vector2(0,0)
 var projectile_target_position = Vector2(0,0)
 var base_position #initial position of the projectile, target, and slingshot sprite
 var last_vector = Vector2(0,0)
-var can_throw_projectile = true;
-var being_thrown = false
 
 onready var cord = get_node("cord")
 onready var target = get_node("target")
@@ -35,17 +33,18 @@ func _ready():
 	projectile.visible = false
 	projectile.set_as_toplevel(true)
 	projectile.scale *= get_parent().scale #doesn't work
-	print(get_parent().scale)
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and not event.pressed:
 			being_dragged = false
+			projectile_target_position = target.global_position
 
 func _input_event(_viewport, event, _shape_idx): #for mouse events that specifically involve this object
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			being_dragged = event.pressed
+			projectile_target_position = target.global_position # this line also enables projectile to move back to the center when mouse is clicked
 
 func _physics_process(_delta):
 	if being_dragged:
@@ -75,7 +74,7 @@ func _physics_process(_delta):
 		var changed_direction = (last_vector + direction).length() < last_vector.length() + direction.length()
 		if (changed_direction && !projectile.visible):
 			projectile.visible = true
-			projectile_target_position = target.global_position
+			#projectile_target_position = target.global_position
 			#projectile_movement = (target.position - base_position)/PROJECTILE_SPEED_DIVISOR
 			print("butt") #DO NOT DELETE, or do, IDC
 		last_vector = direction
@@ -96,21 +95,27 @@ func _physics_process(_delta):
 		#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
 		#projectile.move_and_slide(Vector2(0,0)) #copout choice, for cowards
 		
-		if ((projectile.position - projectile_target_position).length() > 0.5):
-			projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT) #FIX THIS
+		if projectile.position.distance_to(projectile_target_position) > 0.5: #just ensures the projectile stops when it reaches its target
+			projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT)
 			#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
 			#projectile.move_and_slide(Vector2(0,0))
+		elif (boat != null) && (projectile_target_position.distance_to(base_position + boat.global_position) < 0.5):
+			reset_projectile()
+		elif (boat == null) && (projectile_target_position.distance_to(base_position) < 0.5):
+			reset_projectile()
 		else:
-			#reset_projectile()
 			projectile.move_and_slide(Vector2(0,0)) #this is super hacky, but it should let fish swim into the projectile as opposed to just getting hit by it to trigger the reel scene
 		
 		#projectile_movement = lerp(projectile_movement, Vector2.ZERO, PROJECTILE_DRAG) #slow down projectile over time
 		
 		#projectile.move_and_slide(projectile_movement)
 		var last_collision = projectile.get_last_slide_collision()
-		if last_collision != null && last_collision.get_collider().has_meta("shadowfish"):
-			emit_signal("shadow_fish_collision")
-			reset_projectile()
+		if last_collision != null:
+			if last_collision.get_collider().has_meta("shadowfish"):
+				reset_projectile()
+				emit_signal("shadow_fish_collision", last_collision.get_collider())
+			else:
+				projectile_target_position = projectile.position
 
 	# debug
 	#print(cord.points)
@@ -128,8 +133,10 @@ func reset_projectile():
 	if (boat != null):
 		#projectile.set_as_toplevel(false)
 		projectile.position = boat.global_position + base_position
+		projectile_target_position = boat.global_position + base_position
 	else:
 		projectile.position = base_position
+		projectile_target_position = base_position
 	
 ### og code below ###
 

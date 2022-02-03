@@ -22,13 +22,15 @@ var fishy_angry = false
 func _ready():
 	#screen_size.x = get_viewport().get_visible_rect().size.x * get_parent().scale.x # Get width
 	#screen_size.y = get_viewport().get_visible_rect().size.y * get_parent().scale.y # Get height
-	fish_distance_bar.min_value = fishy.WIN_DISTANCE
-	fish_distance_bar.max_value = fishy.LOSS_DISTANCE
+	fish_distance_bar.min_value = fishy.get_win_distance()
+	fish_distance_bar.max_value = fishy.get_loss_distance()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	line.points[1] = fishy.position + fishy.hook_offset.rotated(fishy.fish_direction.angle()) - line.position
+	
 	fish_distance_bar.set_value(fishy.get_fish_distance())
+	
 	if fishy_angry:
 		fishy.fish_anger += fishy.FISH_ANGER_INCREMENT * delta
 		fish_anger_bar.set_value(fishy.fish_anger)

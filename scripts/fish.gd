@@ -94,9 +94,9 @@ func check_win_loss_condition(): #will need to redo this to be more flexible
 	#	fish_direction.x = -fish_direction.x
 	#if (position + hook_offset).y >= screen_size.y || (position + hook_offset).y <= 0:
 	#	fish_direction.y = -fish_direction.y
-	if get_fish_distance() > (LOSS_DISTANCE * get_parent().scale.x):
+	if get_fish_distance() > get_loss_distance():
 		fish_escaped = true
-	elif get_fish_distance() < (WIN_DISTANCE * get_parent().scale.x): #for now, winning just checks fish distance from line base
+	elif get_fish_distance() < get_win_distance(): #for now, winning just checks fish distance from line base
 		fish_caught = true
 
 func set_fish_type(given_fish_type):
@@ -107,6 +107,12 @@ func get_fish_type():
 	
 func get_fish_distance():
 	return (position + hook_offset).distance_to(line.points[0]) * get_parent().scale.x
+	
+func get_win_distance():
+	return WIN_DISTANCE * get_parent().scale.x
+	
+func get_loss_distance():
+	return LOSS_DISTANCE * get_parent().scale.x
 
 func set_fish_flipped(flip_state):
 	get_node("fish_sprite").set_flip_v(flip_state)
