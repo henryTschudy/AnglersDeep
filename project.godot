@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Anglers_Deep_Fishing_Prototype"
-run/main_scene="res://scenes/overworld.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 
