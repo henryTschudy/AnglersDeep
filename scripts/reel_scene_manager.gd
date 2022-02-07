@@ -30,6 +30,7 @@ func _process(delta):
 	line.points[1] = fishy.position + fishy.hook_offset.rotated(fishy.fish_direction.angle()) - line.position
 	
 	fish_distance_bar.set_value(fishy.get_fish_distance())
+	#print(fish_distance_bar.max_value)
 	
 	if fishy_angry:
 		fishy.fish_anger += fishy.FISH_ANGER_INCREMENT * delta
