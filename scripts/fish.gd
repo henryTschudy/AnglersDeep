@@ -7,11 +7,13 @@ var WIN_DISTANCE = 150
 var LOSS_DISTANCE = 1000
 var FISH_FORCE_BASE = 10 #starting number for speed fish tension goes up
 var FISH_FORCE_CHANGE = 1
-var FISH_TENSION_DECAY = 0.1
+var FISH_TENSION_DECAY = 0.5
 var FISH_FORCE_MIN = 0
 var FISH_FORCE_MAX = 15
 
 var FISH_SPEED_MULT = 20
+
+var DRAG_SPEED_MULT = 50 #gets multiplied by a fraction of 1
 
 onready var fish_force_timer = get_node("fish_force_timer")
 onready var fish_swim_timer = get_node("fish_swim_timer")
@@ -62,7 +64,8 @@ func _physics_process(delta): #incorporate delta, dumpass
 	#else:
 	#	fish_swim()
 	fish_swim()
-	fish_tension -= FISH_TENSION_DECAY * delta
+	if fish_tension >= 0 && !reel_state: #REMOVE THIS BLOCK IF YOU WANT LINE TENSION NOT TO GO DOWN
+		fish_tension -= FISH_TENSION_DECAY * delta
 
 func fish_swim():
 	fish_direction = (fish_direction + fish_direction_target/FISH_TURN_SLOWNESS).normalized()
