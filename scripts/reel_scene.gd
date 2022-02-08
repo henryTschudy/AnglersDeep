@@ -32,3 +32,6 @@ func _on_shadow_fish_collision(fish_type):
 
 func _on_reel_game_end(game_won: bool, fish_type: String):
 	reel_scene_manager.queue_free()
+	
+	map.pause_mode = PAUSE_MODE_INHERIT
+	get_tree().set_pause(false)

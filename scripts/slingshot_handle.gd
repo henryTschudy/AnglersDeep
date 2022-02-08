@@ -110,7 +110,7 @@ func _physics_process(_delta):
 		
 		#projectile.move_and_slide(projectile_movement)
 		var last_collision = projectile.get_last_slide_collision()
-		if last_collision != null:
+		if last_collision != null && last_collision.get_collider() != null:
 			if last_collision.get_collider().has_meta("shadowfish"):
 				reset_projectile()
 				emit_signal("shadow_fish_collision", last_collision.get_collider())
