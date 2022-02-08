@@ -1,12 +1,19 @@
 extends KinematicBody2D
 
-var FISH_ANGER_INCREMENT = 10
+#var FISH_TENSION_INCREMENT = 10
 var FISH_TURN_SLOWNESS = 5
 var FISH_AWAY_TENDENCY = 0.5 #tendency for the fish to swim away from the line, keep this number pretty low
 var WIN_DISTANCE = 150
 var LOSS_DISTANCE = 1000
+var FISH_FORCE_BASE = 10 #starting number for speed fish tension goes up
+var FISH_FORCE_CHANGE = 1
+var FISH_TENSION_DECAY = 0.1
+var FISH_FORCE_MIN = 0
+var FISH_FORCE_MAX = 15
 
-onready var fish_state_timer = get_node("fish_state_timer")
+var FISH_SPEED_MULT = 20
+
+onready var fish_force_timer = get_node("fish_force_timer")
 onready var fish_swim_timer = get_node("fish_swim_timer")
 onready var line = get_node("../line")
 
@@ -21,7 +28,8 @@ var fish_type
 var fish_direction_target
 var fish_direction
 var fish_speed
-var fish_anger
+var fish_tension
+var fish_force
 
 var fish_escaped = false
 var fish_caught = false
@@ -33,12 +41,14 @@ func _ready():
 	
 	hook_offset = Vector2(100, 35)
 	hook_offset_base_y = hook_offset.y
-	fish_state_timer.connect("timeout",self,"on_fish_state_timer_timeout")  
+	fish_force_timer.connect("timeout",self,"on_fish_force_timer_timeout")  
 	fish_swim_timer.connect("timeout",self,"on_fish_swim_timer_timeout") 
 	fish_direction = Vector2(0,0)
 	fish_direction_target = Vector2(0,0)
-	fish_speed = 1
-	fish_anger = 0
+	fish_speed = FISH_SPEED_MULT
+	fish_tension = 0
+	
+	fish_force = FISH_FORCE_BASE
 	
 	fish_type = "generic_fish"
 
@@ -46,19 +56,22 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _physics_process(_delta): #incorporate delta, dumpass
-	if reel_state:
-		fish_get_dragged()
-	else:
-		fish_swim()
+func _physics_process(delta): #incorporate delta, dumpass
+	#if reel_state:
+	#	fish_get_dragged()
+	#else:
+	#	fish_swim()
+	fish_swim()
+	fish_tension -= FISH_TENSION_DECAY * delta
 
 func fish_swim():
 	fish_direction = (fish_direction + fish_direction_target/FISH_TURN_SLOWNESS).normalized()
 	move_fish(fish_speed, fish_direction)
 	check_win_loss_condition()
 	
-func fish_get_dragged():
-	move_fish(fish_speed, fish_direction)
+#func fish_get_dragged():
+#	move_fish(fish_speed, fish_direction)
+#	check_win_loss_condition()
 	#print(fish_speed)
 
 func move_fish(move_speed, move_direction):
@@ -72,22 +85,28 @@ func move_fish(move_speed, move_direction):
 	rotation = move_direction.angle()
 	move_and_slide(get_parent().scale.x * move_speed*move_direction)
 
-func on_fish_state_timer_timeout():
-	reel_state = !reel_state
-	if(reel_state):
-		#fish_direction = Vector2(0,0)
-		fish_speed = 0
-		fish_swim_timer.set_paused(true)
-	else:
-		fish_swim_timer.set_paused(false)
+func on_fish_force_timer_timeout():
+	#reel_state = !reel_state
+	#if(reel_state):
+	#	#fish_direction = Vector2(0,0)
+	#	fish_speed = 0
+	#	fish_swim_timer.set_paused(true)
+	#else:
+	#	fish_swim_timer.set_paused(false)
+	fish_force += rand_range(-FISH_FORCE_CHANGE, FISH_FORCE_CHANGE)
+	if (fish_force < FISH_FORCE_MIN):
+		fish_force = FISH_FORCE_MIN
+	elif (fish_force > FISH_FORCE_MAX):
+		fish_force = FISH_FORCE_MAX
 	
 func on_fish_swim_timer_timeout():
 	#print(fish_swim_timer.paused)
 	#fish_direction = Vector2( rand_range(0,2)-1, rand_range(0,2)-rand_range(1,3) ).normalized() #tendency to go upward
-	var fish_direction_target_base = ( Vector2(rand_range(-1,1), rand_range(-1,1)) ).normalized()
-	var fish_direction_target_addon = FISH_AWAY_TENDENCY * ( position - line.points[0] ).normalized()
-	fish_direction_target = (fish_direction_target_base + fish_direction_target_addon).normalized()
-	fish_speed = rand_range(50,200)
+	if (!reel_state):
+		var fish_direction_target_base = ( Vector2(rand_range(-1,1), rand_range(-1,1)) ).normalized()
+		var fish_direction_target_addon = FISH_AWAY_TENDENCY * ( position - line.points[0] ).normalized()
+		fish_direction_target = (fish_direction_target_base + fish_direction_target_addon).normalized()
+		fish_speed = fish_force * FISH_SPEED_MULT
 	
 func check_win_loss_condition(): #will need to redo this to be more flexible
 	#if (position + hook_offset).x >= screen_size.x || (position + hook_offset).x <= 0:

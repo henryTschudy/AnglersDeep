@@ -32,8 +32,7 @@ texture = ExtResource( 3 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fish"]
 polygon = PoolVector2Array( -85.1139, -21.8289, -45.7834, -60.0358, -54.7732, -78.3901, -9.07483, -119.219, 30.2557, -90.7511, 88.3152, -67.9019, 110.041, -28.9459, 108.168, 23.8694, 72.9575, 46.344, 19.7676, 46.344, -11.6969, 69.5678, -30.4257, 48.9661, -11.6969, 32.8593, -85.4885, 1.39481, -141.675, 52.7118, -137.555, -80.6375 )
 
-[node name="fish_state_timer" type="Timer" parent="fish"]
-wait_time = 5.0
+[node name="fish_force_timer" type="Timer" parent="fish"]
 autostart = true
 __meta__ = {
 "_editor_description_": "sets the speed at which the fish switches between swim and reel mode"
@@ -52,7 +51,7 @@ __meta__ = {
 "_editor_description_": "Move the points, NOT the whole object, or you will cause issues with the win condition! Position shoud remain at (0,0)."
 }
 
-[node name="fish_anger_bar" type="ProgressBar" parent="."]
+[node name="fish_tension_bar" type="ProgressBar" parent="."]
 margin_left = 17.0
 margin_top = 1033.0
 margin_right = 463.0
@@ -62,21 +61,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="fish_anger_bar"]
+[node name="RichTextLabel" type="RichTextLabel" parent="fish_tension_bar"]
 margin_left = 1.83778
 margin_top = -20.9996
 margin_right = 152.838
 margin_bottom = -0.999634
-text = "FISH ANGER"
+text = "LINE TENSION"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="fish_distance_bar" type="ProgressBar" parent="."]
-margin_left = 19.0
-margin_top = 958.0
-margin_right = 465.0
-margin_bottom = 988.0
+margin_left = 17.0
+margin_top = 877.0
+margin_right = 463.0
+margin_bottom = 907.0
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -88,6 +87,26 @@ margin_top = -20.9996
 margin_right = 152.838
 margin_bottom = -0.999634
 text = "FISH DISTANCE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fish_force_bar" type="ProgressBar" parent="."]
+margin_left = 17.0
+margin_top = 956.0
+margin_right = 463.0
+margin_bottom = 986.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="fish_force_bar"]
+margin_left = 1.83778
+margin_top = -20.9996
+margin_right = 152.838
+margin_bottom = -0.999634
+text = "FISH FORCE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
