@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/fish.gd" type="Script" id=1]
 [ext_resource path="res://scripts/reel_scene_manager.gd" type="Script" id=2]
 [ext_resource path="res://textures/fishy.png" type="Texture" id=3]
+[ext_resource path="res://fonts/times.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 27
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 27
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 27
+font_data = ExtResource( 4 )
 
 [node name="reel_scene_manager" type="Node2D"]
 script = ExtResource( 2 )
@@ -62,10 +75,11 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="fish_tension_bar"]
-margin_left = 1.83778
-margin_top = -20.9996
-margin_right = 152.838
-margin_bottom = -0.999634
+margin_left = 5.0
+margin_top = -30.0
+margin_right = 235.0
+margin_bottom = 13.0
+custom_fonts/normal_font = SubResource( 1 )
 text = "LINE TENSION"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,10 +96,11 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="fish_distance_bar"]
-margin_left = 1.83778
-margin_top = -20.9996
-margin_right = 152.838
-margin_bottom = -0.999634
+margin_left = 2.0
+margin_top = -33.0
+margin_right = 222.0
+margin_bottom = -1.0
+custom_fonts/normal_font = SubResource( 2 )
 text = "FISH DISTANCE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -102,10 +117,11 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="fish_force_bar"]
-margin_left = 1.83778
-margin_top = -20.9996
-margin_right = 152.838
-margin_bottom = -0.999634
+margin_left = 1.0
+margin_top = -31.0
+margin_right = 213.0
+margin_bottom = 5.0
+custom_fonts/normal_font = SubResource( 3 )
 text = "FISH FORCE"
 __meta__ = {
 "_edit_use_anchors_": false
