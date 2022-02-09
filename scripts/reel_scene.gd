@@ -20,7 +20,7 @@ func _ready():
 
 func _on_shadow_fish_collision(fish_type):
 	var new_reel_scene = reel_scene.instance()
-	new_reel_scene.scale = Vector2(0.25, 0.25)
+	new_reel_scene.scale = Vector2(0.4, 0.4)
 	add_child(new_reel_scene)
 	
 	new_reel_scene.pause_mode = PAUSE_MODE_PROCESS
