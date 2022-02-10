@@ -18,7 +18,6 @@ func _select_button():
 #	print(ref_path)
 #	print(ref_path == "prev_scene")
 	if(ref_path == prev_scene):
-		print("go back to prev scene")
 		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
 	elif(ref_path != ""):
 		Global._change_scene(Global._get_current_scene_path(),ref_path)

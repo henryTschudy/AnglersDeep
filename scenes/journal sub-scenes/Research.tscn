@@ -6,19 +6,18 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1040, 264 )
+position = Vector2( 960, 544 )
 scale = Vector2( 2.67862, 1.43498 )
 texture = ExtResource( 1 )
-offset = Vector2( -29.8661, 195.125 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 672.0
-margin_top = 440.0
-margin_right = 1144.0
-margin_bottom = 691.0
+margin_left = 696.0
+margin_top = 448.0
+margin_right = 1243.0
+margin_bottom = 699.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = ExtResource( 2 )
-text = "Equipment"
+text = "Research"
 __meta__ = {
 "_edit_use_anchors_": false
 }
