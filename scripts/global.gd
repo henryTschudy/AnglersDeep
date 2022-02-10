@@ -5,6 +5,7 @@ var main_menu_path = "res://scenes/main_menu.tscn"
 var pause_menu_path = "res://scenes/pause_menu.tscn"
 var overworld_path = "res://scenes/overworld.tscn"
 var journal_path = "res://scenes/Journal.tscn"
+var fish_display_path = "res://scenes/fish_display.tscn"
 var current_scene_path = "res://scenes/main_menu.tscn"
 var prev_scene_path
 var child_scene
