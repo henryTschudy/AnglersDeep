@@ -8,4 +8,4 @@ func _ready():
 	timer.start()
 
 func _on_Timer_timeout():
-	get_tree().quit()
+	self.queue_free()

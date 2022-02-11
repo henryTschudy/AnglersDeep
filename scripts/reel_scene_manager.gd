@@ -28,6 +28,10 @@ func _ready():
 	
 	fish_force_bar.min_value = fishy.FISH_FORCE_MIN
 	fish_force_bar.max_value = fishy.FISH_FORCE_MAX
+	
+	var overworld_cam_node = get_parent().get_parent().get_parent()
+#	self.connect("display_fish", overworld_cam_node, "_display_fish")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -81,8 +85,11 @@ func _unhandled_input(_event):
 
 func lose_fish_game():
 	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+#	emit_signal("display_fish")
+	self.connect("reel_game_over", get_parent().get_parent().get_parent(), "_display_fish")
 	emit_signal("reel_game_over", false, fishy.get_fish_type())
 	
 func win_fish_game():
 	print("REEL GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+#	emit_signal("display_fish")
 	emit_signal("reel_game_over", false, fishy.get_fish_type())
