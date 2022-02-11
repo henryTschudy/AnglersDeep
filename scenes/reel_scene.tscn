@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fish_game_scripts/fish.gd" type="Script" id=1]
 [ext_resource path="res://fish_game_scripts/reel_scene_manager.gd" type="Script" id=2]
 [ext_resource path="res://textures/fishy.png" type="Texture" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
 
 [node name="reel_scene_manager" type="Node2D"]
 script = ExtResource( 2 )
@@ -54,3 +58,17 @@ text = "FISH ANGER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="Spatial"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial/StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial/StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="Spatial"]
+transform = Transform( 0.877583, -0.229849, 0.420735, 0, 0.877583, 0.479426, -0.479426, -0.420736, 0.770151, 1.68294, 1.9177, 3.0806 )

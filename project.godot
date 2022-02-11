@@ -14,6 +14,10 @@ config/name="Anglers_Deep_Fishing_Prototype"
 run/main_scene="res://scenes/reel_scene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Save="*res://scripts/save.gd"
+
 [display]
 
 window/size/width=1920
