@@ -3,8 +3,10 @@ extends KinematicBody2D
 onready var splash_particles = get_node("splash_particles")
 
 var BOAT_ACCELERATION = 40
-var BOAT_BACKWARDS_ACCELERATION = 10
+var BOAT_BACKWARDS_ACCELERATION = 40
+var BOAT_BACKWARDS_BREAKING_ADDITION = 80 #additional acceleration to apply when pressing backward while moving forward
 var BOAT_MAX_SPEED = 200
+var BOAT_MIN_SPEED = -100 #okay so there's no such thing as negative speed, it's just backwards
 var BOAT_RESISTANCE = 0.5
 var BREAK_SPEED = 2
 var BOAT_TURN_SPEED = 2
@@ -67,16 +69,18 @@ func _unhandled_input(_event):
 	if Input.is_action_pressed("move_forward"):
 		#boat_direction += Vector2(0,-boat_turn_speed)
 		boat_accelerating = true
+	else:
+		boat_accelerating = false
 		
 	if Input.is_action_pressed("move_backward"):
 		#boat_direction += Vector2(0,boat_turn_speed)
-		boat_accelerating = true
+		#boat_accelerating = true
 		boat_accelerating_backwards = true
 	else:
 		boat_accelerating_backwards = false
 		
-	if !( Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward") ):
-		boat_accelerating = false
+	#if !( Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward") ):
+	#	boat_accelerating = false
 	
 	#boat_direction = boat_direction.normalized()
 
@@ -93,7 +97,12 @@ func do_boat_acceleration(delta):
 			boat_speed += BOAT_ACCELERATION*delta
 		else:
 			boat_speed -= BOAT_BACKWARDS_ACCELERATION*delta
-	if (!boat_accelerating): #real-life resistance would apply all the time, but it's easier to control of we just do it this way
+	if (boat_accelerating_backwards && boat_speed > BOAT_MIN_SPEED):
+		if (boat_speed > 0):
+			boat_speed -= (BOAT_BACKWARDS_BREAKING_ADDITION + BOAT_BACKWARDS_ACCELERATION)*delta
+		else:
+			boat_speed -= BOAT_BACKWARDS_ACCELERATION*delta
+	if ( !(boat_accelerating || boat_accelerating_backwards) ): #real-life resistance would apply all the time, but it's easier to control of we just do it this way
 		boat_speed = boat_speed - boat_speed*BOAT_RESISTANCE*delta
 	if Input.is_action_pressed("move_stop"):
 		boat_speed = boat_speed - boat_speed*BREAK_SPEED*delta
