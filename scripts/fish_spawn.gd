@@ -51,8 +51,8 @@ func try_generate_spawn_fish():
 	var coordinate_collision_array = world2d_space_state.intersect_point(try_coordinates, 16, [], pow(2,REGION_COLLISION_LAYER-1), false, true)
 	for returned_dictionary in coordinate_collision_array:
 		spawn_fish(try_coordinates)
-		print("shadow fish spawned in region:")
-		print(returned_dictionary.collider.name) # As long as it's named appropriately, we can just use collider name as the region name. I think it would make adding new spawn regions much easier.
+		#print("shadow fish spawned in region:")
+		#print(returned_dictionary.collider.name) # As long as it's named appropriately, we can just use collider name as the region name. I think it would make adding new spawn regions much easier.
 
 func generate_spawn_coordinates(): #generate some coordinates just outside the field of view
 	 # i THINK 0 is empty??
