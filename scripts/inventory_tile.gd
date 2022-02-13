@@ -11,14 +11,14 @@ var item_description = inventory_array[0][0][0][2]
 
 func _ready():		
 	if(start_focused):
-		_open_description()
+		_update_item_display()
 	connect("mouse_entered",self,"_shift_focus")
-	connect("pressed",self,"_open_description")
+	connect("pressed",self,"_update_item_display")
 
 func _shift_focus():
 	grab_focus()
 
-func _open_description():
+func _update_item_display():
 	#change the current description to display the corresponding texture + text
 	get_node("../item_desc_bg/item_name").bbcode_text = "[center]" + item_name
 	get_node("../item_desc_bg/item_sprite").texture = load(item_sprite_path)

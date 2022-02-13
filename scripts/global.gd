@@ -59,3 +59,15 @@ func _change_scene(current_scene,next_scene):
 
 func _get_current_scene_path():
 	return get_tree().current_scene.filename
+	
+func _get_item_data(inv_type_index, item_index, item_data_index):
+	#return requested data
+	if(item_data_index == "name"):
+		return inventory[inv_type_index][item_index][0][0]
+	elif(item_data_index == "sprite_path"):
+		return inventory[inv_type_index][item_index][0][1]
+	elif(item_data_index == "description"):
+		return inventory[inv_type_index][item_index][0][2]
+	elif(item_data_index == "quantity"):
+		return inventory[inv_type_index][item_index][1]
+	
