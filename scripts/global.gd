@@ -11,6 +11,20 @@ var prev_scene_path
 var child_scene
 var journal_instance
 
+#temp example data for inventory
+var fish_1_data = ["fish1", "res://textures/anger_fish.png", "fish1 description"]
+var fish_2_data = ["fish2", "res://textures/mobius_eel.png", "fish2 description"]
+var fish_3_data = ["fish3", "res://textures/mobius_eel.png", "fish3 description"]
+var item_1_data = ["item1", "res://textures/mobius_eel.png", "item1 description"]
+var item_2_data = ["item2", "res://textures/anger_fish.png", "item2 description"]
+var fish_1 = [fish_1_data, 1]
+var fish_2 = [fish_2_data, 8]
+var fish_3 = [fish_3_data, 2]
+var item_1 = [item_1_data, 3]
+var item_2 = [item_2_data, 4]
+var fish_inventory = [fish_1, fish_2, fish_3]
+var item_inventory = [item_1, item_2]
+var inventory = [fish_inventory, item_inventory]
 
 #settings
 var volume
