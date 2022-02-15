@@ -32,3 +32,22 @@ func _ready():
 		while i < fish_frequency:
 			fish_region_arrays[fish_region_index].append(fish_key)
 			i = i + 1
+
+#little function to return the fish dictionary for a given key
+func get_fish_data(fish_key):
+	return fish_dictionary.get(fish_key)
+	
+func get_fish_array(region_name):
+	var fish_region_index = fish_region_names.find(region_name)
+	if fish_region_index == -1:
+		return null
+		print("function get_fish_array in fish_array_manager given an invalid region name!")
+	return fish_region_arrays[fish_region_index]
+
+func get_random_fish_from_region(region_name):
+	var fish_region_array = get_fish_array(region_name)
+	if fish_region_array == null:
+		return null
+		print("function get_random_fish_from_region in fish_array_manager given an invalid region name!")
+	var random_index_in_array = randi() % fish_region_array.size()
+	return fish_region_array[random_index_in_array]
