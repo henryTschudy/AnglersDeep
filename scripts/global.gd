@@ -70,4 +70,10 @@ func _get_item_data(inv_type_index, item_index, item_data_index):
 		return inventory[inv_type_index][item_index][0][2]
 	elif(item_data_index == "quantity"):
 		return inventory[inv_type_index][item_index][1]
-	
+
+func _make_fish_dictionary():
+	var fish_json = File.new() #create a new file variable to read the fish json
+	fish_json.open("res://data/fish data.json", File.READ) #open the fish json set ro read mode
+	var fish_text = fish_json.get_as_text() #read the fish json as text
+	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
+	return parsed_json_dictionary.get("Fish") #get the dictionary at key "Fish" and return it
