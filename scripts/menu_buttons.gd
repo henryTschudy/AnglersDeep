@@ -4,6 +4,10 @@ export var ref_path = ""
 export(bool) var start_focused = false
 var prev_scene = "prev_scene"
 
+# for debug
+const SaveManager = preload("autosave.gd") # Relative path
+onready var autosave = SaveManager.new()
+
 func _ready():
 	if(start_focused):
 		grab_focus()
@@ -17,6 +21,9 @@ func _shift_focus():
 func _select_button():
 #	print(ref_path)
 #	print(ref_path == "prev_scene")
+	
+	# delete this debug later!!!
+#	saveGame()	
 	if(ref_path == prev_scene):
 		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
 	elif(ref_path != ""):
