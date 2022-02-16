@@ -23,7 +23,7 @@ func _select_button():
 #	print(ref_path == "prev_scene")
 	
 	# delete this debug later!!!
-	saveGame()	
+#	saveGame()	
 	if(ref_path == prev_scene):
 		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
 	elif(ref_path != ""):

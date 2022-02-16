@@ -43,7 +43,7 @@ margin_bottom = 224.0
 focus_neighbour_left = NodePath("../fish_button")
 text = "Items"
 script = ExtResource( 8 )
-inventory_type = "item"
+inventory_type = "items"
 
 [node name="inv_tile_button1" parent="." instance=ExtResource( 6 )]
 margin_left = 128.0

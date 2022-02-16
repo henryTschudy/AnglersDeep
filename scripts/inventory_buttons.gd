@@ -17,5 +17,5 @@ func _shift_focus():
 func _select_button():
 	grab_focus()
 	#update inventory_tiles and update item_display
-	get_parent()._update_inventory_tiles(inventory_type)
-	get_node("../inv_tile_button1")._update_item_display()
+	get_parent().update_inventory_tiles(inventory_type)
+	get_node("../inv_tile_button1").update_item_display()
