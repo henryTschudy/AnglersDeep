@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://textures/splash.png" type="Texture" id=1]
 [ext_resource path="res://textures/boat.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scripts/casting_scene.gd" type="Script" id=6]
 [ext_resource path="res://scripts/reel_scene.gd" type="Script" id=7]
 [ext_resource path="res://scripts/overworld_camera.gd" type="Script" id=8]
-[ext_resource path="res://scripts/fish_array_manager.gd" type="Script" id=9]
 [ext_resource path="res://materials/water_shader.tres" type="Material" id=10]
 [ext_resource path="res://textures/spotlight.png" type="Texture" id=11]
 [ext_resource path="res://materials/water_distortion.tres" type="Material" id=12]
@@ -132,6 +131,3 @@ collision_mask = 16
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawn_regions/spawn_region_B"]
 polygon = PoolVector2Array( 336, 631, 568, 508, 790, 848, 461, 1023, 306, 1025, 64, 868, 54, 634, 212, 546 )
-
-[node name="fish_array_manager" type="Node" parent="."]
-script = ExtResource( 9 )
