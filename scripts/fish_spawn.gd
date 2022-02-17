@@ -11,12 +11,16 @@ var SPAWN_DISTANCE_X = 480 #there is probably a better way to get this distance 
 var SPAWN_DISTANCE_Y = 270
 var SPAWN_AREA_OUTER = 1000
 var MAX_FISH = 10
+var REGION_COLLISION_LAYER = 5
 
 var ShadowFishy = load("res://scripts/fish_shadow.gd")
+
+var world2d_space_state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	slingshot.connect("shadow_fish_collision", self, "_on_shadow_fish_collision")
+	world2d_space_state = owner.get_world_2d().direct_space_state
 
 func spawn_fish(coordinates):
 	var new_fish = ShadowFishy.new()
@@ -28,17 +32,27 @@ func spawn_fish(coordinates):
 	
 func try_generate_spawn_fish():
 	var try_coordinates = generate_spawn_coordinates()
-	var map_rect = tilemap.get_used_rect()
+	#var map_rect = tilemap.get_used_rect()
 	
-	if (map_rect.has_point(try_coordinates)):
-		print("spawn point invalid: in map_rect?") #wait, what was i doing here?
-		return
+	#if (map_rect.has_point(try_coordinates)):
+	#	print("spawn point invalid: in map_rect?") #wait, what was i doing here?
+	#	return
 	
-	if (tilemap.get_cellv(tilemap.world_to_map(try_coordinates)) != $TileMap.INVALID_CELL):
-		#print("spawn point invalid: non-empty tile")
-		return
+	#if (tilemap.get_cellv(tilemap.world_to_map(try_coordinates)) != $TileMap.INVALID_CELL):
+	#	#print("spawn point invalid: non-empty tile")
+	#	return
 	
-	spawn_fish(try_coordinates)
+	#use a raycast to detect collisions, i guess
+	#spawn_point_detection_raycast.position = try_coordinates
+	#spawn_point_detection_raycast.set_enabled(true)
+
+	#spawn_point_detection_raycast.force_raycast_update()
+
+	var coordinate_collision_array = world2d_space_state.intersect_point(try_coordinates, 16, [], pow(2,REGION_COLLISION_LAYER-1), false, true)
+	for returned_dictionary in coordinate_collision_array:
+		spawn_fish(try_coordinates)
+		#print("shadow fish spawned in region:")
+		#print(returned_dictionary.collider.name) # As long as it's named appropriately, we can just use collider name as the region name. I think it would make adding new spawn regions much easier.
 
 func generate_spawn_coordinates(): #generate some coordinates just outside the field of view
 	 # i THINK 0 is empty??
