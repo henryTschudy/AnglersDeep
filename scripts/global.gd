@@ -13,7 +13,6 @@ onready var map = get_node("../../../map_node")
 #scene states
 #overworld, reel game, pause menu, journal
 var current_scene_state
-var prev_scene_path
 enum scene_state{
 	main_menu_state,
 	overworld_state,
@@ -61,6 +60,7 @@ var inventory = {
 			"description" : "rod for fishing"
 		}
 	}
+}
 
 #settings
 var volume
@@ -151,4 +151,4 @@ func _make_fish_dictionary():
 	var fish_text = fish_json.get_as_text() #read the fish json as text
 	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
 	return parsed_json_dictionary.get("Fish") #get the dictionary at key "Fish" and return it
-}
+
