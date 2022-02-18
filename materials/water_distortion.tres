@@ -7,8 +7,8 @@ shader_type canvas_item;
 
 const float PI = 3.1415926;
 uniform float speed = 0.7;
-uniform float strength = 30.0;
-uniform float frequency = 2.0;
+uniform float strength = 10.0;
+uniform float frequency = 100.0;
 
 //uniform sampler2D displacement;
 
