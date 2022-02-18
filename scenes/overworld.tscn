@@ -94,10 +94,11 @@ motion_mirroring = Vector2( 600, 600 )
 [node name="water_texture_base" type="TextureRect" parent="overworld_camera/ParallaxBackground/water_parallax_base"]
 margin_right = 1920.0
 margin_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource( 14 )
 stretch_mode = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="water_parallax_layer_1" type="ParallaxLayer" parent="overworld_camera/ParallaxBackground"]
@@ -107,10 +108,11 @@ motion_mirroring = Vector2( 600, 600 )
 [node name="water_texture_layer_1" type="TextureRect" parent="overworld_camera/ParallaxBackground/water_parallax_layer_1"]
 margin_right = 1920.0
 margin_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource( 15 )
 stretch_mode = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="water_parallax_layer_2" type="ParallaxLayer" parent="overworld_camera/ParallaxBackground"]
@@ -120,10 +122,11 @@ motion_mirroring = Vector2( 600, 600 )
 [node name="water_texture_layer_2" type="TextureRect" parent="overworld_camera/ParallaxBackground/water_parallax_layer_2"]
 margin_right = 1920.0
 margin_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource( 16 )
 stretch_mode = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="water_parallax_layer_3" type="ParallaxLayer" parent="overworld_camera/ParallaxBackground"]
@@ -133,10 +136,11 @@ motion_mirroring = Vector2( 600, 600 )
 [node name="water_texture_layer_1" type="TextureRect" parent="overworld_camera/ParallaxBackground/water_parallax_layer_3"]
 margin_right = 1920.0
 margin_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource( 9 )
 stretch_mode = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="water_shaders" type="Node2D" parent="."]
@@ -157,6 +161,7 @@ __meta__ = {
 material = ExtResource( 12 )
 margin_right = 1920.0
 margin_bottom = 1080.0
+mouse_filter = 2
 texture = ExtResource( 13 )
 expand = true
 stretch_mode = 2
