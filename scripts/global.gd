@@ -56,6 +56,14 @@ var window_width
 var window_height
 var isFullscreen
 
+#data structures
+var fish_dictionary
+var region_arrays
+
+func _ready():
+	fish_dictionary = _make_fish_dictionary()
+	region_arrays = _make_region_arrays()
+
 func _unhandled_input(_event):
 	if Input.is_action_pressed("ui_cancel") && current_scene_path != main_menu_path:
 		_escape()
@@ -84,9 +92,9 @@ func _change_scene(current_scene,next_scene):
 func _get_current_scene_path():
 	return get_tree().current_scene.filename
 
-
 func get_item_data(inv_type, item_name, data_type):
 	return inventory.get(inv_type).get(item_name).get(data_type)
+
 
 func _make_fish_dictionary():
 	var fish_json = File.new() #create a new file variable to read the fish json
@@ -95,3 +103,25 @@ func _make_fish_dictionary():
 	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
 	return parsed_json_dictionary.get("Fish") #get the dictionary at key "Fish" and return it
 
+func _make_region_arrays():
+	var fish_json = File.new() #create a new file variable to read the fish json
+	fish_json.open("res://data/fish data.json", File.READ) #open the fish json set ro read mode
+	var fish_text = fish_json.get_as_text() #read the fish json as text
+	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
+	return parsed_json_dictionary.get("Regions") #get the dictionary at key "Fish" and return it
+
+func _get_fish_data(fish_key):
+	return fish_dictionary.get(fish_key)
+	
+func _get_region_array(region_key):
+	if region_arrays != null:
+		return region_arrays.get(region_key)
+	else:
+		return null
+
+func _get_random_fish_from_region(region_key):
+	var region_array = _get_region_array(region_key)
+	if region_array != null:
+		var random_index = rand_range(0, region_array.size())
+		return region_array[random_index]
+	return null
