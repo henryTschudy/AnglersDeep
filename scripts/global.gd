@@ -44,10 +44,15 @@ var inventory = {
 	"equipment" : {
 		"fishing_rod" : {
 			"name" : "basic fishing rod",
-			"sprite_path" : "res://textures/fishy.png",
+			"sprite_path" : "res://textures/bloated_rudefish.png",
 			"description" : "rod for fishing"
+		},
+		"different_fishing_rod" : {
+			"name" : "different fishing rod",
+			"sprite_path" : "res://textures/void_fish.png",
+			"description" : "another unique rod for fishing"
 		}
-	}
+	},
 }
 
 #settings
@@ -57,9 +62,9 @@ var window_height
 var isFullscreen
 
 func _unhandled_input(_event):
-	if Input.is_action_pressed("ui_cancel") && current_scene_path != main_menu_path:
+	if Input.is_action_just_pressed("ui_cancel") && current_scene_path != main_menu_path:
 		_escape()
-	if Input.is_action_pressed("open_journal"):
+	if Input.is_action_just_pressed("open_journal"):
 		if(current_scene_path != main_menu_path && current_scene_path != pause_menu_path):
 			if(current_scene_path != journal_path):
 				_change_scene(_get_current_scene_path(),journal_path)
