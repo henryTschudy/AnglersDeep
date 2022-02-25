@@ -2,6 +2,9 @@ extends Node2D
 
 var active_tab
 
+func _ready():
+	open_tab("res://scenes/journal sub-scenes/Inventory.tscn")
+	
 func open_tab(path_of_scene):
 	if(active_tab != null):
 		active_tab.queue_free()
