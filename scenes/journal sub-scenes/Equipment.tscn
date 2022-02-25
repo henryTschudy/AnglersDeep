@@ -159,16 +159,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="equipped_button" parent="item_desc_bg" instance=ExtResource( 6 )]
-margin_left = -83.0151
-margin_top = 225.412
-margin_right = -434.835
-margin_bottom = 282.412
-custom_fonts/font = SubResource( 5 )
-custom_styles/normal = ExtResource( 7 )
-text = "EQUIP"
-script = null
-
 [node name="equip_button" parent="item_desc_bg" instance=ExtResource( 6 )]
 margin_left = -83.0151
 margin_top = 225.412

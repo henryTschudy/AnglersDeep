@@ -42,15 +42,17 @@ var inventory = {
 		},
 	},
 	"equipment" : {
-		"fishing_rod" : {
+		"basic fishing rod" : {
 			"name" : "basic fishing rod",
 			"sprite_path" : "res://textures/bloated_rudefish.png",
-			"description" : "rod for fishing"
+			"description" : "rod for fishing",
+			"equipped" : true
 		},
-		"different_fishing_rod" : {
+		"different fishing rod" : {
 			"name" : "different fishing rod",
 			"sprite_path" : "res://textures/void_fish.png",
-			"description" : "another unique rod for fishing"
+			"description" : "another unique rod for fishing",
+			"equipped" : false
 		}
 	},
 }
@@ -81,10 +83,6 @@ func _change_scene(current_scene,next_scene):
 	prev_scene_path = current_scene
 	current_scene_path = next_scene
 	get_tree().change_scene(next_scene)
-	print(current_scene_path)
-	print("^ current scene ^")
-	print(prev_scene_path)
-	print("^ prev scene ^")
 
 func _get_current_scene_path():
 	return get_tree().current_scene.filename
