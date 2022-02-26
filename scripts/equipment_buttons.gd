@@ -13,7 +13,7 @@ func _ready():
 	connect("pressed",self,"_select_button")
 
 func _shift_focus():
-	pass
+	grab_focus()
 #	print(selected_tile_item_name)
 #	self.visible = false
 #	self.disabled = true
@@ -21,11 +21,6 @@ func _shift_focus():
 #	grab_focus()
 
 func _select_button():
-#	var selected_tile_item = Global.inventory.get("equipment").get(item_name_label.text)
-#	equipment_manager.equip_item(selected_tile_item)
+	grab_focus()
 	equipment_manager.equip_item(item_name_label.text)
-#	grab_focus()
-#	self.visible = false
-#	self.disabled = true
-	#update inventory_tiles and update item_display
 	

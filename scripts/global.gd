@@ -46,13 +46,15 @@ var inventory = {
 			"name" : "basic fishing rod",
 			"sprite_path" : "res://textures/bloated_rudefish.png",
 			"description" : "rod for fishing",
-			"equipped" : true
+			"equipped" : true,
+			"recipe" : ["item1","item1","item1"]
 		},
 		"different fishing rod" : {
 			"name" : "different fishing rod",
 			"sprite_path" : "res://textures/void_fish.png",
 			"description" : "another unique rod for fishing",
-			"equipped" : false
+			"equipped" : false,
+			"recipe" : ["item2","item1","item2"]
 		}
 	},
 }
@@ -89,7 +91,11 @@ func _get_current_scene_path():
 
 
 func get_item_data(inv_type, item_name, data_type):
-	return inventory.get(inv_type).get(item_name).get(data_type)
+	if(item_name == "all"):
+		#change to use full items JSON later, rn it just uses inventory
+		return inventory.get(inv_type).keys()
+	else:
+		return inventory.get(inv_type).get(item_name).get(data_type)
 
 func _make_fish_dictionary():
 	var fish_json = File.new() #create a new file variable to read the fish json
