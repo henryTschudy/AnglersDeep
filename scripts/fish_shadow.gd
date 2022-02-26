@@ -18,7 +18,7 @@ var unique_weight = 0
 func _ready(): #may need to do some freeing
 	random_speed_and_direction()
 	
-	set_fish_sprite_from_weight()
+	set_fish_sprite_from_weight() #used twice to prevent attempting to access unitialized variables, possibly a bad idea
 	
 	z_index = -1
 	
@@ -45,10 +45,12 @@ func _physics_process(delta):
 func initialize_unique_variables(given_fish_type_string):
 	if given_fish_type_string != null:
 		set_fish_type(given_fish_type_string)
+		print(given_fish_type_string)
+		#print(Global._get_fish_data(given_fish_type_string))
 		unique_weight = rand_range(Global._get_fish_data(given_fish_type_string).get("Min Weight"), Global._get_fish_data(given_fish_type_string).get("Max Weight"))
 		set_fish_sprite_from_weight()
 	else:
-		set_fish_type("test_fish")
+		set_fish_type("Beta Fish") #lol
 		unique_weight = rand_range(0, 105)
 		set_fish_sprite_from_weight()
 		print("fish_shadow: initialize_unique_variables: given null string")
@@ -59,6 +61,9 @@ func set_fish_type(given_string): #this function could call another function tha
 
 func get_fish_type():
 	return fish_type
+	
+func get_fish_weight():
+	return unique_weight
 
 func set_fish_sprite_from_weight(fish_weight:int = unique_weight):
 	fish_sprite = Sprite.new()

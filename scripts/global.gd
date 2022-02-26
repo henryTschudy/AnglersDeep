@@ -60,6 +60,9 @@ var isFullscreen
 var fish_dictionary
 var region_arrays
 
+var FISH_JSON_PATH = "res://data/fish data.json"
+var REGION_JSON_PATH = "res://data/FishRegions.json"
+
 func _ready():
 	fish_dictionary = _make_fish_dictionary()
 	region_arrays = _make_region_arrays()
@@ -98,16 +101,16 @@ func get_item_data(inv_type, item_name, data_type):
 
 func _make_fish_dictionary():
 	var fish_json = File.new() #create a new file variable to read the fish json
-	fish_json.open("res://data/fish data.json", File.READ) #open the fish json set ro read mode
+	fish_json.open(FISH_JSON_PATH, File.READ) #open the fish json set ro read mode
 	var fish_text = fish_json.get_as_text() #read the fish json as text
 	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
 	return parsed_json_dictionary.get("Fish") #get the dictionary at key "Fish" and return it
 
 func _make_region_arrays():
-	var fish_json = File.new() #create a new file variable to read the fish json
-	fish_json.open("res://data/fish data.json", File.READ) #open the fish json set ro read mode
-	var fish_text = fish_json.get_as_text() #read the fish json as text
-	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
+	var region_json = File.new() #create a new file variable to read the fish json
+	region_json.open(REGION_JSON_PATH, File.READ) #open the fish json set ro read mode
+	var region_text = region_json.get_as_text() #read the fish json as text
+	var parsed_json_dictionary = parse_json(region_text) #parse the fish json text 
 	return parsed_json_dictionary.get("Regions") #get the dictionary at key "Fish" and return it
 
 func _get_fish_data(fish_key):

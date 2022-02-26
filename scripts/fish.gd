@@ -26,6 +26,8 @@ var hook_offset = Vector2(0,0)
 var reel_state = false
 
 var fish_type
+var fish_difficulty = 1
+var fish_weight = 50
 
 var fish_direction_target
 var fish_direction
@@ -43,8 +45,12 @@ func _ready():
 	
 	hook_offset = Vector2(100, 35)
 	hook_offset_base_y = hook_offset.y
+	
 	fish_force_timer.connect("timeout",self,"on_fish_force_timer_timeout")  
 	fish_swim_timer.connect("timeout",self,"on_fish_swim_timer_timeout") 
+	fish_force_timer.set_wait_time(fish_force_timer.get_wait_time()/fish_difficulty)
+	fish_swim_timer.set_wait_time(fish_swim_timer.get_wait_time()/fish_difficulty)
+	
 	fish_direction = Vector2(0,0)
 	fish_direction_target = Vector2(0,0)
 	fish_speed = FISH_SPEED_MULT
@@ -52,7 +58,7 @@ func _ready():
 	
 	fish_force = FISH_FORCE_BASE
 	
-	fish_type = "generic_fish"
+	fish_type = "Beta Fish"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -67,9 +73,19 @@ func _physics_process(delta): #incorporate delta, dumpass
 	if fish_tension >= 0 && !reel_state: #REMOVE THIS BLOCK IF YOU WANT LINE TENSION NOT TO GO DOWN
 		fish_tension -= FISH_TENSION_DECAY * delta
 
+func set_fish_data(given_fish_type, given_fish_weight):
+	fish_type = given_fish_type
+	var my_fish_dict = Global._get_fish_data(fish_type)
+	fish_difficulty = my_fish_dict.get("Difficulty")
+	
+	fish_weight = given_fish_weight
+	
+	fish_force_timer.set_wait_time(fish_force_timer.get_wait_time()/fish_difficulty)
+	fish_swim_timer.set_wait_time(fish_swim_timer.get_wait_time()/fish_difficulty)
+
 func fish_swim():
-	fish_direction = (fish_direction + fish_direction_target/FISH_TURN_SLOWNESS).normalized()
-	move_fish(fish_speed, fish_direction)
+	fish_direction = (fish_direction + fish_difficulty*fish_direction_target/FISH_TURN_SLOWNESS).normalized()
+	move_fish(fish_speed*fish_difficulty, fish_direction)
 	check_win_loss_condition()
 	
 #func fish_get_dragged():
@@ -96,11 +112,11 @@ func on_fish_force_timer_timeout():
 	#	fish_swim_timer.set_paused(true)
 	#else:
 	#	fish_swim_timer.set_paused(false)
-	fish_force += rand_range(-FISH_FORCE_CHANGE, FISH_FORCE_CHANGE)
+	fish_force += rand_range(-FISH_FORCE_CHANGE, FISH_FORCE_CHANGE + fish_difficulty)
 	if (fish_force < FISH_FORCE_MIN):
 		fish_force = FISH_FORCE_MIN
-	elif (fish_force > FISH_FORCE_MAX):
-		fish_force = FISH_FORCE_MAX
+	elif (fish_force > FISH_FORCE_MAX + fish_difficulty):
+		fish_force = FISH_FORCE_MAX + fish_difficulty
 	
 func on_fish_swim_timer_timeout():
 	#print(fish_swim_timer.paused)

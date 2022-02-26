@@ -13,6 +13,8 @@ onready var fish_tension_bar = get_node("fish_tension_bar")
 onready var fish_force_bar = get_node("fish_force_bar")
 onready var fish_distance_bar = get_node("fish_distance_bar")
 
+#fish variables from fish data
+
 #to make fish swim in the direction it was swimming before reeling in during swim mode
 var fish_prev_direction = Vector2(0,0)
 var fish_prev_speed = 0
@@ -82,6 +84,9 @@ func _unhandled_input(_event):
 		#	fishy.fish_speed = fish_prev_speed
 		fishy.fish_direction = fish_prev_direction
 		fishy.fish_speed = fish_prev_speed
+
+func set_reel_scene_data(fish_type, fish_weight):
+	fishy.set_fish_data(fish_type, fish_weight)
 
 func lose_fish_game():
 	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")

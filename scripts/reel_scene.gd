@@ -18,10 +18,12 @@ func _ready():
 #	var parent_rotation = get_parent().rotation
 #	set_rotation(-parent_rotation)
 
-func _on_shadow_fish_collision(fish_type):
+func _on_shadow_fish_collision(fish_type, fish_weight):
 	var new_reel_scene = reel_scene.instance()
 	new_reel_scene.scale = Vector2(0.4, 0.4)
 	add_child(new_reel_scene)
+	
+	new_reel_scene.set_reel_scene_data(fish_type, fish_weight)
 	
 	new_reel_scene.pause_mode = PAUSE_MODE_PROCESS
 	map.pause_mode = PAUSE_MODE_STOP
