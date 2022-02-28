@@ -71,7 +71,7 @@ func _unhandled_input(_event):
 		#	fishy.fish_speed = DRAG_SPEED_SWIM
 		#	fishy_angry = true
 		fishy.fish_direction_target = (fishy.position.direction_to(line.points[0] + line.position)).normalized()
-		fishy.fish_speed = fishy.DRAG_SPEED_MULT * (fishy.fish_force/fishy.FISH_FORCE_BASE)
+		fishy.fish_speed = fishy.DRAG_SPEED_MULT * (fishy.fish_force/fishy.FISH_FORCE_BASE) / fishy.fish_difficulty
 		fishy.reel_state = true
 			
 	if Input.is_action_just_released("reel_in"):
@@ -92,9 +92,9 @@ func lose_fish_game():
 	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 #	emit_signal("display_fish")
 	self.connect("reel_game_over", get_parent().get_parent().get_parent(), "_display_fish")
-	emit_signal("reel_game_over", false, fishy.get_fish_type())
+	emit_signal("reel_game_over", false, fishy.get_fish_type(), fishy.get_fish_weight())
 	
 func win_fish_game():
 	print("REEL GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 #	emit_signal("display_fish")
-	emit_signal("reel_game_over", false, fishy.get_fish_type())
+	emit_signal("reel_game_over", true, fishy.get_fish_type(), fishy.get_fish_weight())

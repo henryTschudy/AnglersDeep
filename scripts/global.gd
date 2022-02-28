@@ -98,13 +98,12 @@ func _get_current_scene_path():
 func get_item_data(inv_type, item_name, data_type):
 	return inventory.get(inv_type).get(item_name).get(data_type)
 
-
 func _make_fish_dictionary():
 	var fish_json = File.new() #create a new file variable to read the fish json
 	fish_json.open(FISH_JSON_PATH, File.READ) #open the fish json set ro read mode
 	var fish_text = fish_json.get_as_text() #read the fish json as text
 	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
-	return parsed_json_dictionary.get("Fish") #get the dictionary at key "Fish" and return it
+	return parsed_json_dictionary
 
 func _make_region_arrays():
 	var region_json = File.new() #create a new file variable to read the fish json
@@ -114,6 +113,7 @@ func _make_region_arrays():
 	return parsed_json_dictionary.get("Regions") #get the dictionary at key "Fish" and return it
 
 func _get_fish_data(fish_key):
+	print(fish_key)
 	return fish_dictionary.get(fish_key)
 	
 func _get_region_array(region_key):

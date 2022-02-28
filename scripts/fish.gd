@@ -143,6 +143,9 @@ func set_fish_type(given_fish_type):
 func get_fish_type():
 	return fish_type
 	
+func get_fish_weight():
+	return fish_weight
+	
 func get_fish_distance():
 	return ((position + hook_offset)  * get_parent().scale.x).distance_to( (line.position + line.points[0]) * get_parent().scale.x) #this line might be overcompensating, idk
 	
