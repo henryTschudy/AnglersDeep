@@ -43,7 +43,7 @@ func _ready():
 	screen_size.x = get_viewport().get_visible_rect().size.x #* get_parent().scale # Get width
 	screen_size.y = get_viewport().get_visible_rect().size.y #* get_parent().scale # Get height
 	
-	hook_offset = Vector2(100, 35)
+	hook_offset = Vector2(145, 0)
 	hook_offset_base_y = hook_offset.y
 	
 	fish_force_timer.connect("timeout",self,"on_fish_force_timer_timeout")  
@@ -156,7 +156,7 @@ func get_loss_distance():
 	return LOSS_DISTANCE * get_parent().scale.x
 
 func set_fish_flipped(flip_state):
-	get_node("fish_sprite").set_flip_v(flip_state)
+	get_node("fish_sprite").set_flip_h(flip_state)
 	if (flip_state):
 		hook_offset.y = -1*hook_offset_base_y
 	else:
