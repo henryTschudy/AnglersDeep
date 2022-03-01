@@ -29,6 +29,8 @@ func _select_button():
 		ritual_manager.add_item_to_crafting(self)
 	elif(component_tile && item_quantity > 0):
 		ritual_manager.remove_item_from_crafting(self)
+	elif(product_tile && item_quantity > 0):
+		ritual_manager.craft_item(self)
 	else:
 		print("select_button else")
 		#play error/deny sound effect
@@ -40,9 +42,10 @@ func make_empty():
 	item_quantity = 0
 	item_sprite_path = ""
 
-func fill_tile(quantity, img_path):
+func fill_tile(quantity, img_path, name = ""):
 	change_quantity(quantity)
 	change_sprite(img_path)
+	change_name(name)
 
 func change_quantity(new_quantity):
 	item_quantity = new_quantity
@@ -58,3 +61,6 @@ func add_quantity(amount_to_add):
 	item_quantity += amount_to_add
 	item_sprite.visible = true
 	quantity_label.text = str(item_quantity)
+
+func change_name(new_name):
+	item_name = new_name

@@ -14,13 +14,13 @@ var journal_instance
 #temp example data for inventory
 var inventory = {
 	"fish" : {
-		"fish1" : {
+		"fish 1" : {
 			"name" : "fish 1",
 			"sprite_path" : "res://textures/anger_fish.png",
 			"description" : "scary guy",
 			"quantity" : 2
 		},
-		"fish2" : {
+		"fish 2" : {
 			"name" : "fish 2",
 			"sprite_path" : "res://textures/mobius_eel.png",
 			"description" : "scary eel guy",
@@ -28,13 +28,13 @@ var inventory = {
 		}
 	},
 	"items" : {
-		"item1" : {
+		"item 1" : {
 			"name" : "item 1",
 			"sprite_path" : "res://textures/mobius_eel.png",
 			"description" : "scary item aaah",
-			"quantity" : 1
+			"quantity" : 3
 		},
-		"item2" : {
+		"item 2" : {
 			"name" : "item 2",
 			"sprite_path" : "res://textures/anger_fish.png",
 			"description" : "scary item aah, but different this time",
@@ -47,14 +47,14 @@ var inventory = {
 			"sprite_path" : "res://textures/bloated_rudefish.png",
 			"description" : "rod for fishing",
 			"equipped" : true,
-			"recipe" : ["item1","item1","item1"]
+			"recipe" : ["item 1","item 1","item 1"]
 		},
 		"different fishing rod" : {
 			"name" : "different fishing rod",
 			"sprite_path" : "res://textures/void_fish.png",
 			"description" : "another unique rod for fishing",
 			"equipped" : false,
-			"recipe" : ["item2","item1","item2"]
+			"recipe" : ["item 2","item 1","item 2"]
 		}
 	},
 }
