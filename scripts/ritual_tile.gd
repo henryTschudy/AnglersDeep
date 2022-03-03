@@ -30,7 +30,7 @@ func _select_button():
 	elif(component_tile && item_quantity > 0):
 		ritual_manager.remove_item_from_crafting(self)
 	elif(product_tile && item_quantity > 0):
-		ritual_manager.craft_item(self)
+		ritual_manager.craft_item()
 	else:
 		print("select_button else")
 		#play error/deny sound effect
@@ -39,6 +39,7 @@ func _select_button():
 func make_empty():
 	item_sprite.visible = false
 	quantity_label.visible = false
+	item_name = ""
 	item_quantity = 0
 	item_sprite_path = ""
 

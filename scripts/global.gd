@@ -46,15 +46,63 @@ var inventory = {
 			"name" : "basic fishing rod",
 			"sprite_path" : "res://textures/bloated_rudefish.png",
 			"description" : "rod for fishing",
+			"recipe" : ["item 1","item 1","item 1"],
 			"equipped" : true,
+		},
+		"different fishing rod" : {
+			"name" : "different fishing rod",
+			"sprite_path" : "res://textures/void_fish.png",
+			"description" : "another unique rod for fishing",
+			"recipe" : ["item 2","item 1","item 2"],
+			"equipped" : false,
+		}
+	},
+}
+
+#temp example data for item_dictionary
+var item_dictionary = {
+	"fish" : {
+		"fish 1" : {
+			"name" : "fish 1",
+			"sprite_path" : "res://textures/anger_fish.png",
+			"description" : "scary guy",
+		},
+		"fish 2" : {
+			"name" : "fish 2",
+			"sprite_path" : "res://textures/mobius_eel.png",
+			"description" : "scary eel guy",
+		}
+	},
+	"items" : {
+		"item 1" : {
+			"name" : "item 1",
+			"sprite_path" : "res://textures/mobius_eel.png",
+			"description" : "scary item aaah",
+		},
+		"item 2" : {
+			"name" : "item 2",
+			"sprite_path" : "res://textures/anger_fish.png",
+			"description" : "scary item aah, but different this time",
+		},
+	},
+	"equipment" : {
+		"basic fishing rod" : {
+			"name" : "basic fishing rod",
+			"sprite_path" : "res://textures/bloated_rudefish.png",
+			"description" : "rod for fishing",
 			"recipe" : ["item 1","item 1","item 1"]
 		},
 		"different fishing rod" : {
 			"name" : "different fishing rod",
 			"sprite_path" : "res://textures/void_fish.png",
 			"description" : "another unique rod for fishing",
-			"equipped" : false,
-			"recipe" : ["item 2","item 1","item 2"]
+			"recipe" : ["item 1","item 2","item 2"]
+		},
+		"third fishing rod" : {
+			"name" : "third fishing rod",
+			"sprite_path" : "res://textures/mobius_eel.png",
+			"description" : "yarr this here be the third fishing rod",
+			"recipe" : ["item 2","item 2","item 2"]
 		}
 	},
 }
