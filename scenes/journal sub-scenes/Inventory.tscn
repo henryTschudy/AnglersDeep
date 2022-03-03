@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://textures/Parchment_Background.png" type="Texture" id=1]
-[ext_resource path="res://scripts/inventory.gd" type="Script" id=3]
+[ext_resource path="res://scripts/inventory_manager.gd" type="Script" id=3]
 [ext_resource path="res://objects/journal_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://textures/mobius_eel.png" type="Texture" id=5]
 [ext_resource path="res://objects/inventory_tile.tscn" type="PackedScene" id=6]
