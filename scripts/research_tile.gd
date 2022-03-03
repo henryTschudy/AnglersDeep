@@ -28,7 +28,6 @@ func _ready():
 		update_item_display()
 	connect("mouse_entered",self,"_shift_focus")
 	connect("pressed",self,"update_item_display")
-	print(get_parent().get_parent().get_parent().get_node("item_desc_bg/item_name"))
 
 func _shift_focus():
 	grab_focus()
