@@ -28,5 +28,5 @@ void fragment() {
 [resource]
 shader = SubResource( 1 )
 shader_param/speed = 0.7
-shader_param/strength = 30.0
+shader_param/strength = 15.0
 shader_param/frequency = 2.0

@@ -4,31 +4,31 @@
 [ext_resource path="res://scripts/equipment_manager.gd" type="Script" id=2]
 [ext_resource path="res://objects/equipment_inv_tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://textures/mobius_eel.png" type="Texture" id=4]
-[ext_resource path="res://fonts/times.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://objects/journal_button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://themes/journal_button_disabled.tres" type="StyleBox" id=7]
 [ext_resource path="res://scripts/equipment_buttons.gd" type="Script" id=8]
+[ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=9]
 
-[sub_resource type="DynamicFont" id=3]
-size = 43
-font_data = ExtResource( 5 )
+[sub_resource type="DynamicFont" id=8]
+size = 70
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 42
-font_data = ExtResource( 5 )
+[sub_resource type="DynamicFont" id=7]
+size = 61
+extra_spacing_bottom = -25
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 60
-font_data = ExtResource( 5 )
+[sub_resource type="DynamicFont" id=9]
+size = 95
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 24
-font_data = ExtResource( 5 )
+[sub_resource type="DynamicFont" id=11]
+size = 35
+font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 28
-outline_color = Color( 0.305882, 0.290196, 0.203922, 1 )
-font_data = ExtResource( 5 )
+[sub_resource type="DynamicFont" id=10]
+size = 50
+font_data = ExtResource( 9 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -44,11 +44,11 @@ __meta__ = {
 
 [node name="equipment label" type="RichTextLabel" parent="."]
 margin_left = 176.0
-margin_top = 496.0
+margin_top = 477.0
 margin_right = 512.0
-margin_bottom = 576.0
+margin_bottom = 557.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 8 )
 text = "Equipment:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -56,11 +56,11 @@ __meta__ = {
 
 [node name="equipped label" type="RichTextLabel" parent="."]
 margin_left = 336.0
-margin_top = 144.0
+margin_top = 140.0
 margin_right = 672.0
-margin_bottom = 248.0
+margin_bottom = 280.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 7 )
 bbcode_enabled = true
 bbcode_text = "[center]Item 
 Equipped:[/center]"
@@ -127,7 +127,8 @@ margin_left = -340.597
 margin_top = -323.0
 margin_right = -334.149
 margin_bottom = -328.984
-custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 9 )
 bbcode_enabled = true
 bbcode_text = "[center]ITEM/FISH NAME"
 text = "ITEM/FISH NAME"
@@ -153,7 +154,7 @@ margin_top = 110.0
 margin_right = 269.0
 margin_bottom = 286.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 11 )
 text = "this it the item description of the selected item. This very creepy/weird looking fish is scary, and it came from the deep!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,7 +165,7 @@ margin_left = -83.0151
 margin_top = 225.412
 margin_right = -434.835
 margin_bottom = 282.412
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 10 )
 custom_styles/disabled = ExtResource( 7 )
 text = "EQUIP"
 script = ExtResource( 8 )
