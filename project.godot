@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 Global="*res://scripts/global.gd"
 BgMusic="*res://scenes/bg_music.tscn"
+SoundFx="*res://scenes/sound_fx.tscn"
 
 [display]
 

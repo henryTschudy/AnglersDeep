@@ -132,7 +132,7 @@ margin_bottom = 704.0
 focus_neighbour_top = NodePath("../P_menu_resume")
 focus_neighbour_bottom = NodePath("../P_menu_main_menu")
 text = "Settings"
-ref_path = "res://scenes/settings_scene.tscn"
+ref_path = "res://scenes/settings_menu.tscn"
 
 [node name="P_menu_main_menu" parent="." instance=ExtResource( 6 )]
 anchor_right = 0.0

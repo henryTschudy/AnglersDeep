@@ -122,7 +122,9 @@ var item_dictionary = {
 }
 
 #settings
-var volume
+var master_volume
+var music_volume
+var sound_fx_volume
 var window_width
 var window_height
 var isFullscreen
