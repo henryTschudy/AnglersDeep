@@ -31,6 +31,18 @@ func _on_shadow_fish_collision(fish_type, fish_weight):
 	
 	reel_scene_manager = get_node("reel_scene_manager")
 	reel_scene_manager.connect("reel_game_over", self, "_on_reel_game_end")
+	
+	#play a splash sound at the start of the reel game
+	var random_sound_number = randi() % 4
+	match random_sound_number:
+		0:
+			SoundFx.play_sound("splash1")
+		1:
+			SoundFx.play_sound("splash2")
+		2:
+			SoundFx.play_sound("splash3")
+		3:
+			SoundFx.play_sound("splash_bobber_bad")
 
 func _on_reel_game_end(game_won: bool, fish_type: String, fish_weight: int):
 	reel_scene_manager.queue_free()

@@ -57,6 +57,15 @@ texture = ExtResource( 2 )
 rotation = 1.57079
 polygon = PoolVector2Array( -2.49872, -48.21, -11.4988, -30.2101, -19.499, -12.2101, -23.4991, 10.7899, -21.4993, 38.7899, -11.4994, 62.7899, -5.49945, 69.7899, 1.50055, 71.79, 8.50055, 69.79, 15.5006, 61.7902, 26.5007, 37.7902, 27.5009, 11.7902, 23.501, -11.2098, 15.5012, -30.2098, 5.50128, -48.21, 1.50134, -57.21 )
 
+[node name="boat_area2d" type="Area2D" parent="boat"]
+collision_layer = 2
+collision_mask = 2
+input_pickable = false
+
+[node name="boat_collision_body_copy" type="CollisionPolygon2D" parent="boat/boat_area2d"]
+rotation = 1.57079
+polygon = PoolVector2Array( -2.49872, -48.21, -11.4988, -30.2101, -19.499, -12.2101, -23.4991, 10.7899, -21.4993, 38.7899, -11.4994, 62.7899, -5.49945, 69.7899, 1.50055, 71.79, 8.50055, 69.79, 15.5006, 61.7902, 26.5007, 37.7902, 27.5009, 11.7902, 23.501, -11.2098, 15.5012, -30.2098, 5.50128, -48.21, 1.50134, -57.21 )
+
 [node name="cast_scene" type="Position2D" parent="boat"]
 script = ExtResource( 6 )
 
