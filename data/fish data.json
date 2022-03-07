@@ -6,7 +6,7 @@
     "Difficulty": 5,
     "Min Weight": 125,
     "Max Weight": 150,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/the_big_one.png",
     "Frequency": 1,
     "Region": "The Big One's Lair"
   },
@@ -17,7 +17,7 @@
     "Difficulty": 4,
     "Min Weight": 100,
     "Max Weight": 130,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/psychonitoth.png",
     "Frequency": 1,
     "Region": "Psychonitoth's Zone"
   },
@@ -50,7 +50,7 @@
     "Difficulty": 3,
     "Min Weight": 50,
     "Max Weight": 75,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/gaslamp.png",
     "Frequency": 2,
     "Region": "Psychonitoth's Zone, Abyss"
   },
@@ -61,7 +61,7 @@
     "Difficulty": 3,
     "Min Weight": 50,
     "Max Weight": 75,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/bloated_rudefish.png",
     "Frequency": 3,
     "Region": "Psychonitoth's Zone, Abyss"
   },
@@ -72,7 +72,7 @@
     "Difficulty": 3,
     "Min Weight": 50,
     "Max Weight": 75,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/mandrake_fish.png",
     "Frequency": 3,
     "Region": "Psychonitoth's Zone, Abyss"
   },
@@ -116,7 +116,7 @@
     "Difficulty": 3,
     "Min Weight": 50,
     "Max Weight": 75,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/world_oyster.png",
     "Frequency": 5,
     "Region": "Pneumistis' Zone, Abyss"
   },
@@ -138,7 +138,7 @@
     "Difficulty": 2,
     "Min Weight": 10,
     "Max Weight": 25,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/void_fish.png",
     "Frequency": 6,
     "Region": "Pneumistis' Zone, Abyss"
   },
@@ -160,7 +160,7 @@
     "Difficulty": 2,
     "Min Weight": 10,
     "Max Weight": 25,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/furbearing_trout.png",
     "Frequency": 7,
     "Region": "Psychonitoth's Zone, Pneumistis' Zone, Abyss"
   },
@@ -182,7 +182,7 @@
     "Difficulty": 1,
     "Min Weight": 10,
     "Max Weight": 25,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/fractal_star.png",
     "Frequency": 8,
     "Region": "Pneumistis' Zone, Abyss"
   },
@@ -204,7 +204,7 @@
     "Difficulty": 1,
     "Min Weight": 10,
     "Max Weight": 25,
-    "Location": "res://textures/beta_fish.png",
+    "Location": "res://textures/jealous_fish.png",
     "Frequency": 9,
     "Region": "Psychonitoth's Zone, Abyss"
   },
