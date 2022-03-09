@@ -30,14 +30,6 @@ func _on_shadow_fish_collision(fish_type, fish_weight, fish_position):
 		3:
 			SoundFx.play_sound("splash_bobber_bad")
 	
-	#spawn an exclamation mark
-	var exclamation_mark_texture = load("res://textures/exclamation_mark.png")
-	var exclamation_mark_sprite = Sprite.new()
-	add_child(exclamation_mark_sprite)
-	exclamation_mark_sprite.set_texture(exclamation_mark_texture)
-	exclamation_mark_sprite.set_position(fish_position)
-	exclamation_mark_sprite.set_scale( Vector2(0.5,0.5) )
-	
 	#code to wait 1 second
 	var t = Timer.new()
 	t.set_wait_time(1)
@@ -46,8 +38,6 @@ func _on_shadow_fish_collision(fish_type, fish_weight, fish_position):
 	t.start()
 	yield(t, "timeout")
 	t.queue_free()
-	
-	exclamation_mark_sprite.queue_free()
 	
 	var new_reel_scene = reel_scene.instance()
 	new_reel_scene.scale = Vector2(0.4, 0.4)
