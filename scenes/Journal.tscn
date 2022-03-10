@@ -5,10 +5,12 @@
 [ext_resource path="res://scripts/journal_buttons.gd" type="Script" id=3]
 [ext_resource path="res://scripts/journal_manager.gd" type="Script" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="GUI" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.639216, 0.588235, 0.501961, 0.392157 )
 position = Vector2( 960, 544 )
 scale = Vector2( 2.86996, 1.62631 )
 texture = ExtResource( 1 )
@@ -16,7 +18,7 @@ texture = ExtResource( 1 )
 [node name="inventory_button" parent="." instance=ExtResource( 2 )]
 margin_left = 64.0
 margin_top = 16.0
-margin_right = 410.0
+margin_right = -1057.6
 margin_bottom = 128.0
 focus_neighbour_left = NodePath("../rituals_button")
 focus_neighbour_right = NodePath("../research_button")
@@ -27,7 +29,7 @@ ref_path = "res://scenes/journal sub-scenes/Inventory.tscn"
 [node name="research_button" parent="." instance=ExtResource( 2 )]
 margin_left = 552.0
 margin_top = 16.0
-margin_right = 898.0
+margin_right = -689.6
 margin_bottom = 128.0
 focus_neighbour_left = NodePath("../inventory_button")
 focus_neighbour_right = NodePath("../equipment_button")
@@ -36,9 +38,9 @@ script = ExtResource( 3 )
 ref_path = "res://scenes/journal sub-scenes/Research.tscn"
 
 [node name="equipment_button" parent="." instance=ExtResource( 2 )]
-margin_left = 1024.0
+margin_left = 952.0
 margin_top = 16.0
-margin_right = 1370.0
+margin_right = -249.6
 margin_bottom = 128.0
 focus_neighbour_left = NodePath("../research_button")
 focus_neighbour_right = NodePath("../rituals_button")
@@ -47,9 +49,9 @@ script = ExtResource( 3 )
 ref_path = "res://scenes/journal sub-scenes/Equipment.tscn"
 
 [node name="rituals_button" parent="." instance=ExtResource( 2 )]
-margin_left = 1504.0
+margin_left = 1336.0
 margin_top = 16.0
-margin_right = 1850.0
+margin_right = 150.4
 margin_bottom = 128.0
 focus_neighbour_left = NodePath("../equipment_button")
 focus_neighbour_right = NodePath("../inventory_button")

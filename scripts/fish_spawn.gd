@@ -24,7 +24,12 @@ func _ready():
 
 func spawn_fish(coordinates):
 	var new_fish = ShadowFishy.new()
+<<<<<<< Updated upstream
 	new_fish.set_fish_type("generic_fish")
+=======
+#	print(region_name)
+	new_fish.initialize_unique_variables(Global._get_random_fish_from_region(region_name))
+>>>>>>> Stashed changes
 	new_fish.position = coordinates
 	
 	owner.add_child(new_fish)
@@ -84,6 +89,17 @@ func _process(delta):
 			shadow_fish.despawn()
 			
 func _on_shadow_fish_collision(colliding_fish):
+<<<<<<< Updated upstream
 	emit_signal("shadow_fish_deleted", colliding_fish.fish_type)
 	fish_shadows.erase(colliding_fish)
 	colliding_fish.despawn()
+=======
+#	print(colliding_fish.get_fish_type())
+	
+	emit_signal("shadow_fish_deleted", colliding_fish.get_fish_type(), colliding_fish.get_fish_weight())
+	
+	fish_shadows.erase(colliding_fish)
+	colliding_fish.despawn()
+	
+#	print("shadow fish collision: fish deleted")
+>>>>>>> Stashed changes
