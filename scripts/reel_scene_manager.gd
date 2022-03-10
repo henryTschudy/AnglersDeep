@@ -97,6 +97,9 @@ func _unhandled_input(_event):
 		#	fishy.fish_speed = fish_prev_speed
 		fishy.fish_direction = fish_prev_direction
 		fishy.fish_speed = fish_prev_speed
+		
+		continuous_line_sound_playing = false
+		SoundFx.stop_sound("line_continuous")
 
 func on_continuous_line_sound_end():
 	continuous_line_sound_playing = false
@@ -106,11 +109,21 @@ func set_reel_scene_data(fish_type, fish_weight):
 
 func lose_fish_game():
 	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	
+	if (continuous_line_sound_playing):
+		continuous_line_sound_playing = false
+		SoundFx.stop_sound("line_continuous")
+	
 #	emit_signal("display_fish")
 	#self.connect("reel_game_over", get_parent().get_parent().get_parent(), "_display_fish") #commented this out, was this supposed to be here?
 	emit_signal("reel_game_over", false, fishy.get_fish_type(), fishy.get_fish_weight())
 	
 func win_fish_game():
 	print("REEL GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	
+	if (continuous_line_sound_playing):
+		continuous_line_sound_playing = false
+		SoundFx.stop_sound("line_continuous")
+	
 #	emit_signal("display_fish")
 	emit_signal("reel_game_over", true, fishy.get_fish_type(), fishy.get_fish_weight())
