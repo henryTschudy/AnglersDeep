@@ -66,25 +66,11 @@ var item_dictionary = {
 			"name" : "fish 1",
 			"sprite_path" : "res://textures/anger_fish.png",
 			"description" : "scary guy",
-			"have_caught" : true
 		},
 		"fish 2" : {
 			"name" : "fish 2",
 			"sprite_path" : "res://textures/mobius_eel.png",
 			"description" : "scary eel guy",
-			"have_caught" : true
-		},
-		"fish 3" : {
-			"name" : "fish 3",
-			"sprite_path" : "res://textures/void_fish.png",
-			"description" : "you haven't caught this guy yet",
-			"have_caught" : false
-		},
-		"fish 4" : {
-			"name" : "fish 4",
-			"sprite_path" : "res://textures/bloated_rudefish.png",
-			"description" : "you have caught this guy tho",
-			"have_caught" : true
 		}
 	},
 	"items" : {
