@@ -13,9 +13,15 @@ onready var fish_tension_bar = get_node("fish_tension_bar")
 onready var fish_force_bar = get_node("fish_force_bar")
 onready var fish_distance_bar = get_node("fish_distance_bar")
 
+#fish variables from fish data
+
 #to make fish swim in the direction it was swimming before reeling in during swim mode
 var fish_prev_direction = Vector2(0,0)
 var fish_prev_speed = 0
+
+var continuous_line_timer
+var continuous_line_sound_playing = false
+var CONTINUOUS_LINE_SOUND_LENGTH = 5
 
 #var fishy_angry = false
 
@@ -32,6 +38,9 @@ func _ready():
 	var overworld_cam_node = get_parent().get_parent().get_parent()
 #	self.connect("display_fish", overworld_cam_node, "_display_fish")
 	
+	continuous_line_timer = Timer.new()
+	add_child(continuous_line_timer)
+	continuous_line_timer.connect("timeout",self,"on_continuous_line_sound_end")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -69,8 +78,14 @@ func _unhandled_input(_event):
 		#	fishy.fish_speed = DRAG_SPEED_SWIM
 		#	fishy_angry = true
 		fishy.fish_direction_target = (fishy.position.direction_to(line.points[0] + line.position)).normalized()
-		fishy.fish_speed = fishy.DRAG_SPEED_MULT * (fishy.fish_force/fishy.FISH_FORCE_BASE)
+		fishy.fish_speed = fishy.DRAG_SPEED_MULT * (fishy.fish_force/fishy.FISH_FORCE_BASE) / fishy.fish_difficulty
 		fishy.reel_state = true
+		
+		if !continuous_line_sound_playing:
+			continuous_line_sound_playing = true
+			SoundFx.play_sound("line_continuous")
+			continuous_line_timer.set_wait_time(CONTINUOUS_LINE_SOUND_LENGTH)
+			continuous_line_timer.start()
 			
 	if Input.is_action_just_released("reel_in"):
 		fishy.reel_state = false
@@ -83,13 +98,19 @@ func _unhandled_input(_event):
 		fishy.fish_direction = fish_prev_direction
 		fishy.fish_speed = fish_prev_speed
 
+func on_continuous_line_sound_end():
+	continuous_line_sound_playing = false
+
+func set_reel_scene_data(fish_type, fish_weight):
+	fishy.set_fish_data(fish_type, fish_weight)
+
 func lose_fish_game():
 #	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 #	emit_signal("display_fish")
-	self.connect("reel_game_over", get_parent().get_parent().get_parent(), "_display_fish")
-	emit_signal("reel_game_over", false, fishy.get_fish_type())
+	#self.connect("reel_game_over", get_parent().get_parent().get_parent(), "_display_fish") #commented this out, was this supposed to be here?
+	emit_signal("reel_game_over", false, fishy.get_fish_type(), fishy.get_fish_weight())
 	
 func win_fish_game():
 #	print("REEL GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 #	emit_signal("display_fish")
-	emit_signal("reel_game_over", false, fishy.get_fish_type())
+	emit_signal("reel_game_over", true, fishy.get_fish_type(), fishy.get_fish_weight())

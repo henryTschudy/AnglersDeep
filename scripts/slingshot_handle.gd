@@ -15,6 +15,7 @@ var being_dragged = false
 var movement = Vector2(0,0)
 #var projectile_movement = Vector2(0,0)
 var projectile_target_position = Vector2(0,0)
+var projectile_target_last_visible_position = Vector2(0,0)
 var base_position #initial position of the projectile, target, and slingshot sprite
 var last_vector = Vector2(0,0)
 
@@ -23,6 +24,8 @@ onready var target = get_node("target")
 onready var projectile = get_parent().get_node("projectile")
 onready var boat = get_node_or_null("../../../") #THIS IS BAD CODE THAT WILL BREAK IF THINGS GET MOVED AROUND
 var warning_printed = false #for warning when the above node path is not reached
+
+var played_splash = false
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,12 +42,14 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT and not event.pressed:
 			being_dragged = false
 			projectile_target_position = target.global_position
+			projectile_target_last_visible_position = target.global_position
 
 func _input_event(_viewport, event, _shape_idx): #for mouse events that specifically involve this object
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			being_dragged = event.pressed
-			projectile_target_position = target.global_position # this line also enables projectile to move back to the center when mouse is clicked
+			projectile_target_position = target.global_position
+			projectile_target_last_visible_position = target.global_position
 
 func _physics_process(_delta):
 	if being_dragged:
@@ -79,6 +84,10 @@ func _physics_process(_delta):
 			print("butt") #DO NOT DELETE, or do, IDC
 		last_vector = direction
 		movement = RETURN_SPEED*(direction + momentum)
+		
+		if !target.visible && Input.is_mouse_button_pressed(BUTTON_LEFT): #this is for bringing the bobber in when no fish is caught
+			projectile_target_position = projectile_target_position + (target.global_position - projectile_target_position)/20
+			
 
 # warning-ignore:return_value_discarded
 	move_and_slide(movement)
@@ -99,9 +108,21 @@ func _physics_process(_delta):
 			projectile.move_and_slide((projectile_target_position - projectile.position)/PROJECTILE_WEIGHT)
 			#projectile.position =  lerp(projectile.position, base_position + projectile_target_position, PROJECTILE_WEIGHT)
 			#projectile.move_and_slide(Vector2(0,0))
-		elif (boat != null) && (projectile_target_position.distance_to(base_position + boat.global_position) < 0.5):
+		elif projectile.position.distance_to(projectile_target_last_visible_position) < 0.5 && !played_splash:
+			var random_sound_number = randi() % 4
+			match random_sound_number:
+				0:
+					SoundFx.play_sound("splash1")
+				1:
+					SoundFx.play_sound("splash2")
+				2:
+					SoundFx.play_sound("splash3")
+				3:
+					SoundFx.play_sound("splash_bobber_bad")
+			played_splash = true
+		elif (boat != null) && boat.get_node("boat_area2d").overlaps_body(projectile):#(projectile_target_position.distance_to(base_position + boat.global_position) < 0.5):
 			reset_projectile()
-		elif (boat == null) && (projectile_target_position.distance_to(base_position) < 0.5):
+		elif (boat == null) && (projectile_target_last_visible_position.distance_to(base_position) < 25):
 			reset_projectile()
 		else:
 			projectile.move_and_slide(Vector2(0,0)) #this is super hacky, but it should let fish swim into the projectile as opposed to just getting hit by it to trigger the reel scene
@@ -130,6 +151,7 @@ func manage_cord(): #yeah, this could be done a lot better
 
 func reset_projectile():
 	projectile.visible = false
+	played_splash = false
 	if (boat != null):
 		#projectile.set_as_toplevel(false)
 		projectile.position = boat.global_position + base_position

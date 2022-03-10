@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+#onready var sound_fx = get_node("res:\\scenes\sound_fx")
+
 onready var splash_particles = get_node("splash_particles")
 
 var BOAT_ACCELERATION = 40
@@ -19,6 +21,18 @@ var boat_accelerating_backwards
 var boat_rotating_left
 var boat_rotating_right
 
+#i feel like there should be a better way to do this
+var boat_start_playing = false
+var boat_continuous_playing = false
+var boat_end_playing = false
+var boat_start_timer
+var boat_continuous_timer
+var boat_end_timer
+var boat_started = false
+var BOAT_START_SOUND_LENGTH = 3
+var BOAT_CONTINUOUS_SOUND_LENGTH = 5
+var BOAT_END_SOUND_LENGTH = 4
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boat_speed = 0
@@ -28,6 +42,16 @@ func _ready():
 	boat_accelerating_backwards = false
 	boat_rotating_left = false
 	boat_rotating_right = false
+	
+	boat_start_timer = Timer.new()
+	add_child(boat_start_timer)
+	boat_start_timer.connect("timeout",self,"on_boat_start_end")
+	boat_continuous_timer = Timer.new()
+	add_child(boat_continuous_timer)
+	boat_continuous_timer.connect("timeout",self,"on_boat_continuous_end")
+	boat_end_timer = Timer.new()
+	add_child(boat_end_timer)
+	boat_end_timer.connect("timeout",self,"on_boat_end_end")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -41,6 +65,8 @@ func _physics_process(delta):
 		splash_particles.emitting = true
 	else:
 		splash_particles.emitting = false
+		
+	do_boat_sounds()
 		
 	if boat_rotating_left: #put this in physics so it can take delta into account
 		rotation -= BOAT_TURN_SPEED*delta
@@ -90,7 +116,7 @@ func move_boat():
 
 #func rotate_boat():
 #	rotation = boat_direction.angle()
-	
+
 func do_boat_acceleration(delta):
 	if (boat_accelerating && abs(boat_speed) < BOAT_MAX_SPEED):
 		if !boat_accelerating_backwards:
@@ -111,3 +137,41 @@ func do_boat_acceleration(delta):
 #var target_position = $Target.transform.origin
 #var new_transform = $Arrow.transform.looking_at(target_position, Vector3.UP)
 #$Arrow.transform  = $Arrow.transform.interpolate_with(new_transform, speed * delta)
+
+func boat_being_moved():
+	if boat_rotating_left || boat_rotating_right || boat_accelerating || boat_accelerating_backwards:
+		return true
+	else:
+		return false
+
+func do_boat_sounds():
+	if !boat_being_moved() && !boat_end_playing && boat_started:
+		boat_started = false
+		boat_end_playing = true
+		#ideally, there would be some code here to stop the other boat sounds
+		SoundFx.play_sound("boat_end")
+		boat_end_timer.set_wait_time(BOAT_END_SOUND_LENGTH)
+		boat_end_timer.start()
+	
+	if boat_being_moved() && !boat_start_playing && !boat_started:
+		boat_start_playing = true
+		boat_started = true
+		SoundFx.play_sound("boat_start")
+		boat_start_timer.set_wait_time(BOAT_START_SOUND_LENGTH)
+		boat_start_timer.start()
+		
+	elif boat_being_moved() && !boat_start_playing && !boat_continuous_playing && boat_started:
+		boat_continuous_playing = true
+		SoundFx.play_sound("boat_continuous")
+		boat_continuous_timer.set_wait_time(BOAT_CONTINUOUS_SOUND_LENGTH)
+		boat_continuous_timer.start()
+		
+		
+func on_boat_start_end():
+	boat_start_playing = false
+
+func on_boat_continuous_end():
+	boat_continuous_playing = false
+
+func on_boat_end_end():
+	boat_end_playing = false
