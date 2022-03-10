@@ -23,7 +23,7 @@ focus_neighbour_left = NodePath("../rituals_button")
 focus_neighbour_right = NodePath("../research_button")
 text = "Inventory"
 script = ExtResource( 3 )
-ref_path = "res://scenes/journal sub-scenes/Inventory.tscn"
+ref_path = "res://scenes/Inventory.tscn"
 
 [node name="research_button" parent="." instance=ExtResource( 2 )]
 margin_left = 552.0
@@ -34,7 +34,7 @@ focus_neighbour_left = NodePath("../inventory_button")
 focus_neighbour_right = NodePath("../equipment_button")
 text = "Research"
 script = ExtResource( 3 )
-ref_path = "res://scenes/journal sub-scenes/Research.tscn"
+ref_path = "res://scenes/Research.tscn"
 
 [node name="equipment_button" parent="." instance=ExtResource( 2 )]
 margin_left = 1024.0
@@ -45,7 +45,7 @@ focus_neighbour_left = NodePath("../research_button")
 focus_neighbour_right = NodePath("../rituals_button")
 text = "Equipment"
 script = ExtResource( 3 )
-ref_path = "res://scenes/journal sub-scenes/Equipment.tscn"
+ref_path = "res://scenes/Equipment.tscn"
 
 [node name="rituals_button" parent="." instance=ExtResource( 2 )]
 margin_left = 1504.0
@@ -56,4 +56,4 @@ focus_neighbour_left = NodePath("../equipment_button")
 focus_neighbour_right = NodePath("../inventory_button")
 text = "Rituals"
 script = ExtResource( 3 )
-ref_path = "res://scenes/journal sub-scenes/Rituals.tscn"
+ref_path = "res://scenes/Rituals.tscn"
