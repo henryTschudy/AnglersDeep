@@ -10,15 +10,16 @@ config_version=4
 
 [application]
 
-config/name="Anglers_Deep_Fishing_Prototype"
+config/name="Anglers_Deep"
 run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
 BgMusic="*res://scenes/bg_music.tscn"
 SoundFx="*res://scenes/sound_fx.tscn"
+Global="*res://scenes/global.tscn"
+Autosave="*res://scripts/autosave.gd"
 
 [display]
 

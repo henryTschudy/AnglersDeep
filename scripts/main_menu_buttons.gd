@@ -27,6 +27,6 @@ func _select_button():
 	if(ref_path == prev_scene):
 		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
 	elif(ref_path != ""):
-		Global._change_scene(Global._get_current_scene_path(),ref_path)
+		Global.change_scene(ref_path)
 	else:
 		get_tree().quit()

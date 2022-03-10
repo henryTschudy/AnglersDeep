@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/inventory_tile_selected.png-b2d56c34fe3a328b44a8b82e68f6ebaa.stex"
+path="res://.import/equipment_bg.png-0aca92a8abe5cdc80f6ae3889bda208c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/inventory_tile_selected.png"
-dest_files=[ "res://.import/inventory_tile_selected.png-b2d56c34fe3a328b44a8b82e68f6ebaa.stex" ]
+source_file="res://textures/journal ui/equipment_bg.png"
+dest_files=[ "res://.import/equipment_bg.png-0aca92a8abe5cdc80f6ae3889bda208c.stex" ]
 
 [params]
 

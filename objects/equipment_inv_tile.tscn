@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://textures/inventory_tile_selected.png" type="Texture" id=1]
-[ext_resource path="res://textures/inventory_tile_default.png" type="Texture" id=2]
+[ext_resource path="res://textures/journal ui/inventory_tile_selected.png" type="Texture" id=1]
+[ext_resource path="res://textures/journal ui/inventory_tile_default.png" type="Texture" id=2]
 [ext_resource path="res://scripts/equipment_inv_tile.gd" type="Script" id=3]
 [ext_resource path="res://textures/bloated_rudefish.png" type="Texture" id=4]
+
 
 [node name="inv_tile_button" type="TextureButton"]
 margin_right = 200.0

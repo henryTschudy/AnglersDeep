@@ -1,7 +1,7 @@
 extends Node
 
 # The path of our saved data.
-var path = "user://save.json"
+var path = "res://data/save.json"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +13,8 @@ onready var global = GlobalManager.new()
 
 func resetData():
 	# Reset to defaults if path doesn't exist
-	data = global.inventory.duplicate(true)
+	data = Global.inventory.duplicate(true)
+	print("reset game data")
 
 # load game function
 func loadGame():
@@ -28,6 +29,7 @@ func loadGame():
 	data = parse_json(text)
 	
 	file.close()
+	print("game data loaded")
 
 # save game function
 func saveGame():
@@ -35,14 +37,15 @@ func saveGame():
 	
 	file = File.new()
 	file.open(path, File.WRITE)
-	file.store_line(to_json(data))
+	file.store_line(to_json(global.inventory))
 	
 	file.close()
+	print("game data saved")
 
 
 # OPTIONAL: for buttons for save/load
 func updateText():
-	find_node("DataText").text = JSON.print(data)
+	find_node("DataText").text = JSON.print(global.inventory)
 	
 func _on_SaveButton_pressed():
 	saveGame()

@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var inventory_array = Global.inventory
 
@@ -54,6 +54,5 @@ func update_equipped_item_display():
 func find_equipped_item():
 	var equipment_keys = Global.inventory["equipment"].keys()
 	for i in len(equipment_keys):
-		print(Global.inventory["equipment"][equipment_keys[i]]["equipped"])
 		if(Global.inventory["equipment"][equipment_keys[i]]["equipped"]):
 			equipped_item = Global.inventory["equipment"][equipment_keys[i]]["name"]
