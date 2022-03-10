@@ -18,7 +18,7 @@ size = 39
 outline_color = Color( 0.0509804, 0.0509804, 0.0509804, 1 )
 font_data = ExtResource( 2 )
 
-[node name="Node2D" type="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 3 )
 
 [node name="bg" type="Sprite" parent="."]
@@ -27,9 +27,9 @@ scale = Vector2( 1.59734, 1.59763 )
 texture = ExtResource( 7 )
 
 [node name="fish_button" parent="." instance=ExtResource( 4 )]
-margin_left = 328.0
+margin_left = 338.0
 margin_top = 280.0
-margin_right = 520.0
+margin_right = -989.6
 margin_bottom = 360.0
 focus_neighbour_right = NodePath("../items_button")
 text = "Fish"
@@ -38,9 +38,9 @@ inventory_type = "fish"
 start_focused = true
 
 [node name="items_button" parent="." instance=ExtResource( 4 )]
-margin_left = 576.0
+margin_left = 586.0
 margin_top = 280.0
-margin_right = 772.0
+margin_right = -743.6
 margin_bottom = 360.0
 focus_neighbour_left = NodePath("../fish_button")
 text = "Items"

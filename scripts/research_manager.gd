@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var inventory_tiles_array = []
 var num_tiles = 10

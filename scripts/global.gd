@@ -47,69 +47,69 @@ func _ready():
 	fish_dictionary = _make_fish_dictionary()
 	region_arrays = _make_region_arrays()
 
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("ui_cancel") && current_scene_path != main_menu_path:
-		_escape()
-	if Input.is_action_just_pressed("open_journal"):
-		if(current_scene_path != main_menu_path && current_scene_path != pause_menu_path):
-			if(current_scene_path != journal_path):
-				_change_scene(_get_current_scene_path(),journal_path)
-			else:
-				_change_scene(_get_current_scene_path(),overworld_path)
-
 #func _unhandled_input(_event):
-#	match current_scene_state:
-#		(scene_state.main_menu_state):
-##			print("main menu input")
-#			pass
-#
-#		(scene_state.overworld_state):
-#			if Input.is_action_just_pressed("ui_cancel"):
-#				#open pause menu
-#				current_scene_state = scene_state.pause_menu_state
-#				instance_child_scene(pause_menu_path, true)
-#
-#			elif Input.is_action_just_pressed("open_journal"):
-#				#open journal scene
-#				current_scene_state = scene_state.journal_state
-#				instance_child_scene(journal_path, true)
-#
-#		(scene_state.reel_state):
-#			if Input.is_action_just_pressed("ui_cancel"):
-#				#quit out of reel minigame
-#				current_scene_state = scene_state.overworld_state
-#
-#		(scene_state.journal_state):
-#			#close journal, return to overworld
-#			if Input.is_action_just_pressed("ui_cancel"):
-#				current_scene_state = scene_state.overworld_state
-#				instance_child_scene(journal_path, false)
-#			elif Input.is_action_just_pressed("open_journal"):
-#				current_scene_state = scene_state.overworld_state
-#				instance_child_scene(journal_path, false)
-#
-#		(scene_state.pause_menu_state):
-#			if Input.is_action_pressed("ui_cancel"):
-#				current_scene_state = scene_state.overworld_state
-#				instance_child_scene(pause_menu_path, false)
-#
-#		(scene_state.settings_menu_state):
-#			if Input.is_action_pressed("ui_cancel"):
-#				current_scene_state = scene_state.main_menu_state
-#				instance_child_scene(pause_menu_path, false)
-#				#unpause overworld scene
+#	if Input.is_action_just_pressed("ui_cancel") && current_scene_path != main_menu_path:
+#		_escape()
+#	if Input.is_action_just_pressed("open_journal"):
+#		if(current_scene_path != main_menu_path && current_scene_path != pause_menu_path):
+#			if(current_scene_path != journal_path):
+#				_change_scene(_get_current_scene_path(),journal_path)
+#			else:
+#				_change_scene(_get_current_scene_path(),overworld_path)
 
-func _escape():
-	Autosave.saveGame()
-	if current_scene_path != pause_menu_path:
-		_change_scene(_get_current_scene_path(),pause_menu_path)
-	else:
-		_change_scene(_get_current_scene_path(),prev_scene_path)
+func _unhandled_input(_event):
+	match current_scene_state:
+		(scene_state.main_menu_state):
+#			print("main menu input")
+			pass
+
+		(scene_state.overworld_state):
+			if Input.is_action_just_pressed("ui_cancel"):
+				#open pause menu
+				current_scene_state = scene_state.pause_menu_state
+				instance_child_scene(pause_menu_path, true)
+
+			elif Input.is_action_just_pressed("open_journal"):
+				#open journal scene
+				current_scene_state = scene_state.journal_state
+				instance_child_scene(journal_path, true)
+
+		(scene_state.reel_state):
+			if Input.is_action_just_pressed("ui_cancel"):
+				#quit out of reel minigame
+				current_scene_state = scene_state.overworld_state
+
+		(scene_state.journal_state):
+			#close journal, return to overworld
+			if Input.is_action_just_pressed("ui_cancel"):
+				current_scene_state = scene_state.overworld_state
+				instance_child_scene(journal_path, false)
+			elif Input.is_action_just_pressed("open_journal"):
+				current_scene_state = scene_state.overworld_state
+				instance_child_scene(journal_path, false)
+
+		(scene_state.pause_menu_state):
+			if Input.is_action_pressed("ui_cancel"):
+				current_scene_state = scene_state.overworld_state
+				instance_child_scene(pause_menu_path, false)
+
+		(scene_state.settings_menu_state):
+			if Input.is_action_pressed("ui_cancel"):
+				current_scene_state = scene_state.main_menu_state
+				instance_child_scene(pause_menu_path, false)
+				#unpause overworld scene
+
+#func _escape():
+#	Autosave.saveGame()
+#	if current_scene_path != pause_menu_path:
+#		_change_scene(_get_current_scene_path(),pause_menu_path)
+#	else:
+#		_change_scene(_get_current_scene_path(),prev_scene_path)
 		
-func _change_scene(current_scene,next_scene):
-	prev_scene_path = current_scene
-	current_scene_path = next_scene
-	get_tree().change_scene(next_scene)
+#func _change_scene(current_scene,next_scene):
+#	prev_scene_path = current_scene
+#	current_scene_path = next_scene
+#	get_tree().change_scene(next_scene)
 
 func change_scene(new_scene_path):
 	Autosave.saveGame()
@@ -132,7 +132,6 @@ func change_scene(new_scene_path):
 
 #open_or_close == true -> open pause menu, open_or_close == false -> close pause menu
 func instance_child_scene(child_scene_path, open_or_close):
-	print("instance child scene")
 	if(open_or_close):
 		#pause overworld
 		pause_toggle_overworld()

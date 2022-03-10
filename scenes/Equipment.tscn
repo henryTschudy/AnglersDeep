@@ -31,7 +31,7 @@ font_data = ExtResource( 9 )
 size = 50
 font_data = ExtResource( 9 )
 
-[node name="Node2D" type="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 2 )
 
 [node name="bg" type="Sprite" parent="."]

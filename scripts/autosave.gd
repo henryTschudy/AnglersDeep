@@ -13,7 +13,7 @@ onready var global = GlobalManager.new()
 
 func resetData():
 	# Reset to defaults if path doesn't exist
-	data = global.inventory.duplicate(true)
+	data = Global.inventory.duplicate(true)
 	print("reset game data")
 
 # load game function

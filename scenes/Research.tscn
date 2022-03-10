@@ -15,11 +15,8 @@ font_data = ExtResource( 5 )
 size = 39
 font_data = ExtResource( 5 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="CanvasLayer"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="bg" type="Sprite" parent="."]
 position = Vector2( 960, 541 )

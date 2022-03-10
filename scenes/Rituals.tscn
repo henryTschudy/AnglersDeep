@@ -4,7 +4,7 @@
 [ext_resource path="res://objects/ritual_tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/ritual_manager.gd" type="Script" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
