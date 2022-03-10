@@ -14,9 +14,7 @@ func _ready():
 		var tile_to_add = get_node(tile_name)
 		inventory_tiles_array.append(tile_to_add)
 	
-	find_equipped_item()
 	update_equipment_tiles()
-	update_equipped_item_display()
 
 func update_equipment_tiles():
 	for i in len(inventory_tiles_array):
@@ -50,10 +48,3 @@ func equip_item(item_to_equip):
 
 func update_equipped_item_display():
 	get_node("inv_tile_button7/item_sprite").texture = load(Global.inventory.get("equipment").get(equipped_item).get("sprite_path"))
-
-func find_equipped_item():
-	var equipment_keys = Global.inventory["equipment"].keys()
-	for i in len(equipment_keys):
-		print(Global.inventory["equipment"][equipment_keys[i]]["equipped"])
-		if(Global.inventory["equipment"][equipment_keys[i]]["equipped"]):
-			equipped_item = Global.inventory["equipment"][equipment_keys[i]]["name"]

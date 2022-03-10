@@ -2,8 +2,8 @@ extends Button
 
 export(bool) var start_focused = false
 var inventory_array = Global.inventory
-onready var equipment_manager = get_parent().get_parent()
-onready var item_name_label = get_parent().get_node("item_name")
+onready var equipment_manager = get_node("../../../Node2D")
+onready var item_name_label = get_node("../item_name")
 
 func _ready():
 	if(start_focused):
