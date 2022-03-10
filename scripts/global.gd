@@ -161,7 +161,6 @@ func pause_toggle_overworld(mode = "toggle"):
 			get_tree().paused = true
 			Engine.time_scale = 0.0
 		"unpause":
-			print("unpause")
 			get_tree().paused = false
 			Engine.time_scale = 1.0
 	
