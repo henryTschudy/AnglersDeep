@@ -40,21 +40,6 @@ func _ready(): #may need to do some freeing
 func _physics_process(delta):
 	swim()
 
-<<<<<<< Updated upstream
-=======
-func initialize_unique_variables(given_fish_type_string):
-	if given_fish_type_string != null:
-		set_fish_type(given_fish_type_string)
-		#print(Global._get_fish_data(given_fish_type_string))
-		unique_weight = rand_range(Global._get_fish_data(given_fish_type_string).get("Min Weight"), Global._get_fish_data(given_fish_type_string).get("Max Weight"))
-		set_fish_sprite_from_weight()
-	else:
-		set_fish_type("Beta Fish") #lol
-		unique_weight = rand_range(0, 105)
-		set_fish_sprite_from_weight()
-#		print("fish_shadow: initialize_unique_variables: given null string")
-
->>>>>>> Stashed changes
 func set_fish_type(given_string): #this function could call another function that gets info from a json and sets it
 	set_meta("shadowfish", "given_string") #makes a metadata category called fish and sets its value to "given_string"
 

@@ -16,12 +16,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
+Global="*res://scripts/global.gd"
 BgMusic="*res://scenes/bg_music.tscn"
-<<<<<<< Updated upstream
-=======
-SoundFx="*res://scenes/sound_fx.tscn"
-Global="*res://scenes/global.tscn"
->>>>>>> Stashed changes
 
 [display]
 

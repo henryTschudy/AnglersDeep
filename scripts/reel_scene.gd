@@ -33,22 +33,11 @@ func _on_shadow_fish_collision(fish_type):
 func _on_reel_game_end(game_won: bool, fish_type: String):
 	reel_scene_manager.queue_free()
 	
-<<<<<<< Updated upstream
 	print("is this working??")
 	var fish_display = load(Global.fish_display_path)
 	var fish_display_instance = fish_display.instance()
 	fish_display_instance.scale = Vector2(0.4, 0.4)
 	add_child(fish_display_instance)
-=======
-#	print("is this working??")
-	if game_won:
-		var fish_display = load(Global.fish_display_path)
-		var fish_display_instance = fish_display.instance()
-		fish_display_instance.scale = Vector2(0.4, 0.4)
-		add_child(fish_display_instance)
-		fish_display_instance.set_fish_caught_image(fish_type)
-		fish_display_instance.set_fish_caught_text(fish_type)
->>>>>>> Stashed changes
 	
 	map.pause_mode = PAUSE_MODE_INHERIT
 	get_tree().set_pause(false)

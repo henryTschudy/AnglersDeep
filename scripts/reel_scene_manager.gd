@@ -84,12 +84,12 @@ func _unhandled_input(_event):
 		fishy.fish_speed = fish_prev_speed
 
 func lose_fish_game():
-#	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 #	emit_signal("display_fish")
 	self.connect("reel_game_over", get_parent().get_parent().get_parent(), "_display_fish")
 	emit_signal("reel_game_over", false, fishy.get_fish_type())
 	
 func win_fish_game():
-#	print("REEL GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("REEL GAME WON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 #	emit_signal("display_fish")
 	emit_signal("reel_game_over", false, fishy.get_fish_type())
