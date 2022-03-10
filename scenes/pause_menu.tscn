@@ -16,7 +16,16 @@ font_data = ExtResource( 2 )
 [node name="CanvasLayer" type="CanvasLayer"]
 pause_mode = 2
 
+[node name="translucent_bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.192157, 0.192157, 0.533333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Control" type="Control" parent="."]
+visible = false
 margin_right = 1920.0
 margin_bottom = 1080.0
 mouse_filter = 2
@@ -25,6 +34,7 @@ __meta__ = {
 }
 
 [node name="water_texture_base" type="TextureRect" parent="Control"]
+visible = false
 margin_left = -50.0
 margin_top = -50.0
 margin_right = 1870.0
@@ -38,6 +48,7 @@ __meta__ = {
 }
 
 [node name="water_texture_layer_1" type="TextureRect" parent="Control"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.403922 )
 margin_left = -50.0
 margin_top = -50.0
@@ -52,6 +63,7 @@ __meta__ = {
 }
 
 [node name="water_texture_layer_2" type="TextureRect" parent="Control"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.47451 )
 anchor_top = -3.8147e-08
 margin_left = -50.0
@@ -67,6 +79,7 @@ __meta__ = {
 }
 
 [node name="water_texture_layer_3" type="TextureRect" parent="Control"]
+visible = false
 modulate = Color( 1, 1, 1, 0.462745 )
 anchor_top = -3.8147e-08
 margin_left = -50.0
@@ -82,11 +95,13 @@ __meta__ = {
 }
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+visible = false
 position = Vector2( 960, 540 )
 scale = Vector2( 9.6, 5.4 )
 copy_mode = 2
 
 [node name="distorter" type="ColorRect" parent="BackBufferCopy"]
+visible = false
 material = ExtResource( 3 )
 margin_left = -100.0
 margin_top = -100.0
@@ -123,6 +138,7 @@ focus_neighbour_top = NodePath("../P_menu_main_menu")
 focus_neighbour_bottom = NodePath("../P_menu_settings")
 text = "Resume"
 script = ExtResource( 8 )
+ref_path = "res://scenes/overworld.tscn"
 
 [node name="P_menu_settings" parent="." instance=ExtResource( 6 )]
 anchor_right = 0.0
@@ -134,6 +150,7 @@ focus_neighbour_top = NodePath("../P_menu_resume")
 focus_neighbour_bottom = NodePath("../P_menu_main_menu")
 text = "Settings"
 script = ExtResource( 8 )
+ref_path = "res://scenes/settings_menu_in_game.tscn"
 
 [node name="P_menu_main_menu" parent="." instance=ExtResource( 6 )]
 anchor_right = 0.0
@@ -145,3 +162,4 @@ focus_neighbour_top = NodePath("../P_menu_settings")
 focus_neighbour_bottom = NodePath("../P_menu_resume")
 text = "Main Menu"
 script = ExtResource( 8 )
+ref_path = "res://scenes/main_menu.tscn"

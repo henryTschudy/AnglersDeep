@@ -6,7 +6,7 @@ export(bool) var start_focused = false
 var journal_manager
 
 func _ready():
-	journal_manager = get_parent()
+	journal_manager = get_parent().get_parent()
 	if(start_focused):
 		grab_focus()
 		

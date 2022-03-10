@@ -3,6 +3,8 @@ extends Node
 #scenes
 var main_menu_path = "res://scenes/main_menu.tscn"
 var pause_menu_path = "res://scenes/pause_menu.tscn"
+var settings_menu_path = "res://scenes/settings_menu.tscn"
+var in_game_settings_menu_path = "res://scenes/settings_menu_in_game.tscn"
 var overworld_path = "res://scenes/overworld.tscn"
 var journal_path = "res://scenes/Journal.tscn"
 var inventory_path = "res://scenes/Inventory.tscn"
@@ -115,20 +117,19 @@ func change_scene(new_scene_path):
 	Autosave.saveGame()
 	if(child_scene_instance): 
 		child_scene_instance.queue_free()
-		pause_toggle_overworld()
+		child_scene_instance = null
+		pause_toggle_overworld("unpause")
 	get_tree().change_scene(new_scene_path)
 	
-	var new_scene_state
 	match new_scene_path:
 		main_menu_path:
-			new_scene_state = scene_state.main_menu_state
+			current_scene_state = scene_state.main_menu_state
 		overworld_path:
-			new_scene_state = scene_state.overworld_state
+			current_scene_state = scene_state.overworld_state
 		pause_menu_path:
-			new_scene_state = scene_state.pause_menu_state
+			current_scene_state = scene_state.pause_menu_state
 		journal_path:
-			new_scene_state = scene_state.journal_state
-	current_scene_state = new_scene_state
+			current_scene_state = scene_state.journal_state
 
 #open_or_close == true -> open pause menu, open_or_close == false -> close pause menu
 func instance_child_scene(child_scene_path, open_or_close):
@@ -146,13 +147,23 @@ func instance_child_scene(child_scene_path, open_or_close):
 		
 		#free child scene
 		child_scene_instance.queue_free()
+		child_scene_instance = null
 
-func pause_toggle_overworld():
-	get_tree().paused = !get_tree().paused
-	if get_tree().paused:
-		Engine.time_scale = 0.0
-	else:
-		Engine.time_scale = 1.0
+func pause_toggle_overworld(mode = "toggle"):
+	match mode:
+		"toggle":
+			get_tree().paused = !get_tree().paused
+			if get_tree().paused:
+				Engine.time_scale = 0.0
+			else:
+				Engine.time_scale = 1.0
+		"pause":
+			get_tree().paused = true
+			Engine.time_scale = 0.0
+		"unpause":
+			print("unpause")
+			get_tree().paused = false
+			Engine.time_scale = 1.0
 	
 func _get_current_scene_path():
 	return get_tree().current_scene.filename

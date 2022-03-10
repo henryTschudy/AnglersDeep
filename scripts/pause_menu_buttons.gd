@@ -19,14 +19,25 @@ func _shift_focus():
 	grab_focus()
 
 func _select_button():
-#	print(ref_path)
-#	print(ref_path == "prev_scene")
+	if(ref_path == Global.overworld_path):
+		Global.current_scene_state = Global.scene_state.overworld_state
+		Global.instance_child_scene(Global.pause_menu_path, false)
 	
-	# delete this debug later!!!
-#	saveGame()	
-	if(ref_path == prev_scene):
-		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
-	elif(ref_path != ""):
-		Global.change_scene(ref_path)
+	elif(ref_path == Global.main_menu_path):
+		get_parent().queue_free()
+#		Global.pause_toggle_overworld("unpause")
+		print(get_tree().paused)
+		Global.change_scene(Global.main_menu_path)
+	
 	else:
-		get_tree().quit()
+		Global.instance_child_scene(Global.pause_menu_path, false)
+		Global.current_scene_state = Global.scene_state.settings_menu_state
+		Global.instance_child_scene(Global.in_game_settings_menu_path, true)
+#	delete this debug later!!!
+#	saveGame()	
+#	if(ref_path == prev_scene):
+#		Global._change_scene(Global._get_current_scene_path(),Global.prev_scene_path)
+#	elif(ref_path != ""):
+#		Global.change_scene(ref_path)
+#	else:
+#		get_tree().quit()

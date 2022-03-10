@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://textures/Parchment_Background.png" type="Texture" id=1]
 [ext_resource path="res://scripts/equipment_manager.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://themes/journal_button_disabled.tres" type="StyleBox" id=7]
 [ext_resource path="res://scripts/equipment_buttons.gd" type="Script" id=8]
 [ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://objects/new_journal_button.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=8]
 size = 70
@@ -33,6 +34,14 @@ font_data = ExtResource( 9 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 2 )
+
+[node name="translucent_bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.192157, 0.192157, 0.192157, 0.533333 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="bg" type="Sprite" parent="."]
 position = Vector2( 959.5, 539 )
@@ -173,3 +182,24 @@ custom_fonts/font = SubResource( 10 )
 custom_styles/disabled = ExtResource( 7 )
 text = "EQUIP"
 script = ExtResource( 8 )
+
+[node name="Inventory_btn" parent="." instance=ExtResource( 10 )]
+margin_left = 196.0
+margin_top = 18.0
+margin_right = -1029.6
+margin_bottom = 147.0
+ref_path = "res://scenes/Inventory.tscn"
+
+[node name="Research_btn" parent="." instance=ExtResource( 10 )]
+margin_left = 560.0
+margin_top = 16.0
+margin_right = -673.6
+margin_bottom = 144.0
+ref_path = "res://scenes/Research.tscn"
+
+[node name="Rituals_btn" parent="." instance=ExtResource( 10 )]
+margin_left = 1448.0
+margin_top = 8.0
+margin_right = 230.4
+margin_bottom = 144.0
+ref_path = "res://scenes/Rituals.tscn"
