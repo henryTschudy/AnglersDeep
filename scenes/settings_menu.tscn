@@ -40,6 +40,7 @@ size = 112
 font_data = ExtResource( 9 )
 
 [node name="Node2D" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 8 )
 
 [node name="Control" type="Control" parent="."]

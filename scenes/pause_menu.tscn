@@ -13,6 +13,7 @@ size = 360
 font_data = ExtResource( 2 )
 
 [node name="Node2D" type="Node2D"]
+pause_mode = 2
 
 [node name="Control" type="Control" parent="."]
 margin_right = 1920.0
