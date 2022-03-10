@@ -35,14 +35,14 @@ func saveGame():
 	
 	file = File.new()
 	file.open(path, File.WRITE)
-	file.store_line(to_json(data))
+	file.store_line(to_json(global.inventory))
 	
 	file.close()
 
 
 # OPTIONAL: for buttons for save/load
 func updateText():
-	find_node("DataText").text = JSON.print(data)
+	find_node("DataText").text = JSON.print(global.inventory)
 	
 func _on_SaveButton_pressed():
 	saveGame()
