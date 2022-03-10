@@ -141,6 +141,10 @@ func _ready():
 	region_arrays = _make_region_arrays()
 
 func _unhandled_input(_event):
+	if Input.is_action_just_pressed("move_rotate_left"):
+		SoundFx.play_sound("boat_continuous")
+	if Input.is_action_just_pressed("move_rotate_right"):
+		SoundFx.stop_sound("boat_continuous")
 	if Input.is_action_just_pressed("ui_cancel") && current_scene_path != main_menu_path:
 		_escape()
 	if Input.is_action_just_pressed("open_journal"):
