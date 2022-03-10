@@ -45,6 +45,7 @@ func _unhandled_input(_event):
 				_change_scene(_get_current_scene_path(),overworld_path)
 
 func _escape():
+	Autosave.saveGame()
 	if current_scene_path != pause_menu_path:
 		_change_scene(_get_current_scene_path(),pause_menu_path)
 	else:

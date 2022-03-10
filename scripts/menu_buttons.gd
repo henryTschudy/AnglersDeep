@@ -9,6 +9,8 @@ const SaveManager = preload("autosave.gd") # Relative path
 onready var autosave = SaveManager.new()
 
 func _ready():
+	Autosave.loadGame()
+	
 	if(start_focused):
 		grab_focus()
 		
