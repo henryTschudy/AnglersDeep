@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 BgMusic="*res://scenes/bg_music.tscn"
 SoundFx="*res://scenes/sound_fx.tscn"
 Global="*res://scenes/global.tscn"
+Autosave="*res://scripts/autosave.gd"
 
 [display]
 
