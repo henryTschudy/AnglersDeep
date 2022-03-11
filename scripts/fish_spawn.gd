@@ -72,7 +72,7 @@ func _process(delta):
 func _on_shadow_fish_collision(colliding_fish):
 #	print(colliding_fish.get_fish_type())
 	
-	emit_signal("shadow_fish_deleted", colliding_fish.get_fish_type(), colliding_fish.get_fish_weight())
+	emit_signal("shadow_fish_deleted", colliding_fish.get_fish_type(), colliding_fish.get_fish_weight(), colliding_fish.global_position)
 	
 	fish_shadows.erase(colliding_fish)
 	colliding_fish.despawn()

@@ -146,14 +146,32 @@ func boat_being_moved():
 
 func do_boat_sounds():
 	if !boat_being_moved() && !boat_end_playing && boat_started:
+		if(boat_start_playing):
+			SoundFx.stop_sound("boat_start")
+			boat_start_playing = false
+		if(boat_continuous_playing):
+			SoundFx.stop_sound("boat_continuous")
+			boat_continuous_playing = false
+		
 		boat_started = false
 		boat_end_playing = true
-		#ideally, there would be some code here to stop the other boat sounds
 		SoundFx.play_sound("boat_end")
 		boat_end_timer.set_wait_time(BOAT_END_SOUND_LENGTH)
 		boat_end_timer.start()
-	
-	if boat_being_moved() && !boat_start_playing && !boat_started:
+		
+	elif !boat_being_moved() && boat_start_playing:
+		SoundFx.stop_sound("boat_start")
+		boat_start_playing = false
+		boat_started = false
+		
+	elif boat_being_moved() && !boat_start_playing && !boat_started:
+		if(boat_end_playing):
+			SoundFx.stop_sound("boat_end")
+			boat_end_playing = false
+		if(boat_continuous_playing):
+			SoundFx.stop_sound("boat_continuous")
+			boat_continuous_playing = false
+		
 		boat_start_playing = true
 		boat_started = true
 		SoundFx.play_sound("boat_start")
@@ -161,11 +179,14 @@ func do_boat_sounds():
 		boat_start_timer.start()
 		
 	elif boat_being_moved() && !boat_start_playing && !boat_continuous_playing && boat_started:
+		if(boat_end_playing):
+			SoundFx.stop_sound("boat_end")
+			boat_end_playing = false
+		
 		boat_continuous_playing = true
 		SoundFx.play_sound("boat_continuous")
 		boat_continuous_timer.set_wait_time(BOAT_CONTINUOUS_SOUND_LENGTH)
 		boat_continuous_timer.start()
-		
 		
 func on_boat_start_end():
 	boat_start_playing = false

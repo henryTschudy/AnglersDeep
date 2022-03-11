@@ -18,7 +18,27 @@ func _ready():
 #	var parent_rotation = get_parent().rotation
 #	set_rotation(-parent_rotation)
 
-func _on_shadow_fish_collision(fish_type, fish_weight):
+func _on_shadow_fish_collision(fish_type, fish_weight, fish_position):
+	var random_sound_number = randi() % 4
+	match random_sound_number:
+		0:
+			SoundFx.play_sound("splash1")
+		1:
+			SoundFx.play_sound("splash2")
+		2:
+			SoundFx.play_sound("splash3")
+		3:
+			SoundFx.play_sound("splash_bobber_bad")
+	
+	#code to wait 1 second
+	var t = Timer.new()
+	t.set_wait_time(1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	
 	var new_reel_scene = reel_scene.instance()
 	new_reel_scene.scale = Vector2(0.4, 0.4)
 	add_child(new_reel_scene)
@@ -31,18 +51,6 @@ func _on_shadow_fish_collision(fish_type, fish_weight):
 	
 	reel_scene_manager = get_node("reel_scene_manager")
 	reel_scene_manager.connect("reel_game_over", self, "_on_reel_game_end")
-	
-	#play a splash sound at the start of the reel game
-	var random_sound_number = randi() % 4
-	match random_sound_number:
-		0:
-			SoundFx.play_sound("splash1")
-		1:
-			SoundFx.play_sound("splash2")
-		2:
-			SoundFx.play_sound("splash3")
-		3:
-			SoundFx.play_sound("splash_bobber_bad")
 
 func _on_reel_game_end(game_won: bool, fish_type: String, fish_weight: int):
 	reel_scene_manager.queue_free()
