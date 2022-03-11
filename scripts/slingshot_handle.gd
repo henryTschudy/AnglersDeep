@@ -25,6 +25,11 @@ onready var projectile = get_parent().get_node("projectile")
 onready var boat = get_node_or_null("../../../") #THIS IS BAD CODE THAT WILL BREAK IF THINGS GET MOVED AROUND
 var warning_printed = false #for warning when the above node path is not reached
 
+var fish_collision_sprite_timer
+var FISH_COLLISION_SPRITE_WAIT_TIME = 0.5
+var exclamation_mark_texture = load("res://textures/exclamation_mark.png")
+var exclamation_mark_sprite
+
 var played_splash = false
 
 ## Called when the node enters the scene tree for the first time.
@@ -36,6 +41,10 @@ func _ready():
 	projectile.visible = false
 	projectile.set_as_toplevel(true)
 	projectile.scale *= get_parent().scale #doesn't work
+	
+	fish_collision_sprite_timer = Timer.new()
+	add_child(fish_collision_sprite_timer)
+	fish_collision_sprite_timer.connect("timeout",self,"on_fish_collision_sprite_timer_end")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -133,7 +142,21 @@ func _physics_process(_delta):
 		var last_collision = projectile.get_last_slide_collision()
 		if last_collision != null && last_collision.get_collider() != null:
 			if last_collision.get_collider().has_meta("shadowfish"):
+				
+				#spawn an exclamation mark
+				var exclamation_mark_texture = load("res://textures/exclamation_mark.png")
+				exclamation_mark_sprite = Sprite.new()
+				exclamation_mark_sprite.set_as_toplevel(true)
+				add_child(exclamation_mark_sprite)
+				exclamation_mark_sprite.set_texture(exclamation_mark_texture)
+				exclamation_mark_sprite.set_position(projectile.position)
+				exclamation_mark_sprite.set_scale( Vector2(0.5,0.5) )
+				
+				fish_collision_sprite_timer.set_wait_time(FISH_COLLISION_SPRITE_WAIT_TIME)
+				fish_collision_sprite_timer.start()
+				
 				reset_projectile()
+				
 				emit_signal("shadow_fish_collision", last_collision.get_collider())
 			else:
 				projectile_target_position = projectile.position
@@ -143,6 +166,10 @@ func _physics_process(_delta):
 	#print(target.position)
 	#print(direction)
 	manage_cord()
+
+func on_fish_collision_sprite_timer_end():
+	if(is_instance_valid(exclamation_mark_sprite)):
+		exclamation_mark_sprite.queue_free()
 
 func manage_cord(): #yeah, this could be done a lot better
 	cord.points[0] = base_position-position-Vector2(CORD_DISTANCE,0)

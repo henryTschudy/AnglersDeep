@@ -5,13 +5,16 @@ signal reel_game_over(game_lost, fish_type)
 #var DRAG_SPEED = 65
 #var DRAG_SPEED_SWIM = 45
 
+var FISH_TENSION_MAX = 100
+var line_width_max
+
 #var screen_size = Vector2(0,0)
 
 onready var fishy = get_node("fish")
 onready var line = get_node("line")
-onready var fish_tension_bar = get_node("fish_tension_bar")
+#onready var fish_tension_bar = get_node("fish_tension_bar")
 onready var fish_force_bar = get_node("fish_force_bar")
-onready var fish_distance_bar = get_node("fish_distance_bar")
+#onready var fish_distance_bar = get_node("fish_distance_bar")
 
 #fish variables from fish data
 
@@ -29,11 +32,14 @@ var CONTINUOUS_LINE_SOUND_LENGTH = 5
 func _ready():
 	#screen_size.x = get_viewport().get_visible_rect().size.x * get_parent().scale.x # Get width
 	#screen_size.y = get_viewport().get_visible_rect().size.y * get_parent().scale.y # Get height
-	fish_distance_bar.min_value = fishy.get_win_distance()
-	fish_distance_bar.max_value = fishy.get_loss_distance()
+	
+	#fish_distance_bar.min_value = fishy.get_win_distance()
+	#fish_distance_bar.max_value = fishy.get_loss_distance()
 	
 	fish_force_bar.min_value = fishy.FISH_FORCE_MIN
 	fish_force_bar.max_value = fishy.FISH_FORCE_MAX
+	
+	line_width_max = line.width
 	
 	var overworld_cam_node = get_parent().get_parent().get_parent()
 #	self.connect("display_fish", overworld_cam_node, "_display_fish")
@@ -44,18 +50,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	line.points[1] = fishy.position + fishy.hook_offset.rotated(fishy.fish_direction.angle()) - line.position
+	update_line()
 	
-	fish_distance_bar.set_value(fishy.get_fish_distance())
+	#fish_distance_bar.set_value(fishy.get_fish_distance())
 	fish_force_bar.set_value(fishy.fish_force)
 	#print(fish_distance_bar.max_value)
-	fish_tension_bar.set_value(fishy.fish_tension)
+	#fish_tension_bar.set_value(fishy.fish_tension)
 	
 	if fishy.reel_state:
 		fishy.fish_tension += fishy.fish_force * delta
 		#fish_tension_bar.set_value(fishy.fish_tension)
 		#print(fishy.fish_tension)
-	if fishy.fish_tension >= fish_tension_bar.max_value || fishy.fish_escaped:
+	if fishy.fish_tension >= FISH_TENSION_MAX || fishy.fish_escaped:
 		lose_fish_game()
 	elif fishy.fish_caught:
 		win_fish_game()
@@ -106,6 +112,12 @@ func on_continuous_line_sound_end():
 
 func set_reel_scene_data(fish_type, fish_weight):
 	fishy.set_fish_data(fish_type, fish_weight)
+	
+func update_line():
+	line.points[1] = fishy.position + fishy.hook_offset.rotated(fishy.fish_direction.angle()) - line.position
+	
+	line.width = (FISH_TENSION_MAX-fishy.fish_tension)/FISH_TENSION_MAX * line_width_max
+	line.default_color = Color(0.5+fishy.fish_tension/FISH_TENSION_MAX, 0.5, 0.5)
 
 func lose_fish_game():
 	print("REEL GAME LOST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")

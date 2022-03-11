@@ -2,9 +2,11 @@ extends KinematicBody2D
 
 var COLLISION_RADIUS = 10
 var SWIM_DIRECTION_CHANGE_TIME = 3
+var FISH_TURN_SLOWNESS = 100
 
 var fish_type = "placeholder" #might want to change this to like an index or something, could use enums even idk, use 
 var fish_direction
+var fish_target_direction
 var fish_speed
 
 var fish_collision_shape
@@ -16,7 +18,8 @@ var unique_weight = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): #may need to do some freeing
-	random_speed_and_direction()
+	random_speed_and_target_direction()
+	fish_direction = Vector2(rand_range(-1, 1), rand_range(-1, 1)).normalized()
 	
 	set_fish_sprite_from_weight() #used twice to prevent attempting to access unitialized variables, possibly a bad idea
 	
@@ -25,6 +28,9 @@ func _ready(): #may need to do some freeing
 	fish_collision_shape = CollisionShape2D.new()
 	fish_collision_shape.shape = CircleShape2D.new()
 	fish_collision_shape.shape.set_radius(COLLISION_RADIUS)
+	
+	var fish_sprite_rect = fish_sprite.get_rect().abs()
+	fish_collision_shape.position.y = fish_collision_shape.position.y + (fish_sprite_rect.position.y - fish_sprite_rect.end.y)/2
 	
 	set_collision_layer_bit(0, false)
 	set_collision_layer_bit(1, true)
@@ -38,6 +44,9 @@ func _ready(): #may need to do some freeing
 	add_child(swim_timer) #to process
 	swim_timer.start()
 	swim_timer.connect("timeout",self,"randomize_fish_movement")
+
+func draw():
+	fish_collision_shape.draw()
 
 func _physics_process(delta):
 	swim()
@@ -76,18 +85,19 @@ func set_fish_sprite_from_weight(fish_weight:int = unique_weight):
 	add_child(fish_sprite)
 	
 func swim():
+	fish_direction = fish_direction + (fish_target_direction - fish_direction)/FISH_TURN_SLOWNESS
 	move_and_slide(fish_speed*fish_direction)
 	rotation = fish_direction.angle() + Vector2(0, 1).angle()
 	
-func random_speed_and_direction():
+func random_speed_and_target_direction():
 	change_direction_random()
 	change_speed_random()
 
 func change_direction_random():
-	fish_direction = Vector2(rand_range(-1, 1),rand_range(-1,1)).normalized()
+	fish_target_direction = Vector2(rand_range(-1, 1),rand_range(-1,1)).normalized()
 	
 func change_direction(given_direction): #please give a Vector2
-	fish_direction = given_direction
+	fish_target_direction = given_direction
 
 func change_speed_random():
 	fish_speed = rand_range(0, 25)

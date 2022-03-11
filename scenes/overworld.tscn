@@ -55,7 +55,7 @@ texture = ExtResource( 2 )
 
 [node name="boat_collision_body" type="CollisionPolygon2D" parent="boat"]
 rotation = 1.57079
-polygon = PoolVector2Array( -2.49872, -48.21, -11.4988, -30.2101, -19.499, -12.2101, -23.4991, 10.7899, -21.4993, 38.7899, -11.4994, 62.7899, -5.49945, 69.7899, 1.50055, 71.79, 8.50055, 69.79, 15.5006, 61.7902, 26.5007, 37.7902, 27.5009, 11.7902, 23.501, -11.2098, 15.5012, -30.2098, 5.50128, -48.21, 1.50134, -57.21 )
+polygon = PoolVector2Array( -2.49872, -48.21, -11.4988, -30.2101, -19.499, -12.2101, -23.4991, 10.7899, -21.4993, 38.7899, -11.4994, 62.7899, -5.49945, 69.7899, 1.50055, 71.79, 8.50055, 69.79, 15.5006, 61.7902, 25.5007, 37.7902, 27.5009, 11.7902, 23.501, -11.2098, 15.5012, -30.2098, 5.50128, -48.21, 1.50134, -57.21 )
 
 [node name="boat_area2d" type="Area2D" parent="boat"]
 collision_layer = 2
@@ -172,8 +172,10 @@ script = ExtResource( 7 )
 
 [node name="distorter" type="ColorRect" parent="water_shaders"]
 material = ExtResource( 12 )
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_left = -2.0
+margin_top = -6.0
+margin_right = 1918.0
+margin_bottom = 1074.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
