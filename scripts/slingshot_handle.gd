@@ -22,13 +22,24 @@ var last_vector = Vector2(0,0)
 onready var cord = get_node("cord")
 onready var target = get_node("target")
 onready var projectile = get_parent().get_node("projectile")
+
 onready var boat = get_node_or_null("../../../") #THIS IS BAD CODE THAT WILL BREAK IF THINGS GET MOVED AROUND
 var warning_printed = false #for warning when the above node path is not reached
 
+# fish collision and exclamation mark spawning
 var fish_collision_sprite_timer
 var FISH_COLLISION_SPRITE_WAIT_TIME = 0.5
 var exclamation_mark_texture = load("res://textures/exclamation_mark.png")
 var exclamation_mark_sprite
+
+# fisher sprite management
+onready var fisher = get_node("../fisher")
+var fisher_pole_back_tex = load("res://textures/fisher/FisherPoleBack.png")
+var fisher_pole_standing_tex = load("res://textures/fisher/FisherPoleStanding.png")
+var fisher_standing_tex = load("res://textures/fisher/FisherStanding.png")
+var FISHER_POLE_BACK_Y_OFFSET = 30
+var FISHER_POLE_STANDING_Y_OFFSET = -35
+var fisher_pole_out = false
 
 var played_splash = false
 
@@ -48,7 +59,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and not event.pressed:
+		if event.button_index == BUTTON_LEFT && !event.pressed:
 			being_dragged = false
 			projectile_target_position = target.global_position
 			projectile_target_last_visible_position = target.global_position
@@ -59,6 +70,11 @@ func _input_event(_viewport, event, _shape_idx): #for mouse events that specific
 			being_dragged = event.pressed
 			projectile_target_position = target.global_position
 			projectile_target_last_visible_position = target.global_position
+			
+			if (event.pressed):
+				fisher.set_texture(fisher_pole_back_tex)
+				fisher.set_offset(Vector2(0, FISHER_POLE_BACK_Y_OFFSET))
+				fisher_pole_out = true
 
 func _physics_process(_delta):
 	if being_dragged:
@@ -68,6 +84,8 @@ func _physics_process(_delta):
 
 		#maybe delete later, resets projectile on drag
 		reset_projectile()
+		
+		fisher.rotation = (position-base_position).angle() - PI/2
 
 	else:
 		var momentum = MOMENTUM_MULT*last_vector
@@ -160,7 +178,16 @@ func _physics_process(_delta):
 				emit_signal("shadow_fish_collision", last_collision.get_collider())
 			else:
 				projectile_target_position = projectile.position
-
+	
+	if !projectile.visible && !being_dragged && fisher_pole_out: #reset fisher to standing position
+		fisher.set_texture(fisher_standing_tex)
+		fisher.set_offset(Vector2(0, 0))
+		fisher_pole_out = false
+	elif projectile.visible && !being_dragged && !fisher_pole_out:
+		fisher.set_texture(fisher_pole_standing_tex)
+		fisher.set_offset(Vector2(0, FISHER_POLE_STANDING_Y_OFFSET))
+		fisher_pole_out = true
+	
 	# debug
 	#print(cord.points)
 	#print(target.position)

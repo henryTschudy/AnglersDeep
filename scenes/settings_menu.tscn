@@ -39,7 +39,8 @@ font_data = ExtResource( 9 )
 size = 112
 font_data = ExtResource( 9 )
 
-[node name="Node2D" type="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 8 )
 
 [node name="Control" type="Control" parent="."]
@@ -205,5 +206,4 @@ __meta__ = {
 
 [connection signal="value_changed" from="master" to="." method="_on_master_value_changed"]
 [connection signal="value_changed" from="music" to="." method="_on_music_value_changed"]
-[connection signal="value_changed" from="music" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="sound_fx" to="." method="_on_sound_fx_value_changed"]

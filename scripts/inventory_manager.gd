@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 var inventory_array = Global.inventory
 
