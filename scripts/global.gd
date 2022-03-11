@@ -41,7 +41,8 @@ var isFullscreen
 var fish_dictionary
 var region_arrays
 
-var FISH_JSON_PATH = "res://data/fish data.json"
+#var FISH_JSON_PATH = "res://data/fish data.json"
+var FISH_JSON_PATH = "res://data/fish_data.json"
 var REGION_JSON_PATH = "res://data/FishRegions.json"
 
 func _ready():
