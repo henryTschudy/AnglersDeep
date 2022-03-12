@@ -26,7 +26,6 @@ var boat_start_playing = false
 var boat_continuous_playing = false
 var boat_end_playing = false
 var boat_start_timer
-var boat_continuous_timer
 var boat_end_timer
 var boat_started = false
 var BOAT_START_SOUND_LENGTH = 3
@@ -46,9 +45,7 @@ func _ready():
 	boat_start_timer = Timer.new()
 	add_child(boat_start_timer)
 	boat_start_timer.connect("timeout",self,"on_boat_start_end")
-	#boat_continuous_timer = Timer.new()
-	#add_child(boat_continuous_timer)
-	#boat_continuous_timer.connect("timeout",self,"on_boat_continuous_end")
+	
 	boat_end_timer = Timer.new()
 	add_child(boat_end_timer)
 	boat_end_timer.connect("timeout",self,"on_boat_end_end")
@@ -185,14 +182,9 @@ func do_boat_sounds():
 		
 		boat_continuous_playing = true
 		SoundFx.play_sound("boat_continuous")
-		#boat_continuous_timer.set_wait_time(BOAT_CONTINUOUS_SOUND_LENGTH)
-		#boat_continuous_timer.start()
 		
 func on_boat_start_end():
 	boat_start_playing = false
-
-#func on_boat_continuous_end():
-#	boat_continuous_playing = false
 
 func on_boat_end_end():
 	boat_end_playing = false

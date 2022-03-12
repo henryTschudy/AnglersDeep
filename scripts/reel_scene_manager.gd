@@ -22,9 +22,9 @@ onready var fish_force_bar = get_node("fish_force_bar")
 var fish_prev_direction = Vector2(0,0)
 var fish_prev_speed = 0
 
-var continuous_line_timer
+#var continuous_line_timer
 var continuous_line_sound_playing = false
-var CONTINUOUS_LINE_SOUND_LENGTH = 5
+#var CONTINUOUS_LINE_SOUND_LENGTH = 5
 
 #var fishy_angry = false
 
@@ -44,9 +44,9 @@ func _ready():
 	var overworld_cam_node = get_parent().get_parent().get_parent()
 #	self.connect("display_fish", overworld_cam_node, "_display_fish")
 	
-	continuous_line_timer = Timer.new()
-	add_child(continuous_line_timer)
-	continuous_line_timer.connect("timeout",self,"on_continuous_line_sound_end")
+	#continuous_line_timer = Timer.new()
+	#add_child(continuous_line_timer)
+	#continuous_line_timer.connect("timeout",self,"on_continuous_line_sound_end")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -90,8 +90,8 @@ func _unhandled_input(_event):
 		if !continuous_line_sound_playing:
 			continuous_line_sound_playing = true
 			SoundFx.play_sound("line_continuous")
-			continuous_line_timer.set_wait_time(CONTINUOUS_LINE_SOUND_LENGTH)
-			continuous_line_timer.start()
+			#continuous_line_timer.set_wait_time(CONTINUOUS_LINE_SOUND_LENGTH)
+			#continuous_line_timer.start()
 			
 	if Input.is_action_just_released("reel_in"):
 		fishy.reel_state = false
@@ -107,8 +107,8 @@ func _unhandled_input(_event):
 		continuous_line_sound_playing = false
 		SoundFx.stop_sound("line_continuous")
 
-func on_continuous_line_sound_end():
-	continuous_line_sound_playing = false
+#func on_continuous_line_sound_end():
+#	continuous_line_sound_playing = false
 
 func set_reel_scene_data(fish_type, fish_weight):
 	fishy.set_fish_data(fish_type, fish_weight)
