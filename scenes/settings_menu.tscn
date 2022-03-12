@@ -204,6 +204,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="master" to="." method="_on_master_value_changed"]
 [connection signal="value_changed" from="music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="sound_fx" to="." method="_on_sound_fx_value_changed"]

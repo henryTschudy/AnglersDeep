@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://textures/journal ui/ritual_bg.png" type="Texture" id=1]
-[ext_resource path="res://objects/new_journal_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/stickynotes.gd" type="Script" id=2]
 [ext_resource path="res://objects/ritual_tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/ritual_manager.gd" type="Script" id=4]
+[ext_resource path="res://textures/journal ui/stickynote_equipment_hover.png" type="Texture" id=5]
+[ext_resource path="res://textures/journal ui/stickynote_inventory_hover.png" type="Texture" id=6]
+[ext_resource path="res://textures/journal ui/stickynote_pedia_hover.png" type="Texture" id=7]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 4 )
@@ -133,23 +136,44 @@ margin_right = 832.0
 margin_bottom = 1000.0
 rect_scale = Vector2( 0.8, 0.8 )
 
-[node name="Inventory_btn" parent="." instance=ExtResource( 2 )]
-margin_left = 196.0
-margin_top = 18.0
-margin_right = -1029.6
-margin_bottom = 147.0
+[node name="Inventory_stickynote" type="TextureButton" parent="."]
+margin_left = 175.0
+margin_top = 9.0
+margin_right = 492.0
+margin_bottom = 236.0
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 ref_path = "res://scenes/Inventory.tscn"
 
-[node name="Research_btn" parent="." instance=ExtResource( 2 )]
-margin_left = 560.0
-margin_top = 16.0
-margin_right = -673.6
-margin_bottom = 144.0
+[node name="Research_stickynote" type="TextureButton" parent="."]
+margin_left = 539.0
+margin_top = 15.0
+margin_right = 854.0
+margin_bottom = 226.0
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 ref_path = "res://scenes/Research.tscn"
 
-[node name="Equipment_btn" parent="." instance=ExtResource( 2 )]
-margin_left = 1098.0
-margin_top = 19.0
-margin_right = -137.6
-margin_bottom = 155.0
+[node name="Equipment_stickynote" type="TextureButton" parent="."]
+margin_left = 1083.0
+margin_top = 5.0
+margin_right = 1378.0
+margin_bottom = 214.0
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 ref_path = "res://scenes/Equipment.tscn"

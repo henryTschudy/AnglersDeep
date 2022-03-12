@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://textures/Parchment_Background.png" type="Texture" id=1]
 [ext_resource path="res://objects/research_tile.tscn" type="PackedScene" id=2]
@@ -6,7 +6,10 @@
 [ext_resource path="res://textures/mobius_eel.png" type="Texture" id=4]
 [ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://textures/journal ui/research_bg.png" type="Texture" id=6]
-[ext_resource path="res://objects/new_journal_button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/stickynotes.gd" type="Script" id=8]
+[ext_resource path="res://textures/journal ui/stickynote_equipment_hover.png" type="Texture" id=9]
+[ext_resource path="res://textures/journal ui/stickynote_inventory_hover.png" type="Texture" id=10]
+[ext_resource path="res://textures/journal ui/stickynote_ritual_hover.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 95
@@ -147,23 +150,44 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inventory_btn" parent="." instance=ExtResource( 7 )]
-margin_left = 192.0
-margin_top = 24.0
-margin_right = -1041.6
-margin_bottom = 152.0
+[node name="Inventory_stickynote" type="TextureButton" parent="."]
+margin_left = 175.0
+margin_top = 9.0
+margin_right = 492.0
+margin_bottom = 236.0
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 ref_path = "res://scenes/Inventory.tscn"
 
-[node name="Equipment_btn" parent="." instance=ExtResource( 7 )]
-margin_left = 1096.0
-margin_top = 16.0
-margin_right = -129.6
-margin_bottom = 176.0
+[node name="Equipment_stickynote" type="TextureButton" parent="."]
+margin_left = 1083.0
+margin_top = 5.0
+margin_right = 1378.0
+margin_bottom = 214.0
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+texture_focused = ExtResource( 9 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 ref_path = "res://scenes/Equipment.tscn"
 
-[node name="Rituals_btn" parent="." instance=ExtResource( 7 )]
-margin_left = 1448.0
-margin_top = 8.0
-margin_right = 230.4
-margin_bottom = 144.0
+[node name="Rituals_stickynote" type="TextureButton" parent="."]
+margin_left = 1423.0
+margin_top = 1.0
+margin_right = 1743.0
+margin_bottom = 220.0
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 11 )
+texture_focused = ExtResource( 11 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 ref_path = "res://scenes/Rituals.tscn"
