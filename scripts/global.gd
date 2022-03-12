@@ -24,7 +24,8 @@ enum scene_state{
 	reel_state = 2,
 	pause_menu_state = 3,
 	settings_menu_state = 4,
-	journal_state = 5
+	in_game_settings_menu_state = 5,
+	journal_state = 6
 }
 var current_scene_state = scene_state.main_menu_state
 var child_scene_instance
@@ -101,6 +102,11 @@ func _unhandled_input(_event):
 				current_scene_state = scene_state.main_menu_state
 				instance_child_scene(pause_menu_path, false)
 				#unpause overworld scene
+		#new
+		(scene_state.in_game_settings_menu_state):
+			if Input.is_action_pressed("ui_cancel"):
+				current_scene_state = scene_state.pause_menu_state
+				instance_child_scene(in_game_settings_menu_path, false)
 
 #func _escape():
 #	Autosave.saveGame()

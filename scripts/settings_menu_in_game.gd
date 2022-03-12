@@ -13,6 +13,7 @@ func _ready():
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		Global.instance_child_scene(Global.in_game_settings_menu_path, false)
+#		Global.current_scene_state = Global.scene_state.overworld_state
 		Global.current_scene_state = Global.scene_state.overworld_state
 	
 func _on_master_value_changed(value):
@@ -23,3 +24,10 @@ func _on_music_value_changed(value):
 
 func _on_sound_fx_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundFx"), linear2db(value))
+
+
+func _on_back_btn_pressed():
+	print(Global.current_scene_state)
+	Global.instance_child_scene(Global.in_game_settings_menu_path, false)
+	Global.current_scene_state = Global.scene_state.pause_menu_state
+	Global.instance_child_scene(Global.pause_menu_path, true)

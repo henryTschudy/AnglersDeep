@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://textures/slider_grabber.png" type="Texture" id=1]
+[ext_resource path="res://textures/main menu ui/back_button.png" type="Texture" id=3]
+[ext_resource path="res://textures/main menu ui/back_button_hover.png" type="Texture" id=4]
 [ext_resource path="res://themes/grabber_area.tres" type="StyleBox" id=7]
 [ext_resource path="res://scripts/settings_menu_in_game.gd" type="Script" id=8]
 [ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=9]
@@ -126,6 +128,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="back_btn" type="TextureButton" parent="."]
+margin_left = 32.0
+margin_top = 24.0
+margin_right = 88.0
+margin_bottom = 88.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="master" to="." method="_on_master_value_changed"]
 [connection signal="value_changed" from="music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="sound_fx" to="." method="_on_sound_fx_value_changed"]
+[connection signal="pressed" from="back_btn" to="." method="_on_back_btn_pressed"]

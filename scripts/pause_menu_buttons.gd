@@ -31,7 +31,7 @@ func _select_button():
 	
 	else:
 		Global.instance_child_scene(Global.pause_menu_path, false)
-		Global.current_scene_state = Global.scene_state.settings_menu_state
+		Global.current_scene_state = Global.scene_state.in_game_settings_menu_state
 		Global.instance_child_scene(Global.in_game_settings_menu_path, true)
 #	delete this debug later!!!
 #	saveGame()	
