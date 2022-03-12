@@ -235,7 +235,7 @@
       "Location": "res://textures/mobius_eel.png",
       "Frequency": 7,
       "Region": "Pneumistis' Zone, Abyss",
-      "Produced Item": "Moebus Fin",
+      "Produced Item": "Mobius Fin",
       "Item Path": "res://textures/items/mobius_fin.png",
       "Item Description": null
     },

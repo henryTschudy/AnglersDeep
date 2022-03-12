@@ -1,0 +1,97 @@
+{
+    "Acceptance" : {
+      "Name": "Acceptance",
+      "Sprite Path": "res://textures/items/acceptance.png",
+      "Item Description": null
+    },
+    "Omniscience" : {
+      "Name": "Omniscience",
+      "Sprite Path": "res://textures/items/omniscience.png",
+      "Item Description": null
+    },
+    "Longevity" : {
+      "Name": "Longevity",
+      "Sprite Path": "res://textures/items/longevity.png",
+      "Item Description": null
+    },
+    "Gaslight Gel" : {
+      "Name": "Gaslight Gel",
+      "Sprite Path": "res://textures/items/gaslight_gel.png",
+      "Item Description": null
+    },
+    "Smug Smile" : {
+      "Name": "Smug Smile",
+      "Sprite Path": "res://textures/items/smug_smile.png",
+      "Item Description": null
+    },
+    "Scream Pod" : {
+      "Name": "Scream Pod",
+      "Sprite Path": "res://textures/items/mandrake_scream_pod.png",
+      "Item Description": null
+    },
+    "Human finger" : {
+      "Name": "Human finger",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    },
+    "Blightfish's Parasitic Worm" : {
+      "Name": "Blightfish's Parasitic Worm",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    },
+    "Intestinal Polyp" : {
+      "Name": "Intestinal Polyp",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    },
+    "Mother of All Pearls" :{
+      "Name": "Mother of All Pearls",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    },
+    "Future Shark Fin" : {
+      "Name": "Future Shark Fin",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    },
+    "Bait-Shaped Hole in Spacetime" : {
+      "Name": "Bait-Shaped Hole in Spacetime",
+      "Sprite Path": "bait_shaped_hole_in_spacetime.png",
+      "Item Description": null
+    },
+    "Salmon Roe" : {
+      "Name": "Salmon Roe",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    },
+    "Trout Fur" : {
+      "Name": "Trout Fur",
+      "Sprite Path": "res://textures/items/trout_fur.png",
+      "Item Description": null
+    },
+    "Mobius Fin" : {
+      "Name": "Mobius Fin",
+      "Sprite Path": "res://textures/items/mobius_fin.png",
+      "Item Description": null
+    },
+    "Endless Arm" : {
+      "Name": "Endless Arm",
+      "Sprite Path": "res://textures/items/endless_arm.png",
+      "Item Description": null
+    },
+    "Raging Lure" : {
+      "Name": "Raging Lure",
+      "Sprite Path": "res://textures/items/raging_lure.png",
+      "Item Description": null
+    },
+    "Jealous Eye" : {
+      "Name": "Jealous Eye",
+      "Sprite Path": "res://textures/items/jealous_eye.png",
+      "Item Description": null
+    },
+    "Placeholder Eye" : {
+      "Name": "Placeholder Eye",
+      "Sprite Path": "res://textures/items/temp.png",
+      "Item Description": null
+    }
+}
