@@ -20,11 +20,11 @@ export(bool) var start_focused = false
 
 func _ready():		
 	if(start_focused):
-		var fish1key = Global.item_dictionary["fish"].keys()[0]
-		if(Global.item_dictionary["fish"][fish1key]["have_caught"] == false):
+		var fish_key = Global.fish_dictionary.keys()[0]
+		if(Global.fish_dictionary[fish_key]["Have Caught"] == false):
 			make_empty()
 		else:
-			fill_tile(Global.item_dictionary["fish"][fish1key]["name"], Global.item_dictionary["fish"][fish1key]["sprite_path"], Global.item_dictionary["fish"][fish1key]["description"])
+			fill_tile(Global.fish_dictionary[fish_key]["Name"], Global.fish_dictionary[fish_key]["Location"],Global.fish_dictionary[fish_key]["Metaphysical Notes"])
 		update_item_display()
 	connect("mouse_entered",self,"_shift_focus")
 	connect("pressed",self,"update_item_display")

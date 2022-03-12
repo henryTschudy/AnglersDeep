@@ -4,7 +4,7 @@ var inventory_array = Global.inventory
 
 var inventory_tiles_array = []
 var num_tiles = 6
-var equipped_item = "basic fishing rod"
+var equipped_item = "Normal Hook"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,18 +17,21 @@ func _ready():
 	find_equipped_item()
 	update_equipment_tiles()
 	update_equipped_item_display()
+	get_node("inv_tile_button1").update_item_display()
 
 func update_equipment_tiles():
 	for i in len(inventory_tiles_array):
 		#get array of items respective to the inv_type
-		var item_array = Global.inventory.get("equipment").keys()
+		var item_array = Global.inventory.get("Equipment").keys()
 		
 		#for each inventory element, get the name, sprite, description, and quantity
 		if(i < len(item_array)):
 			#get name, sprite + item_description data from inventory
-			var item_name = Global.get_item_data("equipment", item_array[i], "name")
-			var item_sprite_path = Global.get_item_data("equipment", item_array[i], "sprite_path")
-			var item_description = Global.get_item_data("equipment", item_array[i], "description")
+			var item_key = item_array[i]
+			var equipment_data = Global.get_equipment_data(item_key)
+			var item_name = equipment_data["Name"]
+			var item_sprite_path = equipment_data["Location"]
+			var item_description = equipment_data["Item Description"]
 			
 			#update tile's display
 			inventory_tiles_array[i].fill_tile(item_sprite_path)
@@ -43,16 +46,16 @@ func update_equipment_tiles():
 			inventory_tiles_array[i].make_empty()
 
 func equip_item(item_to_equip):
-	Global.inventory.get("equipment").get(equipped_item)["equipped"] = false
-	Global.inventory.get("equipment").get(item_to_equip)["equipped"] = true
+	Global.inventory["Equipment"].get(equipped_item)["Equipped"] = false
+	Global.inventory["Equipment"].get(item_to_equip)["Equipped"] = true
 	equipped_item = item_to_equip
 	update_equipped_item_display()
 
 func update_equipped_item_display():
-	get_node("inv_tile_button7/item_sprite").texture = load(Global.inventory.get("equipment").get(equipped_item).get("sprite_path"))
+	get_node("inv_tile_button7/item_sprite").texture = load(Global.get_equipment_data(equipped_item).get("Location"))
 
 func find_equipped_item():
-	var equipment_keys = Global.inventory["equipment"].keys()
+	var equipment_keys = Global.inventory["Equipment"].keys()
 	for i in len(equipment_keys):
-		if(Global.inventory["equipment"][equipment_keys[i]]["equipped"]):
-			equipped_item = Global.inventory["equipment"][equipment_keys[i]]["name"]
+		if(Global.inventory["Equipment"][equipment_keys[i]]["Equipped"]):
+			equipped_item = Global.inventory["Equipment"][equipment_keys[i]]["Name"]

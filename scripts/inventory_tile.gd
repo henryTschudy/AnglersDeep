@@ -6,10 +6,13 @@ var inventory_array = Global.inventory
 var empty
 
 export(bool) var start_focused = false
-var fish1key = Global.inventory.get("fish").keys()[0]
-var item_name = Global.inventory.get("fish").get(fish1key).get("name")
-var item_sprite_path = Global.inventory.get("fish").get(fish1key).get("sprite_path")
-var item_description = Global.inventory.get("fish").get(fish1key).get("description")
+#var fish1key = Global.inventory.get("Fish").keys()[0]
+#var item_name = Global.inventory.get("Fish").get(fish1key).get("name")
+#var item_sprite_path = Global.inventory.get("Fish").get(fish1key).get("sprite_path")
+#var item_description = Global.inventory.get("Fish").get(fish1key).get("description")
+var item_name = "Empty"
+var item_sprite_path = "res://textures/unknown_fish.png"
+var item_description = "Alas, you have not a single fish"
 
 func _ready():		
 	if(start_focused):

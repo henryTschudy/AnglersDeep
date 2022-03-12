@@ -17,16 +17,17 @@ func _ready():
 
 func update_research_tiles():
 	#get array of fish from the item_dictionary
-	var fish_array = Global.item_dictionary.get("fish").keys()
+	var fish_array = Global.fish_dictionary.keys()
 	for i in len(inventory_tiles_array):
 		#for each inventory element, get the name, sprite, description, and quantity
 		if(i < len(fish_array)):
 			#get tile + item_description data from inv array
-			var fish_caught = Global.item_dictionary["fish"][fish_array[i]]["have_caught"]
+			var fish_key = fish_array[i]
+			var fish_caught = Global.fish_dictionary[fish_key]["Have Caught"]
 			if(fish_caught):
-				var fish_name = fish_array[i]
-				var fish_sprite_path = Global.item_dictionary["fish"][fish_array[i]]["sprite_path"]
-				var fish_description = Global.item_dictionary["fish"][fish_array[i]]["description"]
+				var fish_name = Global._get_fish_data(fish_key).get("Name")
+				var fish_sprite_path = Global._get_fish_data(fish_key).get("Location")
+				var fish_description = Global._get_fish_data(fish_key).get("Metaphysical Notes")
 				inventory_tiles_array[i].fill_tile(fish_name, fish_sprite_path, fish_description)
 			else:
 				inventory_tiles_array[i].make_empty()

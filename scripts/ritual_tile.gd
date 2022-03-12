@@ -8,10 +8,13 @@ var inventory_array = Global.inventory
 export(bool) var start_focused = false
 export(bool) var product_tile = false
 export(bool) var component_tile = false
-var item1key = Global.inventory.get("items").keys()[0]
-var item_name = Global.inventory.get("items").get(item1key).get("name")
-var item_quantity = Global.inventory.get("items").get(item1key).get("quantity")
-var item_sprite_path = Global.inventory.get("items").get(item1key).get("sprite_path")
+var item_name
+var item_quantity
+var item_sprite_path
+#var item1key = Global.inventory.get("items").keys()[0]
+#var item_name = Global.inventory.get("items").get(item1key).get("name")
+#var item_quantity = Global.inventory.get("items").get(item1key).get("quantity")
+#var item_sprite_path = Global.inventory.get("items").get(item1key).get("sprite_path")
 
 func _ready():
 	if(product_tile || component_tile):

@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 var inventory_tiles_array = []
-var inventory_items_array = Global.inventory["items"].keys()
+var inventory_items_array = Global.inventory["Items"].keys()
 var recipes_dictionary = {}
-var equipment_keys = Global.item_dictionary["equipment"].keys()
+var equipment_keys = Global.equipment_dictionary.keys()
 var num_tiles = 12
 onready var component1 = get_node("ritual_tile1")
 onready var component2 = get_node("ritual_tile2")
@@ -21,17 +21,19 @@ func _ready():
 	
 	#generate recipes dictionary
 	for i in len(equipment_keys):
-		var item_key = equipment_keys[i]	
-		recipes_dictionary[item_key] = Global.item_dictionary["equipment"][item_key]["recipe"]
+		var equipment_key = equipment_keys[i]
+		recipes_dictionary[equipment_key] = Global.equipment_dictionary[equipment_key]["Item Components"]
 
 func update_item_tiles():
 	for i in len(inventory_tiles_array):
 		#for each inventory element, get the name, sprite, description, and quantity
 		if(i < len(inventory_items_array)):
 			#get name, sprite + quantity data from inventory
-			var item_name = Global.get_item_data("items", inventory_items_array[i], "name")
-			var item_quantity = Global.get_item_data("items", inventory_items_array[i], "quantity")
-			var item_sprite_path = Global.get_item_data("items", inventory_items_array[i], "sprite_path")
+			var item_key = inventory_items_array[i]
+			var item_data = Global.inventory["Items"].get(item_key)
+			var item_name = item_data["Name"]
+			var item_quantity = item_data["Quantity"]
+			var item_sprite_path = item_data["Location"]
 			
 			#update tile's display
 			inventory_tiles_array[i].fill_tile(item_quantity, item_sprite_path)
@@ -110,16 +112,16 @@ func display_craftable_item(craftable_item_name):
 	if(craftable_item_name == "clear"):
 		output.make_empty()
 	else:
-		var craftable_item_sprite_path = Global.item_dictionary["equipment"][craftable_item_name]["sprite_path"]
+		var craftable_item_sprite_path = Global.get_equipment_data(craftable_item_name)["Location"]
 		output.fill_tile(1, craftable_item_sprite_path, craftable_item_name)
 	
 func craft_item():
-	if(!Global.inventory["equipment"].get(output.item_name)):
-		Global.inventory["equipment"][output.item_name] = Global.item_dictionary["equipment"][output.item_name]
-		Global.inventory["equipment"][output.item_name]["equipped"] = false
-		Global.inventory["items"][component1.item_name]["quantity"] -= 1
-		Global.inventory["items"][component2.item_name]["quantity"] -= 1
-		Global.inventory["items"][component3.item_name]["quantity"] -= 1
+	if(!Global.inventory["Equipment"].get(output.item_name)):
+		Global.inventory["Equipment"][output.item_name] = Global.get_equipment_data(output.item_name)
+		Global.inventory["Equipment"][output.item_name]["Equipped"] = false
+		Global.inventory["Items"][component1.item_name]["Quantity"] -= 1
+		Global.inventory["Items"][component2.item_name]["Quantity"] -= 1
+		Global.inventory["Items"][component3.item_name]["Quantity"] -= 1
 		update_item_tiles()
 		component1.make_empty()
 		component2.make_empty()

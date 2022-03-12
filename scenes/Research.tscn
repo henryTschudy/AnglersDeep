@@ -50,7 +50,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 750.0
-margin_bottom = 2180.0
+margin_bottom = 4380.0
 custom_constants/separation = 20
 
 [node name="research_tile1" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
@@ -102,6 +102,56 @@ margin_bottom = 1960.0
 margin_top = 1980.0
 margin_right = 750.0
 margin_bottom = 2180.0
+
+[node name="research_tile11" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 2200.0
+margin_right = 750.0
+margin_bottom = 2400.0
+
+[node name="research_tile12" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 2420.0
+margin_right = 750.0
+margin_bottom = 2620.0
+
+[node name="research_tile13" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 2640.0
+margin_right = 750.0
+margin_bottom = 2840.0
+
+[node name="research_tile14" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 2860.0
+margin_right = 750.0
+margin_bottom = 3060.0
+
+[node name="research_tile15" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 3080.0
+margin_right = 750.0
+margin_bottom = 3280.0
+
+[node name="research_tile16" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 3300.0
+margin_right = 750.0
+margin_bottom = 3500.0
+
+[node name="research_tile17" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 3520.0
+margin_right = 750.0
+margin_bottom = 3720.0
+
+[node name="research_tile18" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 3740.0
+margin_right = 750.0
+margin_bottom = 3940.0
+
+[node name="research_tile19" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 3960.0
+margin_right = 750.0
+margin_bottom = 4160.0
+
+[node name="research_tile20" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 4180.0
+margin_right = 750.0
+margin_bottom = 4380.0
 
 [node name="item_desc_bg" type="Sprite" parent="."]
 modulate = Color( 0.858824, 0.858824, 0.858824, 1 )

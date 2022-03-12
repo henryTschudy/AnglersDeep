@@ -57,12 +57,26 @@ func _on_reel_game_end(game_won: bool, fish_type: String, fish_weight: int):
 	
 	print("is this working??")
 	if game_won:
+		#Display fish
 		var fish_display = load(Global.fish_display_path)
 		var fish_display_instance = fish_display.instance()
 		fish_display_instance.scale = Vector2(0.4, 0.4)
 		add_child(fish_display_instance)
 		fish_display_instance.set_fish_caught_image(fish_type)
 		fish_display_instance.set_fish_caught_text(fish_type)
-	
+		
+		#Add fish to inventory
+		var fish_inventory = Global.inventory.get("Fish")
+		if(fish_inventory.has(fish_type)):
+			fish_inventory[fish_type]["Quantity"] += 1
+		else:
+			fish_inventory[fish_type] = {}
+			fish_inventory[fish_type]["Name"] = fish_type
+			fish_inventory[fish_type]["Quantity"] = 1
+		
+		#update Has Caught bool in fish_json
+		Global.edit_JSON(Global.FISH_JSON_PATH, fish_type, "Have Caught", true)
+		print(Global.fish_dictionary[fish_type])
+		
 	map.pause_mode = PAUSE_MODE_INHERIT
 	get_tree().set_pause(false)

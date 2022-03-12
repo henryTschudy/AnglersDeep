@@ -5,10 +5,13 @@ var inventory_array = Global.inventory
 var empty = true
 
 export(bool) var start_focused = false
-var equip1key = Global.inventory.get("equipment").keys()[0]
-var item_name = Global.inventory.get("equipment").get(equip1key).get("name")
-var item_sprite_path = Global.inventory.get("equipment").get(equip1key).get("sprite_path")
-var item_description = Global.inventory.get("equipment").get(equip1key).get("description")
+var item_name = ""
+var item_sprite_path = ""
+var item_description = ""
+#var equip1key = Global.inventory.get("equipment").keys()[0]
+#var item_name = Global.inventory.get("equipment").get(equip1key).get("name")
+#var item_sprite_path = Global.inventory.get("equipment").get(equip1key).get("sprite_path")
+#var item_description = Global.inventory.get("equipment").get(equip1key).get("description")
 
 func _ready():		
 	if(start_focused):

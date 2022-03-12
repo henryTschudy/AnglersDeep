@@ -6,7 +6,8 @@
             "Scream Pod",
             "Trout Fur"
         ],
-        "Item Description": "Stops fish movement briefly"
+        "Item Description": "Stops fish movement briefly",
+        "Location" : "res://textures/unknown_fish.png"
     },
     "Fish Repellent" : {
         "Name": "Fish Repellent",
@@ -15,7 +16,8 @@
             "Smug Smile",
             "Endless Arm"
         ],
-        "Item Description": "Repels lower-tier fish"
+        "Item Description": "Repels lower-tier fish",
+        "Location" : "res://textures/unknown_fish.png"
     },
     "Lure Bait" : {
         "Name": "Lure Bait",
@@ -24,7 +26,8 @@
             "ANGER Fish Lure",
             "Mobius Fin"
         ],
-        "Item Description": "Draws fish towards bobber"
+        "Item Description": "Draws fish towards bobber",
+        "Location" : "res://textures/unknown_fish.png"
     },
     "Small-Fry Bait": {
         "Name": "Small-Fry Bait",
@@ -33,7 +36,8 @@
             "Jealous Fish Eye",
             "ANGER Fish Lure"
         ],
-        "Item Description": "Attracts lower tier fish"
+        "Item Description": "Attracts lower tier fish",
+        "Location" : "res://textures/unknown_fish.png"
     },
     "Abyss Hook" : {
         "Name": "Abyss Hook",
@@ -45,7 +49,8 @@
             "Omniscience",
             "Longevity"
         ],
-        "Item Description": "Allows you to fish the Big One"
+        "Item Description": "Allows you to fish the Big One",
+        "Location" : "res://textures/unknown_fish.png"
     },
     "Eldritch Hook" : {
         "Name": "Eldritch Hook",
@@ -57,7 +62,8 @@
             "Future Shark Fin",
             "Future Shark Fin"
         ],
-        "Item Description": "Allows the Fishing of Progenitors"
+        "Item Description": "Allows the Fishing of Progenitors",
+        "Location" : "res://textures/unknown_fish.png"
     },
     "Strange Hook" : {
         "Name": "Strange Hook",
@@ -69,6 +75,17 @@
             "Raging Lure",
             "Jealous Eye"
         ],
-        "Item Description": "Allows the Fishing of Scion Fish"
+        "Item Description": "Allows the Fishing of Scion Fish",
+        "Location" : "res://textures/unknown_fish.png"
+    },
+    "Normal Hook" : {
+        "Name": "Normal Hook",
+        "Item Components":
+        [
+            "N/A",
+            "N/A",
+        ],
+        "Item Description": "Allows the Fishing of lower-tier fish",
+        "Location" : "res://textures/unknown_fish.png"
     }
 }

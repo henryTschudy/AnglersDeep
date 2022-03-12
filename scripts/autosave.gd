@@ -14,6 +14,8 @@ onready var global = GlobalManager.new()
 func resetData():
 	# Reset to defaults if path doesn't exist
 	data = Global.inventory.duplicate(true)
+	
+	Global.edit_JSON(Global.FISH_JSON_PATH, "all", "Have Caught", false)
 	print("reset game data")
 
 # load game function
@@ -29,7 +31,6 @@ func loadGame():
 	data = parse_json(text)
 	
 	file.close()
-	print("game data loaded")
 
 # save game function
 func saveGame():
@@ -40,7 +41,6 @@ func saveGame():
 	file.store_line(to_json(global.inventory))
 	
 	file.close()
-	print("game data saved")
 
 
 # OPTIONAL: for buttons for save/load

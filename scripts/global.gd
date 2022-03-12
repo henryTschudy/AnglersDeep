@@ -39,7 +39,18 @@ var window_height
 var isFullscreen
 
 #data structures
-var inventory = {}
+var inventory = {
+	"Fish" : {},
+	"Items" : {},
+	"Equipment" : {
+		"Normal Hook" : {
+			"Name": "Normal Hook",
+			"Item Components": ["N/A", "N/A"],
+			"Item Description": "Allows the Fishing of lower-tier fish",
+			"Equipped" : true
+		}
+	}
+}
 var fish_dictionary
 var item_dictionary
 var equipment_dictionary
@@ -160,12 +171,12 @@ func pause_toggle_overworld(mode = "toggle"):
 func _get_current_scene_path():
 	return get_tree().current_scene.filename
 
-func get_item_data(inv_type, item_name, data_type):
-	if(item_name == "all"):
-		#change to use full items JSON later, rn it just uses inventory
-		return inventory.get(inv_type).keys()
-	else:
-		return inventory.get(inv_type).get(item_name).get(data_type)
+#func get_item_data(inv_type, item_name, data_type):
+#	if(item_name == "all"):
+#		#change to use full items JSON later, rn it just uses inventory
+#		return inventory.get(inv_type).keys()
+#	else:
+#		return inventory.get(inv_type).get(item_name).get(data_type)
 
 #func _make_fish_dictionary():
 #	var fish_json = File.new() #create a new file variable to read the fish json
@@ -178,8 +189,35 @@ func make_dictionary(JSON_PATH):
 	var json_file = File.new() #create a new file variable to read the json
 	json_file.open(JSON_PATH, File.READ) #open the json set to read mode
 	var json_text = json_file.get_as_text() #read the json as text
+	json_file.close()
 	var parsed_json_dictionary = parse_json(json_text) #parse the json text 
 	return parsed_json_dictionary
+
+func edit_JSON(JSON_PATH, item_key, data_type, new_data):
+	#transform json to editable dictionary
+	var new_dictionary = make_dictionary(JSON_PATH)
+	
+	#when the all option is selected, every item in the dictionary is updated to have new_data in their data_type
+	if(item_key == "all"):
+		for item_name in new_dictionary:
+			new_dictionary[item_name][data_type] = new_data
+	else:
+		new_dictionary[item_key][data_type] = new_data
+	
+	#overwrite json with edited version
+	var edited_json_file = File.new()
+	edited_json_file.open(JSON_PATH, File.WRITE) #open the json set to write mode
+	edited_json_file.store_string(JSON.print(new_dictionary, "	"))
+	edited_json_file.close()
+	
+	#update respective dictionary
+	match JSON_PATH:
+		FISH_JSON_PATH:
+			fish_dictionary = make_dictionary(JSON_PATH)
+		ITEM_JSON_PATH:
+			item_dictionary = make_dictionary(JSON_PATH)
+		EQUIPMENT_JSON_PATH:
+			equipment_dictionary = make_dictionary(JSON_PATH)
 	
 func _make_region_arrays():
 	var region_json = File.new() #create a new file variable to read the fish json
@@ -189,8 +227,13 @@ func _make_region_arrays():
 	return parsed_json_dictionary.get("Regions") #get the dictionary at key "Fish" and return it
 
 func _get_fish_data(fish_key):
-#	print(fish_key)
 	return fish_dictionary.get(fish_key)
+
+func get_item_data(item_key):
+	return item_dictionary.get(item_key)
+
+func get_equipment_data(equipment_key):
+	return equipment_dictionary.get(equipment_key)
 	
 func _get_region_array(region_key):
 	if region_arrays != null:
