@@ -39,27 +39,25 @@ var window_height
 var isFullscreen
 
 #data structures
+var inventory = {}
 var fish_dictionary
+var item_dictionary
+var equipment_dictionary
 var region_arrays
 
 #var FISH_JSON_PATH = "res://data/fish data.json"
 var FISH_JSON_PATH = "res://data/fish_data.json"
+var ITEM_JSON_PATH = "res://data/item_data.json"
+var EQUIPMENT_JSON_PATH = "res://data/equipment_data.json"
 var REGION_JSON_PATH = "res://data/FishRegions.json"
 
 func _ready():
 	Autosave.loadGame()
-	fish_dictionary = _make_fish_dictionary()
+	fish_dictionary = make_dictionary(FISH_JSON_PATH)
+	item_dictionary = make_dictionary(ITEM_JSON_PATH)
+	equipment_dictionary = make_dictionary(EQUIPMENT_JSON_PATH)
+#	fish_dictionary = _make_fish_dictionary()
 	region_arrays = _make_region_arrays()
-
-#func _unhandled_input(_event):
-#	if Input.is_action_just_pressed("ui_cancel") && current_scene_path != main_menu_path:
-#		_escape()
-#	if Input.is_action_just_pressed("open_journal"):
-#		if(current_scene_path != main_menu_path && current_scene_path != pause_menu_path):
-#			if(current_scene_path != journal_path):
-#				_change_scene(_get_current_scene_path(),journal_path)
-#			else:
-#				_change_scene(_get_current_scene_path(),overworld_path)
 
 func _unhandled_input(_event):
 	match current_scene_state:
@@ -108,18 +106,6 @@ func _unhandled_input(_event):
 				current_scene_state = scene_state.pause_menu_state
 				instance_child_scene(in_game_settings_menu_path, false)
 
-#func _escape():
-#	Autosave.saveGame()
-#	if current_scene_path != pause_menu_path:
-#		_change_scene(_get_current_scene_path(),pause_menu_path)
-#	else:
-#		_change_scene(_get_current_scene_path(),prev_scene_path)
-		
-#func _change_scene(current_scene,next_scene):
-#	prev_scene_path = current_scene
-#	current_scene_path = next_scene
-#	get_tree().change_scene(next_scene)
-
 func change_scene(new_scene_path):
 	Autosave.saveGame()
 	if(child_scene_instance): 
@@ -142,7 +128,7 @@ func change_scene(new_scene_path):
 func instance_child_scene(child_scene_path, open_or_close):
 	if(open_or_close):
 		#pause overworld
-		pause_toggle_overworld()
+		pause_toggle_overworld("pause")
 		
 		#add child scene
 		var child_scene = load(child_scene_path)
@@ -150,7 +136,7 @@ func instance_child_scene(child_scene_path, open_or_close):
 		add_child(child_scene_instance)
 	else:
 		#unpause overworld
-		pause_toggle_overworld()
+		pause_toggle_overworld("unpause")
 		
 		#free child scene
 		child_scene_instance.queue_free()
@@ -181,13 +167,20 @@ func get_item_data(inv_type, item_name, data_type):
 	else:
 		return inventory.get(inv_type).get(item_name).get(data_type)
 
-func _make_fish_dictionary():
-	var fish_json = File.new() #create a new file variable to read the fish json
-	fish_json.open(FISH_JSON_PATH, File.READ) #open the fish json set ro read mode
-	var fish_text = fish_json.get_as_text() #read the fish json as text
-	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
-	return parsed_json_dictionary
+#func _make_fish_dictionary():
+#	var fish_json = File.new() #create a new file variable to read the fish json
+#	fish_json.open(FISH_JSON_PATH, File.READ) #open the fish json set ro read mode
+#	var fish_text = fish_json.get_as_text() #read the fish json as text
+#	var parsed_json_dictionary = parse_json(fish_text) #parse the fish json text 
+#	return parsed_json_dictionary
 
+func make_dictionary(JSON_PATH):
+	var json_file = File.new() #create a new file variable to read the json
+	json_file.open(JSON_PATH, File.READ) #open the json set to read mode
+	var json_text = json_file.get_as_text() #read the json as text
+	var parsed_json_dictionary = parse_json(json_text) #parse the json text 
+	return parsed_json_dictionary
+	
 func _make_region_arrays():
 	var region_json = File.new() #create a new file variable to read the fish json
 	region_json.open(REGION_JSON_PATH, File.READ) #open the fish json set ro read mode
@@ -213,111 +206,111 @@ func _get_random_fish_from_region(region_key):
 	return null
 
 #temp example data for inventory
-var inventory = {
-	"fish" : {
-		"fish 1" : {
-			"name" : "fish 1",
-			"sprite_path" : "res://textures/anger_fish.png",
-			"description" : "scary guy",
-			"quantity" : 2
-		},
-		"fish 2" : {
-			"name" : "fish 2",
-			"sprite_path" : "res://textures/mobius_eel.png",
-			"description" : "scary eel guy",
-			"quantity" : 3
-		}
-	},
-	"items" : {
-		"item 1" : {
-			"name" : "item 1",
-			"sprite_path" : "res://textures/mobius_eel.png",
-			"description" : "scary item aaah",
-			"quantity" : 3
-		},
-		"item 2" : {
-			"name" : "item 2",
-			"sprite_path" : "res://textures/anger_fish.png",
-			"description" : "scary item aah, but different this time",
-			"quantity" : 5
-		},
-	},
-	"equipment" : {
-		"basic fishing rod" : {
-			"name" : "basic fishing rod",
-			"sprite_path" : "res://textures/bloated_rudefish.png",
-			"description" : "rod for fishing",
-			"recipe" : ["item 1","item 1","item 1"],
-			"equipped" : true,
-		},
-		"different fishing rod" : {
-			"name" : "different fishing rod",
-			"sprite_path" : "res://textures/void_fish.png",
-			"description" : "another unique rod for fishing",
-			"recipe" : ["item 2","item 1","item 2"],
-			"equipped" : false,
-		}
-	},
-}
+#var inventory = {
+#	"fish" : {
+#		"fish 1" : {
+#			"name" : "fish 1",
+#			"sprite_path" : "res://textures/anger_fish.png",
+#			"description" : "scary guy",
+#			"quantity" : 2
+#		},
+#		"fish 2" : {
+#			"name" : "fish 2",
+#			"sprite_path" : "res://textures/mobius_eel.png",
+#			"description" : "scary eel guy",
+#			"quantity" : 3
+#		}
+#	},
+#	"items" : {
+#		"item 1" : {
+#			"name" : "item 1",
+#			"sprite_path" : "res://textures/mobius_eel.png",
+#			"description" : "scary item aaah",
+#			"quantity" : 3
+#		},
+#		"item 2" : {
+#			"name" : "item 2",
+#			"sprite_path" : "res://textures/anger_fish.png",
+#			"description" : "scary item aah, but different this time",
+#			"quantity" : 5
+#		},
+#	},
+#	"equipment" : {
+#		"basic fishing rod" : {
+#			"name" : "basic fishing rod",
+#			"sprite_path" : "res://textures/bloated_rudefish.png",
+#			"description" : "rod for fishing",
+#			"recipe" : ["item 1","item 1","item 1"],
+#			"equipped" : true,
+#		},
+#		"different fishing rod" : {
+#			"name" : "different fishing rod",
+#			"sprite_path" : "res://textures/void_fish.png",
+#			"description" : "another unique rod for fishing",
+#			"recipe" : ["item 2","item 1","item 2"],
+#			"equipped" : false,
+#		}
+#	},
+#}
 
 #temp example data for item_dictionary
-var item_dictionary = {
-	"fish" : {
-		"fish 1" : {
-			"name" : "fish 1",
-			"sprite_path" : "res://textures/anger_fish.png",
-			"description" : "scary guy",
-			"have_caught" : true
-		},
-		"fish 2" : {
-			"name" : "fish 2",
-			"sprite_path" : "res://textures/mobius_eel.png",
-			"description" : "scary eel guy",
-			"have_caught" : true
-		},
-		"fish 3" : {
-			"name" : "fish 3",
-			"sprite_path" : "res://textures/void_fish.png",
-			"description" : "you haven't caught this guy yet",
-			"have_caught" : false
-		},
-		"fish 4" : {
-			"name" : "fish 4",
-			"sprite_path" : "res://textures/bloated_rudefish.png",
-			"description" : "you have caught this guy tho",
-			"have_caught" : true
-		}
-	},
-	"items" : {
-		"item 1" : {
-			"name" : "item 1",
-			"sprite_path" : "res://textures/mobius_eel.png",
-			"description" : "scary item aaah",
-		},
-		"item 2" : {
-			"name" : "item 2",
-			"sprite_path" : "res://textures/anger_fish.png",
-			"description" : "scary item aah, but different this time",
-		},
-	},
-	"equipment" : {
-		"basic fishing rod" : {
-			"name" : "basic fishing rod",
-			"sprite_path" : "res://textures/bloated_rudefish.png",
-			"description" : "rod for fishing",
-			"recipe" : ["item 1","item 1","item 1"]
-		},
-		"different fishing rod" : {
-			"name" : "different fishing rod",
-			"sprite_path" : "res://textures/void_fish.png",
-			"description" : "another unique rod for fishing",
-			"recipe" : ["item 1","item 2","item 2"]
-		},
-		"third fishing rod" : {
-			"name" : "third fishing rod",
-			"sprite_path" : "res://textures/mobius_eel.png",
-			"description" : "yarr this here be the third fishing rod",
-			"recipe" : ["item 2","item 2","item 2"]
-		}
-	},
-}
+#var item_dictionary = {
+#	"fish" : {
+#		"fish 1" : {
+#			"name" : "fish 1",
+#			"sprite_path" : "res://textures/anger_fish.png",
+#			"description" : "scary guy",
+#			"have_caught" : true
+#		},
+#		"fish 2" : {
+#			"name" : "fish 2",
+#			"sprite_path" : "res://textures/mobius_eel.png",
+#			"description" : "scary eel guy",
+#			"have_caught" : true
+#		},
+#		"fish 3" : {
+#			"name" : "fish 3",
+#			"sprite_path" : "res://textures/void_fish.png",
+#			"description" : "you haven't caught this guy yet",
+#			"have_caught" : false
+#		},
+#		"fish 4" : {
+#			"name" : "fish 4",
+#			"sprite_path" : "res://textures/bloated_rudefish.png",
+#			"description" : "you have caught this guy tho",
+#			"have_caught" : true
+#		}
+#	},
+#	"items" : {
+#		"item 1" : {
+#			"name" : "item 1",
+#			"sprite_path" : "res://textures/mobius_eel.png",
+#			"description" : "scary item aaah",
+#		},
+#		"item 2" : {
+#			"name" : "item 2",
+#			"sprite_path" : "res://textures/anger_fish.png",
+#			"description" : "scary item aah, but different this time",
+#		},
+#	},
+#	"equipment" : {
+#		"basic fishing rod" : {
+#			"name" : "basic fishing rod",
+#			"sprite_path" : "res://textures/bloated_rudefish.png",
+#			"description" : "rod for fishing",
+#			"recipe" : ["item 1","item 1","item 1"]
+#		},
+#		"different fishing rod" : {
+#			"name" : "different fishing rod",
+#			"sprite_path" : "res://textures/void_fish.png",
+#			"description" : "another unique rod for fishing",
+#			"recipe" : ["item 1","item 2","item 2"]
+#		},
+#		"third fishing rod" : {
+#			"name" : "third fishing rod",
+#			"sprite_path" : "res://textures/mobius_eel.png",
+#			"description" : "yarr this here be the third fishing rod",
+#			"recipe" : ["item 2","item 2","item 2"]
+#		}
+#	},
+#}
