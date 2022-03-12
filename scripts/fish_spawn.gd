@@ -2,7 +2,7 @@ extends Node
 
 signal shadow_fish_deleted
 
-onready var tilemap = get_node("TileMap")
+#onready var tilemap = get_node("TileMap")
 onready var boat = get_node("../boat")
 onready var slingshot = get_node("../boat/cast_scene/Node2D/slingshot")
 var fish_shadows = []
