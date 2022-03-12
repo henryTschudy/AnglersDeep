@@ -35,6 +35,14 @@ func stop_sound(sound_name):
 			stream_player_array.remove(i)
 			break
 
+func stop_all_sound():
+	for i in len(stream_player_array):
+		var stream_player_to_delete = stream_player_array[i][1]
+		stream_player_to_delete.stop()
+		stream_player_to_delete.queue_free()
+		stream_player_array.remove(i)
+		break
+
 #default mode is return the sound, mode == "index" returns the index of the stream_player in stream_player_array
 func get_sound_data(sound_name):
 	var sound_to_play
