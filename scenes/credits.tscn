@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://materials/water_distortion.tres" type="Material" id=1]
+[ext_resource path="res://textures/water/Water Texture - Layer 2.png" type="Texture" id=2]
+[ext_resource path="res://textures/water/Water Texture - Layer 3.png" type="Texture" id=3]
+[ext_resource path="res://textures/water/Water Texture - Base.png" type="Texture" id=4]
+[ext_resource path="res://textures/water/Water Texture - Layer 1.png" type="Texture" id=5]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="water_texture_base" type="TextureRect" parent="Control"]
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 4 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_1" type="TextureRect" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0.403922 )
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_2" type="TextureRect" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0.47451 )
+anchor_top = -3.8147e-08
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="water_texture_layer_3" type="TextureRect" parent="Control"]
+modulate = Color( 1, 1, 1, 0.462745 )
+anchor_top = -3.8147e-08
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+rect_scale = Vector2( 1.069, 1.079 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2( 960, 540 )
+scale = Vector2( 9.6, 5.4 )
+copy_mode = 2
+
+[node name="distorter" type="ColorRect" parent="BackBufferCopy"]
+material = ExtResource( 1 )
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
