@@ -7,6 +7,18 @@ var path = "res://data/save.json"
 func _ready():
 	pass # Replace with function body.
 var data = { }
+var default_inventory = {
+	"Fish" : {},
+	"Items" : {},
+	"Equipment" : {
+		"Normal Hook" : {
+			"Name": "Normal Hook",
+			"Item Components": ["N/A", "N/A"],
+			"Item Description": "Allows the Fishing of lower-tier fish",
+			"Equipped" : true
+		}
+	}
+}
 
 const GlobalManager = preload("global.gd") # Relative path
 onready var global = GlobalManager.new()

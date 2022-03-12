@@ -39,18 +39,7 @@ var window_height
 var isFullscreen
 
 #data structures
-var inventory = {
-	"Fish" : {},
-	"Items" : {},
-	"Equipment" : {
-		"Normal Hook" : {
-			"Name": "Normal Hook",
-			"Item Components": ["N/A", "N/A"],
-			"Item Description": "Allows the Fishing of lower-tier fish",
-			"Equipped" : true
-		}
-	}
-}
+var inventory = Autosave.default_inventory
 var fish_dictionary
 var item_dictionary
 var equipment_dictionary
