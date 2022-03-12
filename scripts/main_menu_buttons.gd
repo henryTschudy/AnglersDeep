@@ -9,6 +9,7 @@ const SaveManager = preload("autosave.gd") # Relative path
 onready var autosave = SaveManager.new()
 
 func _ready():
+	SoundFx.stop_all_sound()
 	if(start_focused):
 		grab_focus()
 		
