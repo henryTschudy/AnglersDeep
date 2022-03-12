@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://textures/Parchment_Background.png" type="Texture" id=1]
 [ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://objects/inventory_tile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://textures/journal ui/inventory_bg.png" type="Texture" id=7]
 [ext_resource path="res://scripts/inventory_buttons.gd" type="Script" id=8]
+[ext_resource path="res://themes/v_slider.tres" type="Theme" id=9]
 [ext_resource path="res://scripts/stickynotes.gd" type="Script" id=10]
 [ext_resource path="res://textures/journal ui/stickynote_equipment_hover.png" type="Texture" id=11]
 [ext_resource path="res://textures/journal ui/stickynote_pedia_hover.png" type="Texture" id=12]
@@ -163,6 +164,7 @@ margin_left = -278.0
 margin_top = 110.0
 margin_right = 269.0
 margin_bottom = 286.0
+theme = ExtResource( 9 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_fonts/normal_font = SubResource( 4 )
 text = "this it the item description of the selected item. This very creepy/weird looking fish is scary, and it came from the deep!"
