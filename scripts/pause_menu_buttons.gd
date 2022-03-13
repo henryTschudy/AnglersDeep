@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 export var ref_path = ""
 export(bool) var start_focused = false
