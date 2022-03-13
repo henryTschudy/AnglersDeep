@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://textures/slider_grabber.png" type="Texture" id=1]
+[ext_resource path="res://fonts/ThinPrint-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://textures/main menu ui/back_button.png" type="Texture" id=3]
 [ext_resource path="res://textures/main menu ui/back_button_hover.png" type="Texture" id=4]
 [ext_resource path="res://themes/grabber_area.tres" type="StyleBox" id=7]
 [ext_resource path="res://scripts/settings_menu_in_game.gd" type="Script" id=8]
-[ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=9]
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.894118, 0.796078, 0.686275, 1 )
@@ -30,11 +30,11 @@ HSlider/styles/slider = SubResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 80
-font_data = ExtResource( 9 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 112
-font_data = ExtResource( 9 )
+font_data = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 pause_mode = 2
@@ -85,10 +85,11 @@ __meta__ = {
 }
 
 [node name="master_label" type="RichTextLabel" parent="."]
-margin_left = 392.0
-margin_top = 386.0
-margin_right = 680.0
-margin_bottom = 482.0
+margin_left = 408.0
+margin_top = 394.0
+margin_right = 696.0
+margin_bottom = 490.0
+rect_scale = Vector2( 1, 0.7 )
 custom_fonts/normal_font = SubResource( 5 )
 text = "MASTER"
 __meta__ = {
@@ -96,10 +97,11 @@ __meta__ = {
 }
 
 [node name="music_label" type="RichTextLabel" parent="."]
-margin_left = 448.0
-margin_top = 508.0
-margin_right = 736.0
-margin_bottom = 604.0
+margin_left = 464.0
+margin_top = 516.0
+margin_right = 752.0
+margin_bottom = 612.0
+rect_scale = Vector2( 1, 0.7 )
 custom_fonts/normal_font = SubResource( 5 )
 text = "MUSIC"
 __meta__ = {
@@ -107,10 +109,11 @@ __meta__ = {
 }
 
 [node name="sound_fx_label" type="RichTextLabel" parent="."]
-margin_left = 328.0
-margin_top = 628.0
-margin_right = 648.0
-margin_bottom = 724.0
+margin_left = 344.0
+margin_top = 636.0
+margin_right = 664.0
+margin_bottom = 732.0
+rect_scale = Vector2( 1, 0.7 )
 custom_fonts/normal_font = SubResource( 5 )
 text = "SOUND FX"
 __meta__ = {
@@ -118,9 +121,9 @@ __meta__ = {
 }
 
 [node name="volume_label" type="RichTextLabel" parent="."]
-margin_left = 856.0
+margin_left = 872.0
 margin_top = 256.0
-margin_right = 1200.0
+margin_right = 1216.0
 margin_bottom = 416.0
 custom_fonts/normal_font = SubResource( 6 )
 text = "VOLUME"
