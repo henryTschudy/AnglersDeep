@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://textures/main menu ui/main_menu_bg.jpg" type="Texture" id=1]
 [ext_resource path="res://fonts/Inkcalig.otf" type="DynamicFontData" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://textures/main menu ui/start_button_hover.png" type="Texture" id=7]
 [ext_resource path="res://textures/main menu ui/exit_button_hover.png" type="Texture" id=8]
 [ext_resource path="res://textures/main menu ui/settings_cog_hover.png" type="Texture" id=9]
+[ext_resource path="res://textures/main menu ui/credits_button_hover.png" type="Texture" id=10]
+[ext_resource path="res://textures/main menu ui/credits_button.png" type="Texture" id=11]
 
 [sub_resource type="Shader" id=1]
 code = "//https://www.youtube.com/watch?v=zgjDanEDjTg
@@ -93,10 +95,11 @@ __meta__ = {
 }
 
 [node name="start_btn" type="TextureButton" parent="."]
-margin_left = 1216.0
-margin_top = 448.0
-margin_right = 1853.0
-margin_bottom = 700.0
+margin_left = 1280.0
+margin_top = 384.0
+margin_right = 1917.0
+margin_bottom = 636.0
+rect_scale = Vector2( 0.75, 0.75 )
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 7 )
@@ -106,6 +109,37 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 ref_path = "res://scenes/overworld.tscn"
+
+[node name="credits_btn" type="TextureButton" parent="."]
+margin_left = 1280.0
+margin_top = 608.0
+margin_right = 1917.0
+margin_bottom = 860.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+texture_focused = ExtResource( 10 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ref_path = "res://scenes/credits.tscn"
+
+[node name="exit_btn" type="TextureButton" parent="."]
+margin_left = 1280.0
+margin_top = 832.0
+margin_right = 1917.0
+margin_bottom = 1084.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="settings_btn" type="TextureButton" parent="."]
 margin_left = 40.0
@@ -121,17 +155,3 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 ref_path = "res://scenes/settings_menu.tscn"
-
-[node name="exit_btn" type="TextureButton" parent="."]
-margin_left = 1216.0
-margin_top = 760.0
-margin_right = 1853.0
-margin_bottom = 1012.0
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 8 )
-texture_hover = ExtResource( 8 )
-texture_focused = ExtResource( 8 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://materials/water_distortion.tres" type="Material" id=1]
 [ext_resource path="res://textures/water/Water Texture - Layer 2.png" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://textures/water/Water Texture - Layer 1.png" type="Texture" id=5]
 [ext_resource path="res://fonts/thin_print.tres" type="DynamicFont" id=6]
 [ext_resource path="res://fonts/ThinPrint-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scripts/credits.gd" type="Script" id=8]
+[ext_resource path="res://textures/main menu ui/back_button_hover.png" type="Texture" id=9]
+[ext_resource path="res://textures/main menu ui/back_button.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=2]
 size = 150
@@ -26,6 +29,7 @@ font_data = ExtResource( 7 )
 default_font = SubResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 8 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 1920.0
@@ -117,6 +121,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 72.0
+margin_top = 48.0
+margin_right = 263.0
+margin_bottom = 239.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+texture_focused = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Anglers_Deep" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -129,6 +147,7 @@ bbcode_enabled = true
 bbcode_text = "[center]ANGLER'S DEEP"
 text = "ANGLER'S DEEP"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -138,6 +157,7 @@ margin_top = 208.0
 margin_right = 1320.0
 margin_bottom = 213.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -153,6 +173,7 @@ bbcode_enabled = true
 bbcode_text = "[right]Production"
 text = "Production"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -162,6 +183,7 @@ margin_top = 264.0
 margin_right = 499.0
 margin_bottom = 389.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -175,6 +197,7 @@ margin_bottom = 343.0
 theme = SubResource( 5 )
 text = "Henry Tschudy"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -187,6 +210,7 @@ margin_bottom = 415.0
 theme = SubResource( 5 )
 text = "Willow Tschudy"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -202,6 +226,7 @@ bbcode_enabled = true
 bbcode_text = "[right]Writing"
 text = "Writing"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -211,6 +236,7 @@ margin_top = 485.0
 margin_right = 499.0
 margin_bottom = 685.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -224,6 +250,7 @@ margin_bottom = 564.0
 theme = SubResource( 5 )
 text = "Molly Thompson"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -236,6 +263,7 @@ margin_bottom = 639.0
 theme = SubResource( 5 )
 text = "Henry Tschudy"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -248,6 +276,7 @@ margin_bottom = 711.0
 theme = SubResource( 5 )
 text = "Willow Tschudy"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -263,6 +292,7 @@ bbcode_enabled = true
 bbcode_text = "[right]Audio"
 text = "Audio"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -272,6 +302,7 @@ margin_top = 776.0
 margin_right = 499.0
 margin_bottom = 901.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -285,6 +316,7 @@ margin_bottom = 855.0
 theme = SubResource( 5 )
 text = "Gabriel Gallegos"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -297,6 +329,7 @@ margin_bottom = 924.0
 theme = SubResource( 5 )
 text = "Henry Tschudy"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -312,6 +345,7 @@ bbcode_enabled = true
 bbcode_text = "[right]Art"
 text = "Art"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -321,6 +355,7 @@ margin_top = 264.0
 margin_right = 1459.0
 margin_bottom = 524.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -334,6 +369,7 @@ margin_bottom = 343.0
 theme = SubResource( 5 )
 text = "Felix Tham"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -347,6 +383,7 @@ margin_bottom = 413.0
 theme = SubResource( 5 )
 text = "Molly Thompson"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -360,6 +397,7 @@ margin_bottom = 483.0
 theme = SubResource( 5 )
 text = "Henry Tschudy"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -373,6 +411,7 @@ margin_bottom = 549.0
 theme = SubResource( 5 )
 text = "Kristopher Yu"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -388,6 +427,7 @@ bbcode_enabled = true
 bbcode_text = "[right]Programming"
 text = "Programming"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -397,6 +437,7 @@ margin_top = 600.0
 margin_right = 1459.0
 margin_bottom = 800.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -410,6 +451,7 @@ margin_bottom = 679.0
 theme = SubResource( 5 )
 text = "Julian Cady"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -423,6 +465,7 @@ margin_bottom = 751.0
 theme = SubResource( 5 )
 text = "Elroy Lobo"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -436,6 +479,7 @@ margin_bottom = 819.0
 theme = SubResource( 5 )
 text = "William Propp"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -451,6 +495,7 @@ bbcode_enabled = true
 bbcode_text = "[right]UI Design"
 text = "UI Design"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -460,6 +505,7 @@ margin_top = 856.0
 margin_right = 1459.0
 margin_bottom = 956.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -473,5 +519,8 @@ margin_bottom = 959.0
 theme = SubResource( 5 )
 text = "Kristopher Yu"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
