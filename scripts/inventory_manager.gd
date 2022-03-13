@@ -26,15 +26,23 @@ func update_inventory_tiles(inv_type):
 		if(i < len(item_array)):
 			#get tile + item_description data from inv array
 			var item_key = item_array[i]
-			var item_name = Global._get_fish_data(item_key).get("Name")
-			var item_sprite_path = Global._get_fish_data(item_key).get("Location")
-			var item_description = Global._get_fish_data(item_key).get("Metaphysical Notes")
-			var item_quantity = Global.inventory.get("Fish").get(item_key).get("Quantity")
-			
-#			var item_name = Global.get_item_data(inv_type, item_array[i], "Name")
-#			var item_sprite_path = Global.get_item_data(inv_type, item_array[i], "sprite_path")
-#			var item_description = Global.get_item_data(inv_type, item_array[i], "description")
-#			var item_quantity = Global.get_item_data(inv_type, item_array[i], "quantity")
+			var item_name
+			var item_sprite_path
+			var item_description
+			var item_biological_notes
+			var item_quantity
+			if(inv_type == "Fish"):
+				item_name = Global._get_fish_data(item_key).get("Name")
+				item_sprite_path = Global._get_fish_data(item_key).get("Location")
+				item_description = Global._get_fish_data(item_key).get("Metaphysical Notes")
+				inventory_tiles_array[i].item_biological_notes = Global._get_fish_data(item_key).get("Biological Notes")
+				item_quantity = Global.inventory.get("Fish").get(item_key).get("Quantity")
+			elif(inv_type == "Items"):
+				item_name = Global.get_item_data(item_key).get("Name")
+				item_sprite_path = Global.get_item_data(item_key).get("Location")
+				item_description = Global.get_item_data(item_key).get("Item Description")
+				item_quantity = Global.inventory.get("Items").get(item_key).get("Quantity")
+				
 			
 			#update tile's display
 			inventory_tiles_array[i].fill_tile(item_quantity, item_sprite_path)
@@ -47,3 +55,13 @@ func update_inventory_tiles(inv_type):
 		#once there's no more inventory elements, make the rest of the tiles empty
 		else:
 			inventory_tiles_array[i].make_empty()
+
+
+func _on_fish_btn_pressed():
+	update_inventory_tiles("Fish")
+	get_node("inv_tile_button1").update_item_display()
+
+
+func _on_items_btn_pressed():
+	update_inventory_tiles("Items")
+	get_node("inv_tile_button1").update_item_display()
