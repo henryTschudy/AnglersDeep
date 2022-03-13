@@ -6,7 +6,6 @@
 [ext_resource path="res://textures/mobius_eel.png" type="Texture" id=4]
 [ext_resource path="res://fonts/times.ttf" type="DynamicFontData" id=5]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 46
 font_data = ExtResource( 5 )
@@ -24,11 +23,13 @@ __meta__ = {
 }
 
 [node name="item_sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 101, 99 )
 scale = Vector2( 0.296875, 0.296875 )
 texture = ExtResource( 4 )
 
 [node name="item_quantity" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 149.0
 margin_top = 11.0
 margin_right = 245.0

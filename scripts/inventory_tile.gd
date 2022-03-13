@@ -3,7 +3,7 @@ extends TextureButton
 onready var quantity_label = get_node("item_quantity")
 onready var item_sprite = get_node("item_sprite")
 var inventory_array = Global.inventory
-var empty
+var empty = true
 
 export(bool) var start_focused = false
 var item_name = "Empty"
@@ -36,12 +36,18 @@ func make_empty():
 func fill_tile(quantity, img_path):
 	change_quantity(quantity)
 	change_sprite(img_path)
+	item_sprite.visible = true
+	quantity_label.visible = true
 	empty = false
 
 func change_quantity(new_quantity):
-	item_sprite.visible = true
 	quantity_label.text = str(new_quantity)
+	item_sprite.visible = true
+	quantity_label.visible = true
+	empty = false
 
 func change_sprite(img_path):
-	quantity_label.visible = true
 	item_sprite.texture = load(img_path)
+	item_sprite.visible = true
+	quantity_label.visible = true
+	empty = false

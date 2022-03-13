@@ -17,12 +17,19 @@ func _ready():
 		var tile_name = "ritual_inv_tile" + str(i+1)
 		var tile_to_add = get_node(tile_name)
 		inventory_tiles_array.append(tile_to_add)
+	clear_item_tiles()
 	update_item_tiles()
+#	for tile in inventory_tiles_array:
+#		print(tile.item_sprite_path)
 	
 	#generate recipes dictionary
 	for i in len(equipment_keys):
 		var equipment_key = equipment_keys[i]
 		recipes_dictionary[equipment_key] = Global.equipment_dictionary[equipment_key]["Item Components"]
+
+func clear_item_tiles():
+	for tile in inventory_tiles_array:
+		tile.fill_tile(0, "res://textures/unknown_fish.png")
 
 func update_item_tiles():
 	for i in len(inventory_tiles_array):

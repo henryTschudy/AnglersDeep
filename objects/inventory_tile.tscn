@@ -6,7 +6,6 @@
 [ext_resource path="res://textures/mobius_eel.png" type="Texture" id=4]
 [ext_resource path="res://fonts/times.ttf" type="DynamicFontData" id=5]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 46
 font_data = ExtResource( 5 )

@@ -13,7 +13,7 @@
 		"Region": "The Big One's Lair",
 		"Produced Item": "Acceptance",
 		"Item Path": "res://textures/items/acceptance.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Psychonitoth, that Which Thought First": {
 		"Name": "Psychonitoth, that Which Thought First",
@@ -29,7 +29,7 @@
 		"Region": "Psychonitoth's Zone",
 		"Produced Item": "Omniscience",
 		"Item Path": "res://textures/items/omniscience.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Pneumistis, The Ageless Mass": {
 		"Name": "Pneumistis, The Ageless Mass",
@@ -45,23 +45,23 @@
 		"Region": "Pneumistis' Zone",
 		"Produced Item": "Longevity",
 		"Item Path": "res://textures/items/longevity.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Physical corruption (temp)": {
 		"Name": "Physical corruption (temp)",
 		"Have Caught": false,
 		"Dev Notes": "jumbo shrimp (mantis shrimp) but with a bunch of body parts and teeth etc",
 		"Metaphysical Notes": "Cut - Add in later",
-		"Biological Notes": null,
+		"Biological Notes": "",
 		"Difficulty": 4,
 		"Min Weight": 50,
 		"Max Weight": 75,
 		"Location": "res://textures/beta_fish.png",
 		"Frequency": 2,
 		"Region": "Pneumistis' Zone, Abyss",
-		"Produced Item": null,
+		"Produced Item": "",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Gaslamp octopus": {
 		"Name": "Gaslamp octopus",
@@ -77,11 +77,11 @@
 		"Region": "Psychonitoth's Zone, Abyss",
 		"Produced Item": "Gaslight Gel",
 		"Item Path": "res://textures/items/gaslight_gel.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Bloated rudefish": {
 		"Name": "Bloated rudefish",
-		"Have Caught": false,
+		"Have Caught": true,
 		"Dev Notes": "humphead wrasse",
 		"Metaphysical Notes": "The Bloated Rudefish clearly is able to tap into the mind of its victim, as the comments it makes are very, very personal. This suggests it has a connection with other mind-altering fish species. The mastery of common vernacular and epithets suggests it pulls information from the victims mind when forming expletives, but this does not account for its vast knowledge of rude subjects unknown to most victims.",
 		"Biological Notes": "As ugly physically as it is verbally. Bloated rudefish are exceedingly unpleasant, featuring large lips and a thick body covered in rough scales. Their fins appear almost vestigial, as the creature itself \"swims\" quite slowly — more akin to drifting, like the Mola mola. At the front of its fat head is a massive bump, almost like the melons seen in some aquatic mammals. Perhaps this growth is the source of its psychic abilities. As far as I can tell, its sole means of defense (aside from its size) is intense, visceral insults. It is entirely unclear to me how (or, indeed, if) this adaptation functions against non-human organisms.",
@@ -93,7 +93,7 @@
 		"Region": "Psychonitoth's Zone, Abyss",
 		"Produced Item": "Smug Smile",
 		"Item Path": "res://textures/items/smug_smile.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Mandrake fish": {
 		"Name": "Mandrake fish",
@@ -109,7 +109,7 @@
 		"Region": "Psychonitoth's Zone, Abyss",
 		"Produced Item": "Scream Pod",
 		"Item Path": "res://textures/items/mandrake_scream_pod.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"This Fish Was Definitely a Person": {
 		"Name": "This Fish Was Definitely a Person",
@@ -125,13 +125,13 @@
 		"Region": "Psychonitoth's Zone, Pneumistis' Zone, Abyss",
 		"Produced Item": "Human finger",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Blightfish": {
 		"Name": "Blightfish",
 		"Have Caught": false,
 		"Dev Notes": "tongue eating louse; botflies; trypophobia; worms",
-		"Metaphysical Notes": null,
+		"Metaphysical Notes": "",
 		"Biological Notes": "looks diseased, has other parasitic sub-fish",
 		"Difficulty": 3,
 		"Min Weight": 50,
@@ -141,13 +141,13 @@
 		"Region": "Psychonitoth's Zone, Pneumistis' Zone, Abyss",
 		"Produced Item": "Blightfish's Parasitic Worm",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Gutfish": {
 		"Name": "Gutfish",
 		"Have Caught": false,
 		"Dev Notes": "looks like, and i cannot stress this enough, Guts",
-		"Metaphysical Notes": null,
+		"Metaphysical Notes": "",
 		"Biological Notes": "looks like guts!",
 		"Difficulty": 3,
 		"Min Weight": 50,
@@ -157,7 +157,7 @@
 		"Region": "Psychonitoth's Zone, Pneumistis' Zone, Abyss",
 		"Produced Item": "Intestinal Polyp",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"World oyster": {
 		"Name": "World oyster",
@@ -173,7 +173,7 @@
 		"Region": "Pneumistis' Zone, Abyss",
 		"Produced Item": "Mother of All Pearls",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Future shark": {
 		"Name": "Future shark",
@@ -189,7 +189,7 @@
 		"Region": "Pneumistis' Zone, Abyss",
 		"Produced Item": "Future Shark Fin",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Voidfish": {
 		"Name": "Voidfish",
@@ -205,7 +205,7 @@
 		"Region": "Pneumistis' Zone, Abyss",
 		"Produced Item": "Bait-Shaped Hole in Spacetime",
 		"Item Path": "bait_shaped_hole_in_spacetime.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Sockeye salmon": {
 		"Name": "Sockeye salmon",
@@ -221,7 +221,7 @@
 		"Region": "Pneumistis' Zone, Abyss",
 		"Produced Item": "Salmon Roe",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Fur-bearing Trout": {
 		"Name": "Fur-bearing Trout",
@@ -237,7 +237,7 @@
 		"Region": "Psychonitoth's Zone, Pneumistis' Zone, Abyss",
 		"Produced Item": "Trout Fur",
 		"Item Path": "res://textures/items/trout_fur.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Moebius fish": {
 		"Name": "Moebius fish",
@@ -253,7 +253,7 @@
 		"Region": "Pneumistis' Zone, Abyss",
 		"Produced Item": "Mobius Fin",
 		"Item Path": "res://textures/items/mobius_fin.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Fractal starfish": {
 		"Name": "Fractal starfish",
@@ -269,7 +269,7 @@
 		"Region": "Pneumistis' Zone, Abyss",
 		"Produced Item": "Endless Arm",
 		"Item Path": "res://textures/items/endless_arm.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Anger fish": {
 		"Name": "Anger fish",
@@ -285,7 +285,7 @@
 		"Region": "Psychonitoth's Zone, Abyss",
 		"Produced Item": "Raging Lure",
 		"Item Path": "res://textures/items/raging_lure.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Jealous fish": {
 		"Name": "Jealous fish",
@@ -301,7 +301,7 @@
 		"Region": "Psychonitoth's Zone, Abyss",
 		"Produced Item": "Jealous Eye",
 		"Item Path": "res://textures/items/jealous_eye.png",
-		"Item Description": null
+		"Item Description": ""
 	},
 	"Beta fish": {
 		"Name": "Beta fish",
@@ -317,6 +317,6 @@
 		"Region": "Pneumistis' Zone, Psychonitoth's Zone, Abyss",
 		"Produced Item": "Placeholder Eye",
 		"Item Path": "res://textures/items/temp.png",
-		"Item Description": null
+		"Item Description": ""
 	}
 }

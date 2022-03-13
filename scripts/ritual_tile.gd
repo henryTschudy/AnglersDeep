@@ -40,16 +40,18 @@ func _select_button():
 	
 	
 func make_empty():
-	item_sprite.visible = false
-	quantity_label.visible = false
 	item_name = ""
 	item_quantity = 0
 	item_sprite_path = ""
+	item_sprite.visible = false
+	quantity_label.visible = false
 
 func fill_tile(quantity, img_path, name = ""):
 	change_quantity(quantity)
 	change_sprite(img_path)
 	change_name(name)
+	quantity_label.visible = true
+	item_sprite.visible = true
 
 func change_quantity(new_quantity):
 	item_quantity = new_quantity

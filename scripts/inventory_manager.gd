@@ -16,6 +16,7 @@ func _ready():
 	
 	#when inventory tab is opened, default inv_type is fish
 	update_inventory_tiles("Fish")
+	get_node("inv_tile_button1").update_item_display()
 
 func update_inventory_tiles(inv_type):
 	for i in len(inventory_tiles_array):
