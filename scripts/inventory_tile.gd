@@ -12,8 +12,10 @@ var item_description = "Alas, you have not a single fish"
 var item_biological_notes = "A lack of fish, does not a biological description make"
 
 func _ready():		
-	if(start_focused):
+	if(start_focused && empty):
+		empty = false
 		update_item_display()
+		empty = true
 	connect("mouse_entered",self,"_shift_focus")
 	connect("pressed",self,"update_item_display")
 
